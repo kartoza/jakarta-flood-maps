@@ -12,11 +12,10 @@ from django.contrib.gis.db import models
 from django.conf.global_settings import MEDIA_ROOT
 from django.utils.text import slugify
 from django.core.validators import MaxValueValidator, MinValueValidator
-from owslib.wms import WebMapService, ServiceException, CapabilitiesError
 
 
-class Village(models.Model):
-    """Village model."""
+class FloodStatus(models.Model):
+    """Flood status model."""
 
     class Meta:
         """Meta class."""
@@ -28,7 +27,7 @@ class Village(models.Model):
     )
 
     name = models.CharField(
-        help_text='A name for the village.',
+        help_text='Update me to something useful',
         null=False,
         blank=False,
         unique=True,
@@ -41,4 +40,4 @@ class Village(models.Model):
     def save(self, *args, **kwargs):
         """Overloaded save method."""
         self.slug = slugify(unicode(self.name))
-        super(Village, self).save(*args, **kwargs)
+        super(FloodStatus, self).save(*args, **kwargs)
