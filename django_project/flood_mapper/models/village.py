@@ -12,7 +12,6 @@ from django.contrib.gis.db import models
 from django.conf.global_settings import MEDIA_ROOT
 from django.utils.text import slugify
 from django.core.validators import MaxValueValidator, MinValueValidator
-from owslib.wms import WebMapService, ServiceException, CapabilitiesError
 
 from flood_mapper.models.boundary import Boundary
 
