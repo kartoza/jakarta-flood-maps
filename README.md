@@ -71,7 +71,7 @@ from the internet, ensure that all lines are commented out in your hosts
 
 
 ```
-cd jakarta-flood-maps-django
+cd jakarta-flood-maps
 scripts\create_docker_env.sh
 ```
 
@@ -97,7 +97,7 @@ npm -g install yuglify
 
 
 ```
-cd project/core/settings
+cd django_project/core/settings
 cp dev_timlinux.py dev_${USER}.py
 ```
 
@@ -114,7 +114,7 @@ Prepare your database and static resources by doing this:
 ```
 virtualenv venv
 source venv/bin/activate
-cd project
+cd django_project
 python manage.py migrate --settings=core.settings.dev_${USER}
 python manage.py collectstatic --noinput --settings=core.settings.dev_${USER}
 python manage.py runserver --settings=core.settings.dev_${USER}

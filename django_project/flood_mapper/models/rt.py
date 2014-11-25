@@ -15,15 +15,11 @@ from django.core.validators import MaxValueValidator, MinValueValidator
 from owslib.wms import WebMapService, ServiceException, CapabilitiesError
 
 from flood_mapper.models.boundary import Boundary
+from flood_mapper.models.rw import RW
 
 
-class Village(Boundary):
-    """Village model.
-
-    Note: We should make a boundary base class or decorator and then
-    let village, RW and RT inherit from it since they have many fields in
-    common.
-    """
+class RT(Boundary):
+    """RW Boundary."""
 
     class Meta:
         """Meta class."""
@@ -35,12 +31,14 @@ class Village(Boundary):
     )
 
     name = models.CharField(
-        help_text='A name for the village.',
+        help_text='A name for the RT.',
         null=False,
         blank=False,
         unique=True,
         max_length=100
     )
+
+    rw = models.ForeignKey(RW)
 
     def __unicode__(self):
         return self.name
@@ -48,4 +46,4 @@ class Village(Boundary):
     def save(self, *args, **kwargs):
         """Overloaded save method."""
         self.slug = slugify(unicode(self.name))
-        super(Village, self).save(*args, **kwargs)
+        super(RT, self).save(*args, **kwargs)
