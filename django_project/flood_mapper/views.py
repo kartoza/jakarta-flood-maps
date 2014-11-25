@@ -5,7 +5,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.template import RequestContext
 
-from flood_mapper.models import FloodReport
+from flood_mapper.models import FloodStatus
 from flood_mapper.app_settings import *
 
 
