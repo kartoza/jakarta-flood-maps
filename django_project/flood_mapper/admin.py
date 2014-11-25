@@ -2,14 +2,13 @@
 """Model Admin Class."""
 
 from django.contrib import admin
-from flood_mapper.models.wms_resource import FloodReport
+from flood_mapper.models.flood_status import FloodStatus
 
 
-class FloodReportAdmin(admin.ModelAdmin):
+class FloodStatusAdmin(admin.ModelAdmin):
     """Admin Class for FloodReport Model."""
-    exclude = ('slug',)
-    list_display = ('name', 'uri')
-    list_filter = ['name', 'uri']
-    search_fields = ['name', 'description']
+    list_display = ('name',)
+    list_filter = ['name']
+    search_fields = ['name']
 
-admin.site.register(FloodReport, FloodReportAdmin)
+admin.site.register(FloodStatus, FloodStatusAdmin)
