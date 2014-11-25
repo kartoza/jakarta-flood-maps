@@ -1,0 +1,211 @@
+proddb:
+  image: kartoza/postgis
+  environment:
+    - USERNAME=docker
+    - PASS=docker
+
+produwsgi:
+  build: docker-prod
+  hostname: staginguwsgi
+  environment:
+    - DATABASE_NAME=gis
+    - DATABASE_USERNAME=docker
+    - DATABASE_PASSWORD=docker
+    - DATABASE_HOST=db
+    - DJANGO_SETTINGS_MODULE=core.settings.prod_docker
+  volumes:
+    - .:/home/web
+  ports:
+    - "1719:49360"
+  links:
+    - proddb:db
+
+prodmigrate:
+  build: docker-prod
+  hostname prodmigrate
+  entrypoint: /usr/bin/python
+  command: "manage.py migrate"
+  environment:
+    - DATABASE_NAME=gis
+    - DATABASE_USERNAME=docker
+    - DATABASE_PASSWORD=docker
+    - DATABASE_HOST=db
+    - DJANGO_SETTINGS_MODULE=core.settings.prod_docker
+  volumes:
+    - .:/home/web
+  links:
+    - db
+
+prodcollectstatic:
+  build: docker-prod
+  hostname: prodcollectstatic
+  entrypoint: /usr/bin/python
+  command: "manage.py collectstatic --noinput"
+  environment:
+    - DATABASE_NAME=gis
+    - DATABASE_USERNAME=docker
+    - DATABASE_PASSWORD=docker
+    - DATABASE_HOST=db
+    - DJANGO_SETTINGS_MODULE=core.settings.prod_docker
+  volumes:
+    - .:/home/web
+  links:
+    - proddb:db
+
+prodshell:
+  build: docker-prod
+  hostname: prodshell
+  entrypoint: /bin/bash
+  command: -i
+  environment:
+    - DATABASE_NAME=gis
+    - DATABASE_USERNAME=docker
+    - DATABASE_PASSWORD=docker
+    - DATABASE_HOST=db
+    - DJANGO_SETTINGS_MODULE=core.settings.prod_docker
+  volumes:
+    - .:/home/web
+  links:
+    - proddb:db
+
+#
+# Staging server
+#
+stagingdb:
+  image: kartoza/postgis
+  environment:
+    - USERNAME=docker
+    - PASS=docker
+
+staginguwsgi:
+  build: docker-prod
+  hostname: staginguwsgi
+  environment:
+    - DATABASE_NAME=gis
+    - DATABASE_USERNAME=docker
+    - DATABASE_PASSWORD=docker
+    - DATABASE_HOST=db
+    - DJANGO_SETTINGS_MODULE=core.settings.staging_docker
+  volumes:
+    - .:/home/web
+  ports:
+    - "1719:49360"
+  links:
+    - stagingdb:db
+
+stagingmigrate:
+  build: docker-prod
+  hostname stagingmigrate
+  entrypoint: /usr/bin/python
+  command: "manage.py migrate"
+  environment:
+    - DATABASE_NAME=gis
+    - DATABASE_USERNAME=docker
+    - DATABASE_PASSWORD=docker
+    - DATABASE_HOST=db
+    - DJANGO_SETTINGS_MODULE=core.settings.staging_docker
+  volumes:
+    - .:/home/web
+  links:
+    - stagingdb:db
+
+stagingcollectstatic:
+  build: docker-prod
+  hostname: stagingcollectstatic
+  entrypoint: /usr/bin/python
+  command: "manage.py collectstatic --noinput"
+  environment:
+    - DATABASE_NAME=gis
+    - DATABASE_USERNAME=docker
+    - DATABASE_PASSWORD=docker
+    - DATABASE_HOST=db
+    - DJANGO_SETTINGS_MODULE=core.settings.staging_docker
+  volumes:
+    - .:/home/web
+  links:
+    - stagingdb:db
+
+stagingshell:
+  build: docker-prod
+  hostname: devshell
+  entrypoint: /bin/bash
+  command: -i
+  environment:
+    - DATABASE_NAME=gis
+    - DATABASE_USERNAME=docker
+    - DATABASE_PASSWORD=docker
+    - DATABASE_HOST=db
+    - DJANGO_SETTINGS_MODULE=core.settings.staging_docker
+  volumes:
+    - .:/home/web
+  links:
+    - stagingdb:db
+
+
+#
+# Local development server
+#
+
+dev:
+  build: docker-dev
+  environment:
+    - DATABASE_NAME=gis
+    - DATABASE_USERNAME=docker
+    - DATABASE_PASSWORD=docker
+    - DATABASE_HOST=db
+    - DJANGO_SETTINGS_MODULE=core.settings.dev_docker
+  volumes:
+    - .:/home/web
+  ports:
+    - "1722:22"
+    - "1723:1723"
+  links:
+    - db
+
+devmigrate:
+  build: docker-dev
+  hostname devmigrate
+  entrypoint: /usr/bin/python
+  command: "manage.py migrate"
+  environment:
+    - DATABASE_NAME=gis
+    - DATABASE_USERNAME=docker
+    - DATABASE_PASSWORD=docker
+    - DATABASE_HOST=db
+    - DJANGO_SETTINGS_MODULE=core.settings.dev_docker
+  volumes:
+    - .:/home/web
+  links:
+    - db
+
+devcollectstatic:
+  build: docker-dev
+  hostname: devcollectstatic
+  entrypoint: /usr/bin/python
+  command: "manage.py collectstatic --noinput"
+  environment:
+    - DATABASE_NAME=gis
+    - DATABASE_USERNAME=docker
+    - DATABASE_PASSWORD=docker
+    - DATABASE_HOST=db
+    - DJANGO_SETTINGS_MODULE=core.settings.dev_docker
+  volumes:
+    - .:/home/web
+  links:
+    - db
+
+devshell:
+  build: docker-dev
+  hostname: devshell
+  entrypoint: /bin/bash
+  command: -i
+  environment:
+    - DATABASE_NAME=gis
+    - DATABASE_USERNAME=docker
+    - DATABASE_PASSWORD=docker
+    - DATABASE_HOST=db
+    - DJANGO_SETTINGS_MODULE=core.settings.dev_docker
+  volumes:
+    - .:/home/web
+  links:
+    - db

@@ -19,6 +19,8 @@ RUN chmod 0755 /start.sh
 
 ENTRYPOINT ["/start.sh"]
 
+WORKDIR /home/web/django_project
+
 # You should be able to log in to this container and set it up as a remote
 # python environment in pycharm - user and password will be docker
 # NOTE: This docker container is meant for development only!
