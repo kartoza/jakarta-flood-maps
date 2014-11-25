@@ -1,150 +1,33 @@
-proddb:
-  image: kartoza/postgis
-  environment:
-    - USERNAME=docker
-    - PASS=docker
-
-produwsgi:
-  build: docker-prod
-  hostname: staginguwsgi
-  environment:
-    - DATABASE_NAME=gis
-    - DATABASE_USERNAME=docker
-    - DATABASE_PASSWORD=docker
-    - DATABASE_HOST=db
-    - DJANGO_SETTINGS_MODULE=core.settings.prod_docker
-  volumes:
-    - .:/home/web
-  ports:
-    - "1719:49360"
-  links:
-    - proddb:db
-
-prodmigrate:
-  build: docker-prod
-  hostname prodmigrate
-  entrypoint: /usr/bin/python
-  command: "manage.py migrate"
-  environment:
-    - DATABASE_NAME=gis
-    - DATABASE_USERNAME=docker
-    - DATABASE_PASSWORD=docker
-    - DATABASE_HOST=db
-    - DJANGO_SETTINGS_MODULE=core.settings.prod_docker
-  volumes:
-    - .:/home/web
-  links:
-    - db
-
-prodcollectstatic:
-  build: docker-prod
-  hostname: prodcollectstatic
-  entrypoint: /usr/bin/python
-  command: "manage.py collectstatic --noinput"
-  environment:
-    - DATABASE_NAME=gis
-    - DATABASE_USERNAME=docker
-    - DATABASE_PASSWORD=docker
-    - DATABASE_HOST=db
-    - DJANGO_SETTINGS_MODULE=core.settings.prod_docker
-  volumes:
-    - .:/home/web
-  links:
-    - proddb:db
-
-prodshell:
-  build: docker-prod
-  hostname: prodshell
-  entrypoint: /bin/bash
-  command: -i
-  environment:
-    - DATABASE_NAME=gis
-    - DATABASE_USERNAME=docker
-    - DATABASE_PASSWORD=docker
-    - DATABASE_HOST=db
-    - DJANGO_SETTINGS_MODULE=core.settings.prod_docker
-  volumes:
-    - .:/home/web
-  links:
-    - proddb:db
-
 #
-# Staging server
+# Development server with ssh configured to run on port 1722
+# and the django runserver on port 1723
 #
-stagingdb:
-  image: kartoza/postgis
-  environment:
-    - USERNAME=docker
-    - PASS=docker
+# Usage:
+# fig -f fig-dev.yml <command>
+#
+# Be sure to build the production docker uwsgi container first as the dev
+# one inherits from that.
+#
+# Typical useage:
+#
+# fig -f fig-dev.yml build
+# fig -f fig-dev.yml up -d dev
+# fig -f fig-dev.yml run devmigrate
+# fig -f fig-dev.yml run devcollectstatic
 
-staginguwsgi:
-  build: docker-prod
-  hostname: staginguwsgi
-  environment:
-    - DATABASE_NAME=gis
-    - DATABASE_USERNAME=docker
-    - DATABASE_PASSWORD=docker
-    - DATABASE_HOST=db
-    - DJANGO_SETTINGS_MODULE=core.settings.staging_docker
-  volumes:
-    - .:/home/web
-  ports:
-    - "1719:49360"
-  links:
-    - stagingdb:db
 
-stagingmigrate:
-  build: docker-prod
-  hostname stagingmigrate
-  entrypoint: /usr/bin/python
-  command: "manage.py migrate"
-  environment:
-    - DATABASE_NAME=gis
-    - DATABASE_USERNAME=docker
-    - DATABASE_PASSWORD=docker
-    - DATABASE_HOST=db
-    - DJANGO_SETTINGS_MODULE=core.settings.staging_docker
-  volumes:
-    - .:/home/web
-  links:
-    - stagingdb:db
-
-stagingcollectstatic:
-  build: docker-prod
-  hostname: stagingcollectstatic
-  entrypoint: /usr/bin/python
-  command: "manage.py collectstatic --noinput"
-  environment:
-    - DATABASE_NAME=gis
-    - DATABASE_USERNAME=docker
-    - DATABASE_PASSWORD=docker
-    - DATABASE_HOST=db
-    - DJANGO_SETTINGS_MODULE=core.settings.staging_docker
-  volumes:
-    - .:/home/web
-  links:
-    - stagingdb:db
-
-stagingshell:
-  build: docker-prod
-  hostname: devshell
-  entrypoint: /bin/bash
-  command: -i
-  environment:
-    - DATABASE_NAME=gis
-    - DATABASE_USERNAME=docker
-    - DATABASE_PASSWORD=docker
-    - DATABASE_HOST=db
-    - DJANGO_SETTINGS_MODULE=core.settings.staging_docker
-  volumes:
-    - .:/home/web
-  links:
-    - stagingdb:db
-
+# To get an interactive shell in the django context:
+#
+# fig -f fig-dev.yml run devshell
 
 #
 # Local development server
 #
+devdb:
+  image: kartoza/postgis
+  environment:
+    - USERNAME=docker
+    - PASS=docker
 
 dev:
   build: docker-dev
@@ -160,11 +43,11 @@ dev:
     - "1722:22"
     - "1723:1723"
   links:
-    - db
+    - devdb:db
 
 devmigrate:
   build: docker-dev
-  hostname devmigrate
+  hostname: devmigrate
   entrypoint: /usr/bin/python
   command: "manage.py migrate"
   environment:
@@ -176,7 +59,7 @@ devmigrate:
   volumes:
     - .:/home/web
   links:
-    - db
+    - devdb:db
 
 devcollectstatic:
   build: docker-dev
@@ -192,7 +75,7 @@ devcollectstatic:
   volumes:
     - .:/home/web
   links:
-    - db
+    - devdb:db
 
 devshell:
   build: docker-dev
@@ -208,4 +91,4 @@ devshell:
   volumes:
     - .:/home/web
   links:
-    - db
+    - devdb:db

@@ -106,12 +106,12 @@ your nginx proxy configuration is correct (see above).
 
 ### Collect static
 
-**Usage:** ``fig [-f fig-staging.yml] <collectstatic|stagingcollectstatic>``
+**Usage:** ``fig [-f fig-staging.yml|fig-dev.yml]<collectstatic|stagingcollectstatic|devcollectstatic>``
 
 **Example Usage:** 
 
 * ``fig collectstatic``
-* fig [-f fig-staging.yml stagingcollectstatic
+* ``fig -f fig-staging.yml stagingcollectstatic``
 
 **Arguments:** 
 * ``-f`` - specifies that the fig staging config should be used.
@@ -129,151 +129,76 @@ or
 
 ```django manage.py collectstatic --noinput --settings=core.settings.staging_docker```
 
-Depending on whether you supply the 
+or
+
+```django manage.py collectstatic --noinput --settings=core.settings.dev_docker```
+
+Depending on whether you supply the staging, dev or production fig yml file.
 
 ### Run migrations
 
 
-**Usage example:** ``scripts/run_migrations_docker.sh``
+**Usage:** ``fig [-f fig-staging.yml|fig-dev.yml]<migrate|stagingmigrate|devmigrate>``
 
-**Arguments:** None
+**Example Usage:** 
+
+* ``fig migrate``
+* ``fig -f fig-staging.yml stagingcollectstatic``
+
+**Arguments:** 
 * ``-f`` - specifies that the fig staging config should be used.
-
+* ``-d`` - specifies that containers should be run in the background as daemons.
+ 
  
 **Description:** Running this script will create a short lived docker container
 based on your production django image. It will mount your code tree under 
 ``/home/web`` via a docker shared volume and create a link to your database
-container, using docker's ``--link`` directive. It will then run this command inside
-the container:
+container, using docker's ``--link`` directive. It will then run 
 
-```django manage.py migrate --settings=core.settings.prod_docker```
+```django manage.py migrate --noinput --settings=core.settings.prod_docker```
 
-**Test mode support?:** Yes. See section above on **Create docker env** for more 
-details prepend the command with TEST_MODE=1 to run on your test site. e.g.
+or 
 
-``TEST_MODE=1 scripts/run_migrations_docker.sh``
+```django manage.py migrate --noinput --settings=core.settings.staging_docker```
+
+or
+
+```django manage.py migrate --noinput --settings=core.settings.dev_docker```
+
+Depending on whether you supply the staging, dev or production fig yml file.
 
 
 ### Bash prompt
 
-**Usage example:** ``scripts/docker_bash.sh``
+**Usage:** ``fig [-f fig-staging.yml|fig-dev.yml.yml]<shell|stagingshell|devshell>``
 
-**Arguments:** None
+**Example Usage:** 
+
+* ``fig shell``
+* ``fig -f fig-staging.yml stagingshell``
+
+**Arguments:** 
+* ``-f`` - specifies that the fig staging config should be used.
+* ``-d`` - specifies that containers should be run in the background as daemons.
+ 
  
 **Description:** Running this script will create a short lived docker container
 based on your production django image. It will mount your code tree under 
 ``/home/web`` via a docker shared volume and create a link to your database
-container, using docker's ``--link`` directive. It will start an interactive bash
-shell inside the container that you can use to run ad hoc commands with 
-the django project context and database connection available. 
-
-**Test mode support?:** Yes. See section above on **Create docker env** for more details 
-prepend the command with TEST_MODE=1 to run on your test site. e.g.
-
-``TEST_MODE=1 scripts/docker_bash.sh``
+container, using docker's ``--link`` directive. It will then drop you into a
+bash prompt (note that you may need to press ``enter`` after running the 
+command in order to activate the shell). The bash environment that you land up
+in will depend on whether you supply the staging, dev or production fig 
+``yml`` file.
 
 
-### Management commands
+### Managing containers
 
-**Usage example:** ``scripts/manage.sh``
-
-**Arguments:** Arbitrary django management command options are supported e.g. 
-
-``scripts/manage.sh --help`` 
-
-will invoke the django management command help. There is no need to use the
-``--settings`` option unless you want to override it since this option is 
-automatically passed in as ``DJANGO_SETTINGS_MODULE=core.settings.prod_docker``.
- 
-**Description:** Running this script will create a short lived docker container
-based on your production django image. It will mount your code tree under 
-``/home/web`` via a docker shared volume and create a link to your database
-container, using docker's ``--link`` directive. It will then run this command inside
-the container:
-
-```django manage.py <your parameters>```
-
-After running the management command the container will be destroyed.
-
-**Test mode support?:** Yes. See section above on **Create docker env** for more 
-details prepend the command with TEST_MODE=1 to run on your test site. e.g.
-
-``TEST_MODE=1 scripts/manage.sh --help``
-
-### Restart django
-
-**Usage example:** ``scripts/restart_django_server.sh``
-
-**Arguments:** None
- 
-**Description:** Running this script will destroy (if running) the long lived
-django uwsgi container, and then restart it. It will mount your code tree under 
-``/home/web`` via a docker shared volume and create a link to your database
-container, using docker's ``--link`` directive.
-
-If you need to deploy changes to your django application (e.g. adding some 
-new python dependency), the general workflow is:
-
-* rebuild your production image (``cd docker-prod; .build.sh; cd -``)
-* restart your production container (``scripts/restart_django_server.sh``)
-
-**Test mode support?:** Yes. See section above on **Create docker env** for more 
-details prepend the command with TEST_MODE=1 to run on your test site. e.g.
-
-``TEST_MODE=1 scripts/restart_django_server.sh``
-
-### Run django development server
-
-**Usage example:** ``scripts/run_django_dev_server.sh``
-
-**Arguments:** None
- 
-**Description:** Running this script will destroy (if running) the long lived
-django development container, and then restart it. It will mount your code tree under 
-``/home/web`` via a docker shared volume and create a link to your database
-container, using docker's ``--link`` directive.
-
-If you need to deploy changes to your django application (e.g. adding some 
-new python dependency), the general workflow is:
-
-* rebuild your development image (``cd docker-dev; .build.sh; cd -``)
-* restart your development container (``scripts/run_django_dev_server.sh``)
-
-When the development container starts, it will launch sshd which you can connect
-to using the credentials:
-
-* **User:** docker
-* **Password:** docker
-
-Please see README-dev.md for more details on how to use this development
-container for efficient development from within PyCharm.
-
-**Test mode support?:** No
-
-``TEST_MODE=1 scripts/restart_django_server.sh``
-
-### Run QGIS desktop
-
-**Usage example:** ``scripts/run_qgis_desktop.sh``
-
-**Arguments:** None
- 
-**Description:** Running this script will destroy (if running) the long lived
-QGIS desktop container, and then restart it. It will mount your the ``webmaps``
-directory from in your code tree under ``/web`` in the container via a docker 
-shared volume and create a link to your database, using docker's ``--link`` 
-directive.
-
-
-**Test mode support?:** Currently unsupported! The main issue is that
-QGIS project files cannot honour the environmentals which are used to 
-define the PostgreSQL connection details. So our recommendation is that you
-run a copy of the production mode environment on your local machine when you
-are building out QGIS projects against the docker service.
-
+Please refer to the general [fig documentation](http://www.fig.sh/cli.hyml)
+for further notes on how to manage the infrastructure using fig.
 
 # Configuration options
 
 You can configure the base port used and various other options like the
-image organisation namespace and postgis user/pass by editing 
-``scripts/config.sh``.
+image organisation namespace and postgis user/pass by editing the ``fig*.yml``
+files.

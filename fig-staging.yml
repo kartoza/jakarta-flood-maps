@@ -8,8 +8,12 @@
 #
 # fig -f fig-staging.yml build
 # fig -f fig-staging.yml up -d staginguwsgi
-# fig -f fig-staging.yml run stagingcollectstatic
 # fig -f fig-staging.yml run stagingmigrate
+# fig -f fig-staging.yml run stagingcollectstatic
+
+# To get an interactive shell in the django context:
+#
+# fig -f fig-staging.yml run stagingshell
 
 stagingdb:
   image: kartoza/postgis
