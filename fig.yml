@@ -6,10 +6,15 @@
 #
 # Typical useage:
 #
-# fig -f fig-.yml build
-# fig -f fig-.yml up -d uwsgi
-# fig -f fig-.yml run collectstatic
-# fig -f fig-.yml run migrate
+# fig build
+# fig up -d uwsgi
+# fig run migrate
+# fig run collectstatic
+
+
+# To get an interactive shell in the django context:
+#
+# fig run shell
 
 db:
   image: kartoza/postgis
