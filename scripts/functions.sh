@@ -33,7 +33,7 @@ then
     BASE_PORT=$((BASE_PORT + 1))
 else
     # Production mode
-    echo "Running produciton site configuration."
+    echo "Running production site configuration."
     echo "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
     # for test deployment we run 100 ports above prod
     POSTGIS_PORT=${BASE_PORT}

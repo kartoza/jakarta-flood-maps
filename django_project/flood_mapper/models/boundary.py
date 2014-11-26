@@ -7,8 +7,8 @@ __date__ = '24/11/2014'
 __copyright__ = 'christian@kartoza.com'
 __doc__ = ''
 
-from django.db import models
 from django.core.validators import RegexValidator
+from django.contrib.gis.db import models
 
 
 class Boundary(models.Model):
@@ -23,7 +23,9 @@ class Boundary(models.Model):
     area = models.CharField(max_length=100)
     population = models.IntegerField()
     # boundary  = models.
-    # geometry = models.
+    geometry = models.PolygonField(
+        srid=4326, null=True, blank=True, help_text='An rw boundary')
+    objects = models.GeoManager()
 
     class Meta:
         abstract = True
