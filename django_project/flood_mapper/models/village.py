@@ -26,7 +26,7 @@ class Village(Boundary):
 
     class Meta:
         """Meta class."""
-        app_label = 'flood_maps'
+        app_label = 'flood_mapper'
 
     slug = models.SlugField(
         unique=True,

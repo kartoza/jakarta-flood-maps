@@ -19,7 +19,8 @@ class Boundary(models.Model):
         regex=r'^\+?1?\d{9,15}$',
         message="Phone number must be entered in the format: "
                 "'+6288888888888'. Up to 15 digits allowed.")
-    contact_phone = models.CharField(validators=phone_regex, blank=True)
+    contact_phone = models.CharField(
+        max_length=15, validators=[phone_regex], blank=True)
     area = models.CharField(max_length=100)
     population = models.IntegerField()
     # boundary  = models.
@@ -29,4 +30,4 @@ class Boundary(models.Model):
 
     class Meta:
         abstract = True
-        app_label = 'flood_maps'
+        app_label = 'flood_mapper'

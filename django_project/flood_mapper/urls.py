@@ -4,5 +4,6 @@ from django.conf.urls import patterns, url
 
 urlpatterns = patterns(
     '',
-    url(r'^$', 'flood_mapper.views.index', name='index'),
+    url(r'^$', 'flood_mapper.views.report_flood_status.report_flood_status',
+        name='report_flood_status'),
 )

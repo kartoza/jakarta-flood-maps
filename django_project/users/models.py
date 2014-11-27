@@ -4,6 +4,7 @@ Adapted from http://stackoverflow.com/a/12648124/1158060
 
 
 from django.db import models
+from django.core.validators import RegexValidator
 from django.contrib.auth.models import (
     BaseUserManager,
     AbstractBaseUser
@@ -50,7 +51,7 @@ class User(AbstractBaseUser):
         unique=True,
     )
     user_name = models.CharField(
-        helper_text="Please choose a unique user name.",
+        help_text="Please choose a unique user name.",
         max_length=20,
         unique=True
     )
@@ -58,14 +59,16 @@ class User(AbstractBaseUser):
         regex=r'^\+?1?\d{9,15}$',
         message="Phone number must be entered in the format: "
                 "'+6288888888888'. Up to 15 digits allowed.")
-    phone = models.CharField(validators=phone_regex, blank=True)
+    phone = models.CharField(
+        validators=[phone_regex], blank=True, max_length=15
+    )
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
 
     objects = UserManager()
 
     USERNAME_FIELD = 'user_name'
-    REQUIRED_FIELDS = ['email', 'user_name', 'phone']
+    REQUIRED_FIELDS = ['email', 'phone']
 
     def __unicode__(self):
         return self.email
