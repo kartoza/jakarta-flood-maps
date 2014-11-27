@@ -7,7 +7,7 @@ be used in other parts of the world.
 
 **Please note that this project is in the early phase of its development.**
 
-You can visit a running instance of this project at 
+You can visit a running instance of this project at
 [http://jfm.kartoza.com](http://jfm.kartoza.com).
 
 # Status
@@ -45,7 +45,7 @@ be served directly using nginx on the host.
 
 A convenience script is provided under ``scripts\create_docker_env.sh`` which
 should get everything set up for you. Note you need at least docker 1.2 - use
-the [installation notes](http://docs.docker.com/installation/ubuntulinux/) 
+the [installation notes](http://docs.docker.com/installation/ubuntulinux/)
 on the official docker page to get it set up.
 
 ### Check out the source
@@ -59,25 +59,33 @@ git clone git://github.com/kartoza/jakarta-flood-maps.git
 
 ### Build your docker images and run them
 
-You can simply run the provided script and it will build and deploy the docker
-images for you. Note if you are using ``apt-cacher-ng`` (we recommend it as
-it will dramatically speed up build times), be sure to edit 
-``docker-prod/71-apt-cacher-ng`` and comment out existing lines, adding your
-own server. Alternatively if you wish to fetch packages are downloaded directly
-from the internet, ensure that all lines are commented out in your hosts
+You need to have http://docker.io and http://www.fig.sh/ installed first.
+
+Note you need at least docker 1.2 - use
+the [installation notes](http://docs.docker.com/installation/ubuntulinux/)
+on the official docker page to get it set up.
+
+Fig will build and deploy the docker images for you. Note if you are using
+``apt-cacher-ng`` (we recommend it as it will dramatically speed up build
+times), be sure to edit ``docker-prod/71-apt-cacher-ng`` and comment out
+existing lines, adding your own server. Alternatively if you wish to fetch
+packages are downloaded directly from the internet, ensure that all lines are
+commented out in your hosts:
 
 * ``docker-prod/71-apt-cacher-ng``
 * ``docker-dev/71-apt-cacher-ng``
 
 
 ```
-cd jakarta-flood-maps
-scripts\create_docker_env.sh
+fig build
+fig up -d uwsgi
+fig run migrate
+fig run collectstatic
 ```
 
 ### Setup nginx reverse proxy
 
-You should create a new nginx virtual host - please see 
+You should create a new nginx virtual host - please see
 ``jakarta-flood-maps-nginx.conf`` in the root directory of the source for an example.
 
 
@@ -102,8 +110,8 @@ cp dev_timlinux.py dev_${USER}.py
 ```
 
 Now edit ``dev_<your username>`` setting your database connection details as
-needed. We assume you have created a postgres (with postgis extentions) 
-database somewhere that you can use for your development work. See 
+needed. We assume you have created a postgres (with postgis extentions)
+database somewhere that you can use for your development work. See
 [http://postgis.net/install/](http://postgis.net/install/) for details on doing
 that.
 
