@@ -13,6 +13,8 @@ from flood_mapper.models.rt import RT
 
 from users.models import User
 
+from django.core.validators import MaxValueValidator, MinValueValidator
+
 
 class FloodStatus(models.Model):
     """Flood status model."""
@@ -29,7 +31,11 @@ class FloodStatus(models.Model):
     depth = models.DecimalField(
         max_digits=2,
         decimal_places=2,
-        help_text='The depth in metres that the RT is flooded.'
+        help_text='The depth in metres that the RT is flooded.',
+        validators=[
+            MaxValueValidator(10),
+            MinValueValidator(0)
+        ]
     )
     date_time = models.DateTimeField()
     recorded_by = models.ForeignKey(User)

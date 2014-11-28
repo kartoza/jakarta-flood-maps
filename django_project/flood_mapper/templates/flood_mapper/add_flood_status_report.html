@@ -1,0 +1,27 @@
+{% extends "flood_mapper/base.html" %}
+{% load bootstrap_tags %}
+{% block navigation-bar %}
+
+
+<div>
+    <div>
+        <h1>Jakarta Flood Maps</h1>
+
+        <p>
+            This is an application to map floods in Jakarta.
+        </p>
+    </div>
+</div>
+{%  endblock %}
+
+{% block content %}
+<div>
+  <form action="/add-flood-status-report/" method="post">
+    {% csrf_token %}
+    {{ form|as_bootstrap }}
+    <button type="submit" class="btn btn-block btn-primary">Add</button>
+  </form>
+</div>
+
+</div> <!-- /container -->
+{%  endblock %}
