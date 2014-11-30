@@ -1,6 +1,6 @@
 # coding=utf-8
 """Views."""
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.template import RequestContext
 
@@ -28,12 +28,10 @@ def add_flood_status_report(request):
         form = AddFlodStatusForm(request.POST)
         if form.is_valid():
 
-            # commit=False means the form doesn't save at this time.
-            # commit defaults to True which means it normally saves.
             model_instance = form.save(commit=False)
             model_instance.timestamp = timezone.now()
             model_instance.save()
-            # return redirect('victory')
+            return redirect('/')
     else:
         form = AddFlodStatusForm()
 

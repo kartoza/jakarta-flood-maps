@@ -29,7 +29,7 @@ class FloodStatus(models.Model):
         help_text='The RT that is affected.',
     )
     depth = models.DecimalField(
-        max_digits=2,
+        max_digits=4,
         decimal_places=2,
         help_text='The depth in metres that the RT is flooded.',
         validators=[
