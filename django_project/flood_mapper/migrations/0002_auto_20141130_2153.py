@@ -34,5 +34,5 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.RunPython(import_rw, reverse_code=import_rw),
+        migrations.RunPython(import_rw),
     ]
