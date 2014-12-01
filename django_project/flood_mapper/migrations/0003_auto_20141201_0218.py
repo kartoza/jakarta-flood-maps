@@ -22,18 +22,15 @@ def import_rt(apps, schema_editor):
             try:
                 village = Village.objects.get(slug=village_name_slug)
             except:
-                print village_name
                 continue
             try:
                 rw = RW.objects.get(village=village, name='RW %s' % rw_number)
             except:
-                print rw_number
                 continue
             rt = RT()
             rt.rw = rw
             rt.name = 'RT %s' % rt_number
             rt.save()
-    lets_stop
 
 
 class Migration(migrations.Migration):
@@ -43,5 +40,5 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.RunPython(import_rt, reverse_code=import_rt),
+        migrations.RunPython(import_rt),
     ]
