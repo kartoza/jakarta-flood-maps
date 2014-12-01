@@ -19,7 +19,7 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
                 ('name', models.CharField(max_length=200)),
-                ('depth', models.DecimalField(help_text=b'The depth in metres that the RT is flooded.', max_digits=2, decimal_places=2)),
+                ('depth', models.DecimalField(help_text=b'The depth in metres that the RT is flooded.', max_digits=4, decimal_places=2, validators=[django.core.validators.MaxValueValidator(10), django.core.validators.MinValueValidator(0)])),
                 ('date_time', models.DateTimeField()),
                 ('reporter_name', models.CharField(max_length=100)),
                 ('reporting_medium', models.CharField(max_length=100)),
@@ -33,13 +33,13 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='RT',
             fields=[
-                ('contact_person', models.CharField(max_length=100)),
-                ('contact_phone', models.CharField(blank=True, max_length=15, validators=[django.core.validators.RegexValidator(regex=b'^\\+?1?\\d{9,15}$', message=b"Phone number must be entered in the format: '+6288888888888'. Up to 15 digits allowed.")])),
-                ('area', models.CharField(max_length=100)),
-                ('population', models.IntegerField()),
+                ('contact_person', models.CharField(max_length=100, null=True, blank=True)),
+                ('contact_phone', models.CharField(blank=True, max_length=15, null=True, validators=[django.core.validators.RegexValidator(regex=b'^\\+?1?\\d{9,15}$', message=b"Phone number must be entered in the format: '+6288888888888'. Up to 15 digits allowed.")])),
+                ('area', models.CharField(max_length=100, null=True, blank=True)),
+                ('population', models.IntegerField(null=True, blank=True)),
                 ('geometry', django.contrib.gis.db.models.fields.PolygonField(help_text=b'An rw boundary', srid=4326, null=True, blank=True)),
-                ('slug', models.SlugField(unique=True, serialize=False, primary_key=True)),
-                ('name', models.CharField(help_text=b'A name for the RT.', unique=True, max_length=100)),
+                ('id', models.AutoField(serialize=False, primary_key=True)),
+                ('name', models.CharField(help_text=b'A name for the RT.', max_length=100)),
             ],
             options={
             },
@@ -48,13 +48,13 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='RW',
             fields=[
-                ('contact_person', models.CharField(max_length=100)),
-                ('contact_phone', models.CharField(blank=True, max_length=15, validators=[django.core.validators.RegexValidator(regex=b'^\\+?1?\\d{9,15}$', message=b"Phone number must be entered in the format: '+6288888888888'. Up to 15 digits allowed.")])),
-                ('area', models.CharField(max_length=100)),
-                ('population', models.IntegerField()),
+                ('contact_person', models.CharField(max_length=100, null=True, blank=True)),
+                ('contact_phone', models.CharField(blank=True, max_length=15, null=True, validators=[django.core.validators.RegexValidator(regex=b'^\\+?1?\\d{9,15}$', message=b"Phone number must be entered in the format: '+6288888888888'. Up to 15 digits allowed.")])),
+                ('area', models.CharField(max_length=100, null=True, blank=True)),
+                ('population', models.IntegerField(null=True, blank=True)),
                 ('geometry', django.contrib.gis.db.models.fields.PolygonField(help_text=b'An rw boundary', srid=4326, null=True, blank=True)),
-                ('slug', models.SlugField(unique=True, serialize=False, primary_key=True)),
-                ('name', models.CharField(help_text=b'A name for the RW.', unique=True, max_length=100)),
+                ('id', models.AutoField(serialize=False, primary_key=True)),
+                ('name', models.CharField(help_text=b'A name for the RW.', max_length=100)),
             ],
             options={
             },
@@ -63,10 +63,10 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Village',
             fields=[
-                ('contact_person', models.CharField(max_length=100)),
-                ('contact_phone', models.CharField(blank=True, max_length=15, validators=[django.core.validators.RegexValidator(regex=b'^\\+?1?\\d{9,15}$', message=b"Phone number must be entered in the format: '+6288888888888'. Up to 15 digits allowed.")])),
-                ('area', models.CharField(max_length=100)),
-                ('population', models.IntegerField()),
+                ('contact_person', models.CharField(max_length=100, null=True, blank=True)),
+                ('contact_phone', models.CharField(blank=True, max_length=15, null=True, validators=[django.core.validators.RegexValidator(regex=b'^\\+?1?\\d{9,15}$', message=b"Phone number must be entered in the format: '+6288888888888'. Up to 15 digits allowed.")])),
+                ('area', models.CharField(max_length=100, null=True, blank=True)),
+                ('population', models.IntegerField(null=True, blank=True)),
                 ('geometry', django.contrib.gis.db.models.fields.PolygonField(help_text=b'An rw boundary', srid=4326, null=True, blank=True)),
                 ('slug', models.SlugField(unique=True, serialize=False, primary_key=True)),
                 ('name', models.CharField(help_text=b'A name for the village.', unique=True, max_length=100)),

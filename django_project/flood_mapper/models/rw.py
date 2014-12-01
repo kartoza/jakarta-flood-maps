@@ -25,16 +25,13 @@ class RW(Boundary):
         """Meta class."""
         app_label = 'flood_mapper'
 
-    slug = models.SlugField(
-        unique=True,
-        primary_key=True
-    )
+    id = models.AutoField(primary_key=True)
 
     name = models.CharField(
         help_text='A name for the RW.',
         null=False,
         blank=False,
-        unique=True,
+        unique=False,
         max_length=100
     )
 
@@ -45,5 +42,4 @@ class RW(Boundary):
 
     def save(self, *args, **kwargs):
         """Overloaded save method."""
-        self.slug = slugify(unicode(self.name))
         super(RW, self).save(*args, **kwargs)
