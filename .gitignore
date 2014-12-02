@@ -78,3 +78,7 @@ node_modules
 # Working data not intended to be versioned
 data_for_import
 scrap.html
+.bash_history
+.pycharm_helpers
+.sudo_as_admin_successful
+
