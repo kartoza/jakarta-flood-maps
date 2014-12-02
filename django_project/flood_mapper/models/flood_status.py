@@ -7,38 +7,55 @@ __date__ = '11/11/14'
 __copyright__ = 'tim@kartoza.com'
 __doc__ = ''
 
-import os
 from django.contrib.gis.db import models
-from django.conf.global_settings import MEDIA_ROOT
-from django.utils.text import slugify
+
+from flood_mapper.models.rt import RT
+
+from users.models import User
+
 from django.core.validators import MaxValueValidator, MinValueValidator
-from owslib.wms import WebMapService, ServiceException, CapabilitiesError
 
 
-class Village(models.Model):
-    """Village model."""
+class FloodStatus(models.Model):
+    """Flood status model."""
 
     class Meta:
         """Meta class."""
-        app_label = 'flood_maps'
+        app_label = 'flood_mapper'
 
-    slug = models.SlugField(
-        unique=True,
-        primary_key=True
+    name = models.CharField(max_length=200)
+    rt = models.ForeignKey(
+        RT,
+        help_text='The RT that is affected.',
     )
-
-    name = models.CharField(
-        help_text='A name for the village.',
-        null=False,
-        blank=False,
-        unique=True,
+    depth = models.DecimalField(
+        max_digits=4,
+        decimal_places=2,
+        help_text='The depth in metres that the RT is flooded.',
+        validators=[
+            MaxValueValidator(10),
+            MinValueValidator(0)
+        ]
+    )
+    date_time = models.DateTimeField()
+    recorded_by = models.ForeignKey(User)
+    reporter_name = models.CharField(
         max_length=100
     )
+    reporting_medium = models.CharField(
+        max_length=100
+    )
+    notes = models.TextField()
 
     def __unicode__(self):
         return self.name
 
+    def save_base(self, raw=False, cls=None, origin=None, force_insert=False,
+                  force_update=False, using=None, update_fields=None):
+        self.name = '%s -- %s: %s' % (self.date_time, self.rt, self.depth)
+        super(FloodStatus, self).save_base(raw, cls, origin, force_insert,
+                                           force_update, using, update_fields)
+
     def save(self, *args, **kwargs):
         """Overloaded save method."""
-        self.slug = slugify(unicode(self.name))
-        super(Village, self).save(*args, **kwargs)
+        super(FloodStatus, self).save(*args, **kwargs)

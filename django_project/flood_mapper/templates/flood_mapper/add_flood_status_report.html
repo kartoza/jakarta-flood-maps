@@ -1,0 +1,47 @@
+{% extends "flood_mapper/base.html" %}
+{% block header %}
+  <link rel="stylesheet" href="/static/css/bootstrap-datetimepicker.min.css" />
+  <script src="/static/js/bootstrap-datetimepicker.min.js"></script>
+  <script src="/static/js/moment.min.js"></script>
+  <script>
+    $(document).ready(function(){
+      var date_time = $('#id_date_time');
+//      date_time.parent().addClass('date');
+//      date_time.parent().append('<span class="input-group-addon"><span class="glyphicon-calendar glyphicon"></span></span>');
+      // FIXME: The date picker appears at the wrong location
+      date_time.datetimepicker(
+      {
+        format: 'yyyy-mm-dd hh:mm'
+      });
+    });
+  </script>
+  <title>Add flood status report</title>
+{%  endblock %}
+
+{% load bootstrap_tags %}
+
+{% block navigation-bar %}
+
+
+<div>
+    <div>
+        <h1>Jakarta Flood Maps</h1>
+
+        <p>
+            This is an application to map floods in Jakarta.
+        </p>
+    </div>
+</div>
+{%  endblock %}
+
+{% block content %}
+<div>
+  <form action="/add-flood-status-report/" method="post">
+    {% csrf_token %}
+    {{ form|as_bootstrap }}
+    <button type="submit" class="btn btn-block btn-primary">Add</button>
+  </form>
+</div>
+
+</div> <!-- /container -->
+{%  endblock %}
