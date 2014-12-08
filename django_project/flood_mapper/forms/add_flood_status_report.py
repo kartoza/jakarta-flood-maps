@@ -18,6 +18,7 @@ class AddFlodStatusForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(AddFlodStatusForm, self).__init__(*args, **kwargs)
         self.fields['rw'].choices = (('rw', 'rw'),)
+        # TODO: only show the villages, that this user is allowed to sees
         self.fields['village'].choices = (('village', 'village'),)
 
     def clean(self):

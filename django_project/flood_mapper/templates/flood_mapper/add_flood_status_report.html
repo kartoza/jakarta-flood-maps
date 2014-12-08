@@ -1,17 +1,14 @@
 {% extends "flood_mapper/base.html" %}
 {% block header %}
-  <link rel="stylesheet" href="/static/css/bootstrap-datetimepicker.min.css" />
-  <script src="/static/js/bootstrap-datetimepicker.min.js"></script>
   <script src="/static/js/moment.min.js"></script>
+  <script src="/static/js/bootstrap-datetimepicker.min.js"></script>
+  <link rel="stylesheet" href="/static/css/bootstrap-datetimepicker.min.css" />
   <script>
     $(document).ready(function(){
       var date_time = $('#id_date_time');
-//      date_time.parent().addClass('date');
-//      date_time.parent().append('<span class="input-group-addon"><span class="glyphicon-calendar glyphicon"></span></span>');
-      // FIXME: The date picker appears at the wrong location
       date_time.datetimepicker(
       {
-        format: 'yyyy-mm-dd hh:mm'
+        format: 'YYYY-MM-DD HH:mm'
       });
     });
   </script>

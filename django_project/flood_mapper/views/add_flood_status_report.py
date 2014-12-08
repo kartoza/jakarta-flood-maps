@@ -37,5 +37,6 @@ def add_flood_status_report(request):
 
     return render(
         request,
+        # 'flood_mapper/add_flood_status_report.html',
         'flood_mapper/add_flood_status_report.html',
         context_instance=RequestContext(request, {'form': form}))
