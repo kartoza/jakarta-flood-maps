@@ -32,8 +32,8 @@ def add_flood_status_report(request):
             model_instance.timestamp = timezone.now()
             model_instance.save()
             return redirect('/')
-    else:
-        form = AddFlodStatusForm()
+
+    form = AddFlodStatusForm()
 
     return render(
         request,
