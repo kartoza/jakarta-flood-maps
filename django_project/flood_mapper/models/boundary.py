@@ -22,9 +22,14 @@ class Boundary(models.Model):
     contact_phone = models.CharField(
         max_length=15, validators=[phone_regex], blank=True, null=True)
     area = models.CharField(max_length=100, blank=True, null=True)
+
     population = models.IntegerField(blank=True, null=True)
+
     geometry = models.PolygonField(
-        srid=4326, null=True, blank=True, help_text='An rw boundary')
+        srid=4326, null=True, blank=True, help_text='The geographic boundary')
+
+    id = models.AutoField(primary_key=True)
+
     objects = models.GeoManager()
 
     class Meta:

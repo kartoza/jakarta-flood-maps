@@ -30,6 +30,7 @@ def import_rt(apps, schema_editor):
             rt = RT()
             rt.rw = rw
             rt.name = 'RT %s' % rt_number
+            rt.slug = slugify(rt.name)
             rt.save()
 
 

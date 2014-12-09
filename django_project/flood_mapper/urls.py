@@ -9,18 +9,22 @@ urlpatterns = patterns(
         'flood_mapper.views.add_flood_status_report.add_flood_status_report'
     ),
     url(
-        r'^api/(?P<village>[\s|\d|\w]+)'
-        r'/(?P<rw>[\s|\d|\w]+)'
-        r'/('r'?P<rt>[\s|\d|\w]+)/$',
+        r'^api/locale/(?P<village>[\d]+)'
+        r'/(?P<rw>[\d]+)'
+        r'/('r'?P<rt>[\d]+)/$',
         'flood_mapper.views.boundary_api.boundary_api'
     ),
     url(
-        r'^api/(?P<village>[\s|\d|\w]+)'
-        r'/(?P<rw>[\s|\d|\w]+)/$',
+        r'^api/locale/(?P<village>[\d]+)'
+        r'/(?P<rw>[\d]+)/$',
         'flood_mapper.views.boundary_api.boundary_api'
     ),
     url(
-        r'^api/(?P<village>[\s|\d|\w]+)/$',
+        r'^api/locale/(?P<village>[\d]+)/$',
+        'flood_mapper.views.boundary_api.boundary_api'
+    ),
+    url(
+        r'^api/locale/$',
         'flood_mapper.views.boundary_api.boundary_api'
     ),
 )
