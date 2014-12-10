@@ -50,6 +50,9 @@ class RW(Boundary):
 
 class RWSerializer(serializers.ModelSerializer):
 
+    def transform_geometry(self, obj, value):
+        return obj.geometry.json
+
     class Meta:
         model = RW
         fields = ('id', 'name', 'slug', 'population', 'geometry')

@@ -1,0 +1,46 @@
+{% extends "flood_mapper/base.html" %}
+{% block header %}
+  <script>
+    function add_rw_to_map(){
+      $.get('/api/locale/?format=json', function(data){
+        $.each(data, function(dummy, village){
+          $.get('/api/locale/' + village['id'] + '/?format=json', function(data){
+            $.each(data, function(dummy, rw){
+              L.geoJson(JSON.parse(rw['geometry'])).addTo(map);
+            });
+          });
+        });
+      });
+    }
+    $(document).ready(function(){
+      // add rw's to map
+      add_rw_to_map();
+      $('#id_rw').on('change', update_rts);
+    });
+  </script>
+  <title>Add flood status report</title>
+{%  endblock %}
+
+{% load bootstrap_tags %}
+
+{% block navigation-bar %}
+
+
+<div>
+    <div>
+        <h1>Jakarta Flood Maps</h1>
+
+        <p>
+            This is an application to map floods in Jakarta.
+        </p>
+    </div>
+</div>
+{%  endblock %}
+
+{% block content %}
+<div>
+  <h1>Flood Area Detail</h1>
+</div>
+
+</div> <!-- /container -->
+{%  endblock %}

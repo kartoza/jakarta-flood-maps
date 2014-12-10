@@ -9,6 +9,10 @@ urlpatterns = patterns(
         'flood_mapper.views.add_flood_status_report.add_flood_status_report'
     ),
     url(
+        r'^flood_area_detail/$',
+        'flood_mapper.views.flood_area_detail.flood_area_detail'
+    ),
+    url(
         r'^api/locale/(?P<village>[\d]+)'
         r'/(?P<rw>[\d]+)'
         r'/('r'?P<rt>[\d]+)/$',
