@@ -6,17 +6,78 @@
         $.each(data, function(dummy, village){
           $.get('/api/locale/' + village['id'] + '/?format=json', function(data){
             $.each(data, function(dummy, rw){
-              L.geoJson(JSON.parse(rw['geometry'])).addTo(map);
+              var rw_layer = JSON.parse(rw['geometry']);
+              L.geoJson(rw_layer, {
+                style: style,
+                onEachFeature: onEachFeature,
+                properties: {
+                  rw_id: rw['id'],
+                  population: rw['population']
+                }
+              }).addTo(map);
             });
           });
         });
       });
     }
+
+    function updateFloodAreaReport(rw_id){
+      $.get('/api/reports/rw/' + rw_id + '/?format=json', function(data){
+
+      })
+    }
+
+    function style(feature) {
+      return {
+        weight: 2,
+        opacity: 1,
+        color: 'blue',
+        dashArray: '3',
+        fillOpacity: 0.5,
+        fillColor: 'blue'
+      };
+    }
+
+    function highlightFeature(e) {
+      var layer = e.target;
+      layer.setStyle({
+        weight: 5,
+        color: 'white',
+        dashArray: '',
+        fillOpacity: 0.3,
+        fillColor: 'blue'
+      });
+      if (!L.Browser.ie && !L.Browser.opera) {
+        layer.bringToFront();
+      }
+    }
+
+    function resetHighlight(e) {
+      var layer = e.target;
+      layer.setStyle(style(e));
+    }
+
+    function zoomToFeature(e) {
+      var layer = e.target;
+      map.fitBounds(layer.getBounds());
+      console.log(layer["options"]["properties"]["rw_id"]);
+      updateFloodAreaDetail(rw_id);
+    }
+
+    function onEachFeature(feature, layer) {
+      layer.on({
+        mouseover: highlightFeature,
+        mouseout: resetHighlight,
+        click: zoomToFeature
+      });
+    }
+
     $(document).ready(function(){
       // add rw's to map
       add_rw_to_map();
       $('#id_rw').on('change', update_rts);
     });
+
   </script>
   <title>Add flood status report</title>
 {%  endblock %}

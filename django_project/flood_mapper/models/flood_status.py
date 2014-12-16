@@ -8,12 +8,12 @@ __copyright__ = 'tim@kartoza.com'
 __doc__ = ''
 
 from django.contrib.gis.db import models
+from django.core.validators import MaxValueValidator, MinValueValidator
 
 from flood_mapper.models.rt import RT
-
 from users.models import User
 
-from django.core.validators import MaxValueValidator, MinValueValidator
+from rest_framework import serializers
 
 
 class FloodStatus(models.Model):
@@ -50,12 +50,39 @@ class FloodStatus(models.Model):
     def __unicode__(self):
         return self.name
 
-    def save_base(self, raw=False, cls=None, origin=None, force_insert=False,
-                  force_update=False, using=None, update_fields=None):
+    def save_base(self, *args, **kwargs):
         self.name = '%s -- %s: %s' % (self.date_time, self.rt, self.depth)
-        super(FloodStatus, self).save_base(raw, cls, origin, force_insert,
-                                           force_update, using, update_fields)
+        super(FloodStatus, self).save_base(*args, **kwargs)
 
     def save(self, *args, **kwargs):
         """Overloaded save method."""
         super(FloodStatus, self).save(*args, **kwargs)
+
+
+class FloodStatusSerializer(serializers.ModelSerializer):
+
+    def transform_rw(self, obj, value):
+        return obj.rt.rw
+
+    def transform_village(self, obj, value):
+        return obj.rt.rw.village
+
+    class Meta:
+        model = FloodStatus
+        fields = ('id', 'rt', 'rw', 'village', 'depth')
+
+
+class FloodStatusFullSerializer(FloodStatusSerializer):
+
+    def transform_contact_person(self, obj, value):
+        return obj.rt.contact_person
+
+    def transform_contact_phone(self, obj, value):
+        return obj.rt.contact_phone
+
+    class Meta:
+        model = FloodStatus
+        fields = (
+            'id', 'rt', 'rw', 'village', 'depth', 'contact_person',
+            'contact_phone'
+        )

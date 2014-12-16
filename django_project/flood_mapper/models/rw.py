@@ -51,7 +51,10 @@ class RW(Boundary):
 class RWSerializer(serializers.ModelSerializer):
 
     def transform_geometry(self, obj, value):
-        return obj.geometry.json
+        if obj.geometry:
+            return obj.geometry.json
+        else:
+            return ''
 
     class Meta:
         model = RW

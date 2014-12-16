@@ -26,7 +26,6 @@ def boundary_api(request, village=None, rw=None, rt=None):
         matching_rts = RT.objects.filter(
             rw__id=int(rw),
             rw__village__id=int(village))
-        print RTSerializer(matching_rts, many=True).data
         return Response(RTSerializer(matching_rts, many=True).data)
     elif village:
         matching_rts = RW.objects.filter(
