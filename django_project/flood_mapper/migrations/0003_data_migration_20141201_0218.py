@@ -38,7 +38,7 @@ def import_rt(apps, schema_editor):
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('flood_mapper', '0002_auto_20141130_2153'),
+        ('flood_mapper', '0002_data_migration_20141130_2153'),
     ]
 
     operations = [

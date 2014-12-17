@@ -45,7 +45,10 @@ class FloodStatus(models.Model):
     reporting_medium = models.CharField(
         max_length=100
     )
-    notes = models.TextField()
+    notes = models.TextField(
+        blank=True,
+        null=True
+    )
 
     def __unicode__(self):
         return self.name
@@ -61,28 +64,34 @@ class FloodStatus(models.Model):
 
 class FloodStatusSerializer(serializers.ModelSerializer):
 
-    def transform_rw(self, obj, value):
-        return obj.rt.rw
+    rw = serializers.SerializerMethodField('get_rw')
+    village = serializers.SerializerMethodField('get_village')
 
-    def transform_village(self, obj, value):
-        return obj.rt.rw.village
+    def get_rw(self, obj):
+        return obj.rt.rw.id
+
+    def get_village(self, obj):
+        return obj.rt.rw.village.id
 
     class Meta:
         model = FloodStatus
-        fields = ('id', 'rt', 'rw', 'village', 'depth')
+        fields = ('id', 'date_time', 'rt', 'rw', 'village', 'depth')
 
 
 class FloodStatusFullSerializer(FloodStatusSerializer):
 
-    def transform_contact_person(self, obj, value):
+    contact_person = serializers.SerializerMethodField('get_contact_person')
+    contact_phone = serializers.SerializerMethodField('get_contact_phone')
+
+    def get_contact_person(self, obj):
         return obj.rt.contact_person
 
-    def transform_contact_phone(self, obj, value):
+    def get_contact_phone(self, obj):
         return obj.rt.contact_phone
 
     class Meta:
         model = FloodStatus
         fields = (
-            'id', 'rt', 'rw', 'village', 'depth', 'contact_person',
-            'contact_phone'
+            'id', 'date_time', 'rt', 'rw', 'village', 'depth',
+            'contact_person', 'contact_phone'
         )

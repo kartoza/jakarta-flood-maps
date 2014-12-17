@@ -13,7 +13,7 @@ urlpatterns = patterns(
         'flood_mapper.views.flood_area_detail.flood_area_detail'
     ),
     url(
-        r'^/api/reports/rw//(?P<rw>[\d]+)/$',
+        r'^api/reports/rw/(?P<rw_id>[\d]+)/$',
         'flood_mapper.views.reports_api.reports_rw_api'
     ),
     url(
