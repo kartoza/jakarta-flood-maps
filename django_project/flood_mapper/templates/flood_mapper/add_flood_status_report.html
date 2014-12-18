@@ -65,17 +65,7 @@
 {% load bootstrap_tags %}
 
 {% block navigation-bar %}
-
-
-<div>
-    <div>
-        <h1>Jakarta Flood Maps</h1>
-
-        <p>
-            This is an application to map floods in Jakarta.
-        </p>
-    </div>
-</div>
+  {% include "flood_mapper/navigation_bar.html" %}
 {%  endblock %}
 
 {% block content %}
