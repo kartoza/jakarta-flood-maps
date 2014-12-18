@@ -34,3 +34,13 @@ def boundary_api(request, village=None, rw=None, rt=None):
     else:
         return Response(
             VillageSerializer(Village.objects.all(), many=True).data)
+
+
+@api_view(['GET'])
+def get_village_api(request, rw_id):
+    try:
+        rw = RW.objects.get(id=int(rw_id))
+        village = rw.village
+        return Response(VillageSerializer(village).data)
+    except RW.DoesNotExist:
+        return Response(None)

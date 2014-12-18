@@ -2,9 +2,9 @@
 {% block header %}
   <script>
     function add_rw_to_map(){
-      $.get('/api/locale/?format=json', function(data){
+      $.get('/api/locations/?format=json', function(data){
         $.each(data, function(dummy, village){
-          $.get('/api/locale/' + village['id'] + '/?format=json', function(data){
+          $.get('/api/locations/' + village['id'] + '/?format=json', function(data){
             $.each(data, function(dummy, rw){
               var rw_layer = JSON.parse(rw['geometry']);
               L.geoJson(rw_layer, {
@@ -12,6 +12,7 @@
                 onEachFeature: onEachFeature,
                 properties: {
                   rw_id: rw['id'],
+                  name: rw['name'],
                   population: rw['population']
                 }
               }).addTo(map);
@@ -21,10 +22,42 @@
       });
     }
 
-    function updateFloodAreaReport(rw_id){
-      $.get('/api/reports/rw/' + rw_id + '/?format=json', function(data){
-
+    function updateFloodAreaReport(){
+      var rt = $('#rt');
+      rt.prop('disabled', 'disabled');
+      var rt_id = rt.val();
+//      $.get('/api/reports/rt/' + rt_id + '/?format=json', function(data){
+      $.get('/api/reports/rt/1547/?format=json', function(data){
+        console.log(data);
+        if (data.length == 0){
+          console.log('No reported flood info');
+        } else {
+          $('#current_flood_depth').text(data[0]["depth"]);
+          $('#current_flood_depth_div').show();
+        }
+        rt.prop('disabled', false);
       })
+    }
+
+    function updateFloodAreaOptions(rw_id, rw_name){
+      $('#rw').text(rw_name);
+      $('#village').text('');
+      var rt_select = $('#rt');
+      rt_select.find('option').remove().end();
+      rt_select.append($("<option></option>")
+        .attr("value", '')
+        .text('---------'));
+      $.get('/api/village/' + rw_id + '/?format=json', function(data){
+        $('#village').text(data['name']);
+        var village_id = data['id'];
+        $.get('/api/locations/' + village_id + '/' +rw_id + '/?format=json', function(data) {
+           $.each(data, function(dummy, rt) {
+             rt_select.append($("<option></option>")
+               .attr("value", rt['id'])
+               .text(rt['name']));
+           });
+        });
+      });
     }
 
     function style(feature) {
@@ -60,8 +93,14 @@
     function zoomToFeature(e) {
       var layer = e.target;
       map.fitBounds(layer.getBounds());
-      console.log(layer["options"]["properties"]["rw_id"]);
-      updateFloodAreaDetail(rw_id);
+      $('#select_rw').hide();
+      $('#staff_details').hide();
+      $('#current_flood_depth_div').hide();
+      $('#details').show();
+
+      var rw_id = layer["options"]["properties"]["rw_id"];
+      var rw_name = layer["options"]["properties"]["name"];
+      updateFloodAreaOptions(rw_id, rw_name);
     }
 
     function onEachFeature(feature, layer) {
@@ -75,11 +114,11 @@
     $(document).ready(function(){
       // add rw's to map
       add_rw_to_map();
-      $('#id_rw').on('change', update_rts);
+      $('#rt').on('change', updateFloodAreaReport);
     });
 
   </script>
-  <title>Add flood status report</title>
+  <title>Flood area details</title>
 {%  endblock %}
 
 {% load bootstrap_tags %}
@@ -101,7 +140,41 @@
 {% block content %}
 <div>
   <h1>Flood Area Detail</h1>
-</div>
-
+  <div id="select_rw">
+    <h2>Select a RW</h2>
+  </div>
+  <div id="details" style="display: None">
+    <div class="row">
+      <div class="col-xs-4">Village:</div>
+      <div class="col-xs-8" id="village"></div>
+    </div>
+    <div class="row">
+      <div class="col-xs-4">RW:</div>
+      <div class="col-xs-8" id="rw"></div>
+    </div>
+    <div class="row">
+      <div class="col-xs-4">RT:</div>
+      <select class="col-xs-8" id="rt">
+        <option value="">---------</option>
+      </select>
+    </div>
+    <div class="row" id="current_flood_depth_div">
+      <div class="col-xs-4">Current flood depth:</div>
+      <div class="col-xs-8" id="current_flood_depth"></div>
+    </div>
+    <div id="staff_details">
+      <div class="row">
+        <h2> Details visible to staff only</h2>
+      </div>
+      <div class="row">
+        <div class="col-xs-4">Contact person:</div>
+        <div class="col-xs-8" id="contact_person"></div>
+      </div>
+      <div class="row">
+        <div class="col-xs-4">Contact number:</div>
+        <div class="col-xs-8" id="contact_number"></div>
+      </div>
+    </div>
+  </div>
 </div> <!-- /container -->
 {%  endblock %}
