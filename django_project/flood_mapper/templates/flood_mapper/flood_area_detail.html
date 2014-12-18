@@ -26,8 +26,7 @@
       var rt = $('#rt');
       rt.prop('disabled', 'disabled');
       var rt_id = rt.val();
-//      $.get('/api/reports/rt/' + rt_id + '/?format=json', function(data){
-      $.get('/api/reports/rt/1547/?format=json', function(data){
+      $.get('/api/reports/rt/' + rt_id + '/?format=json', function(data){
         console.log(data);
         if (data.length == 0){
           console.log('No reported flood info');
@@ -124,7 +123,6 @@
 {% load bootstrap_tags %}
 
 {% block navigation-bar %}
-
 
 <div>
     <div>
