@@ -15,7 +15,7 @@ from users.models import User
 from flood_mapper.forms.add_flood_status_report import AddFlodStatusForm
 
 
-# @login_required
+@login_required
 # @staff_member_required
 def add_flood_status_report(request):
     """Add a flood status report
