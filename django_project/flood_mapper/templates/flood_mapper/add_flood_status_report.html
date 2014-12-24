@@ -1,17 +1,61 @@
 {% extends "flood_mapper/base.html" %}
 {% block header %}
-  <link rel="stylesheet" href="/static/css/bootstrap-datetimepicker.min.css" />
-  <script src="/static/js/bootstrap-datetimepicker.min.js"></script>
   <script src="/static/js/moment.min.js"></script>
+  <script src="/static/js/bootstrap-datetimepicker.min.js"></script>
+  <link rel="stylesheet" href="/static/css/bootstrap-datetimepicker.min.css" />
   <script>
+    function update_rws(){
+      var village_id = $('#id_village').val();
+      var rw_select = $('#id_rw');
+      var rt_select = $('#id_rt');
+      rw_select.find('option').remove().end();
+      rw_select.append($("<option></option>")
+        .attr("value", '')
+        .text('---------'));
+      rt_select.find('option').remove().end();
+      rt_select.append($("<option></option>")
+        .attr("value", '')
+        .text('---------'));
+      if (village_id == ''){
+        return;
+      }
+      $.get('/api/locale/' + village_id + '/?format=json', function(data){
+        $.each(data, function(dummy, rw){
+          $('#id_rw').append($("<option></option>")
+           .attr("value", rw['id'])
+           .text(rw['name']));
+        });
+      });
+    }
+    function update_rts(){
+      var village_id = $('#id_village').val();
+      var rw_id = $('#id_rw').val();
+      var rt_select = $('#id_rt');
+      rt_select.find('option').remove().end();
+      rt_select.append($("<option></option>")
+        .attr("value", '')
+        .text('---------'));
+      if ((village_id == '') || (rw_id == '')){
+        console.log('returning');
+        return;
+      }
+      $.get('/api/locale/' + village_id + '/' + rw_id + '/?format=json', function(data){
+        $.each(data, function(dummy, rt){
+          $('#id_rt').append($("<option></option>")
+           .attr("value", rt['id'])
+           .text(rt['name']));
+        });
+      });
+    }
     $(document).ready(function(){
+      // Setup locale selecton
+      $('#id_village').on('change', update_rws);
+      $('#id_rw').on('change', update_rts);
+      // Setup date time picker
       var date_time = $('#id_date_time');
-//      date_time.parent().addClass('date');
-//      date_time.parent().append('<span class="input-group-addon"><span class="glyphicon-calendar glyphicon"></span></span>');
-      // FIXME: The date picker appears at the wrong location
       date_time.datetimepicker(
       {
-        format: 'yyyy-mm-dd hh:mm'
+        format: 'YYYY-MM-DD HH:mm'
       });
     });
   </script>
@@ -21,17 +65,7 @@
 {% load bootstrap_tags %}
 
 {% block navigation-bar %}
-
-
-<div>
-    <div>
-        <h1>Jakarta Flood Maps</h1>
-
-        <p>
-            This is an application to map floods in Jakarta.
-        </p>
-    </div>
-</div>
+  {% include "flood_mapper/navigation_bar.html" %}
 {%  endblock %}
 
 {% block content %}

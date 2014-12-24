@@ -24,6 +24,7 @@ def import_rw(apps, schema_editor):
         if 'MultiPolygon' not in geometry:
             rw.geometry = geometry
         rw.village = village
+        rw.slug = slugify(rw_name)
         rw.save()
 
 

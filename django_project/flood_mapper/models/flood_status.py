@@ -8,12 +8,12 @@ __copyright__ = 'tim@kartoza.com'
 __doc__ = ''
 
 from django.contrib.gis.db import models
+from django.core.validators import MaxValueValidator, MinValueValidator
 
 from flood_mapper.models.rt import RT
-
 from users.models import User
 
-from django.core.validators import MaxValueValidator, MinValueValidator
+from rest_framework import serializers
 
 
 class FloodStatus(models.Model):
@@ -45,17 +45,53 @@ class FloodStatus(models.Model):
     reporting_medium = models.CharField(
         max_length=100
     )
-    notes = models.TextField()
+    notes = models.TextField(
+        blank=True,
+        null=True
+    )
 
     def __unicode__(self):
         return self.name
 
-    def save_base(self, raw=False, cls=None, origin=None, force_insert=False,
-                  force_update=False, using=None, update_fields=None):
+    def save_base(self, *args, **kwargs):
         self.name = '%s -- %s: %s' % (self.date_time, self.rt, self.depth)
-        super(FloodStatus, self).save_base(raw, cls, origin, force_insert,
-                                           force_update, using, update_fields)
+        super(FloodStatus, self).save_base(*args, **kwargs)
 
     def save(self, *args, **kwargs):
         """Overloaded save method."""
         super(FloodStatus, self).save(*args, **kwargs)
+
+
+class FloodStatusSerializer(serializers.ModelSerializer):
+
+    rw = serializers.SerializerMethodField('get_rw')
+    village = serializers.SerializerMethodField('get_village')
+
+    def get_rw(self, obj):
+        return obj.rt.rw.id
+
+    def get_village(self, obj):
+        return obj.rt.rw.village.id
+
+    class Meta:
+        model = FloodStatus
+        fields = ('id', 'date_time', 'rt', 'rw', 'village', 'depth')
+
+
+class FloodStatusFullSerializer(FloodStatusSerializer):
+
+    contact_person = serializers.SerializerMethodField('get_contact_person')
+    contact_phone = serializers.SerializerMethodField('get_contact_phone')
+
+    def get_contact_person(self, obj):
+        return obj.rt.contact_person
+
+    def get_contact_phone(self, obj):
+        return obj.rt.contact_phone
+
+    class Meta:
+        model = FloodStatus
+        fields = (
+            'id', 'date_time', 'rt', 'rw', 'village', 'depth',
+            'contact_person', 'contact_phone'
+        )

@@ -12,7 +12,7 @@ urlpatterns = patterns(
     url(r'^admin/', include(admin.site.urls)),
 
     # uncomment to enable defaut Django auth
-    # url(r'^accounts/login/$', 'django.contrib.auth.views.login'),
+    url(r'^accounts/login/$', 'django.contrib.auth.views.login'),
 
     # include application urls
     url(r'', include('flood_mapper.urls')),
