@@ -1,0 +1,60 @@
+#
+# Production server with UWSGI configured to run on port 8080
+#
+# Usage:
+# fig -f fig-.yml <command>
+#
+# Typical useage:
+#
+# fig build
+# fig up -d web
+#
+# See accompanying Make commands for easy collectstatic etc.
+# Our main nginx service
+nginx:
+  image: nginx
+  hostname: nginx
+  volumes:
+    - ./nginx-conf:/etc/nginx/conf.d
+  ports:
+    - "80:80"
+
+# Our docker-gen service reloads nginx with dynamically generated
+# templates each time a container is brought up / down
+# See https://registry.hub.docker.com/u/jwilder/nginx-proxy/
+# This one uses a template for nginx proxying (see above for http)
+dockergen:
+  image: jwilder/docker-gen
+  hostname: docker-gen
+  volumes_from:
+    - nginx
+  volumes:
+    - /var/run/docker.sock:/tmp/docker.sock
+    - ./nginx-templates:/etc/docker-gen/templates
+# see https://github.com/jwilder/docker-gen/blob/master/README.md#usage
+  command: -notify-sighup deployment_nginx_1 -watch -only-exposed /etc/docker-gen/templates/nginx-uwsgi.tmpl /etc/nginx/conf.d/uwsgi-proxies.conf
+
+db:
+  image: kartoza/postgis
+  volumes:
+    - ./pg/postgres_data:/var/lib/postgresql
+  environment:
+    - USERNAME=docker
+    - PASS=docker
+
+web:
+  build: docker-prod
+  hostname: uwsgi
+  environment:
+    - DATABASE_NAME=gis
+    - DATABASE_USERNAME=docker
+    - DATABASE_PASSWORD=docker
+    - DATABASE_HOST=db
+    - DJANGO_SETTINGS_MODULE=core.settings.prod_docker
+    - VIRTUAL_HOST=users.inasafe.org
+    - VIRTUAL_PORT=8080
+  volumes:
+    - ../django_project:/home/web/django_project
+  links:
+    - db:db
+
