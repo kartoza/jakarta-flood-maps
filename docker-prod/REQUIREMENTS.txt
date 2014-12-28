@@ -7,3 +7,4 @@ django-pipeline<1.4
 nodeenv
 raven
 Pillow
+django-forms-bootstrap==3.0.1
