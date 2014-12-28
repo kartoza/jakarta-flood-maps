@@ -42,7 +42,7 @@ db:
     - USERNAME=docker
     - PASS=docker
 
-web:
+uwsgi:
   build: docker-prod
   hostname: uwsgi
   environment:
@@ -58,3 +58,10 @@ web:
   links:
     - db:db
 
+web:
+  image: nginx
+  hostname: nginx
+  volumes:
+    - ./sites-enabled:/etc/nginx/conf.d
+  links:
+    - uwsgi:uwsgi

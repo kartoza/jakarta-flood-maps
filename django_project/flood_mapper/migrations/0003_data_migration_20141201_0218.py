@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
-from __future__ import unicode_literals
 
+
+from __future__ import unicode_literals
+import os
 from django.db import models, migrations
 from django.utils.text import slugify
 
@@ -8,7 +10,11 @@ import csv
 
 
 def import_rt(apps, schema_editor):
-    file = 'flood_mapper/data/List of RT DKI Jakarta - updated 2012.csv'
+    file = os.path.abspath(os.path.join(
+        os.path.dirname(__file__),
+        os.path.pardir,
+        'data',
+        'List of RT DKI Jakarta - updated 2012.csv'))
     RT = apps.get_model("flood_mapper", "RT")
     RW = apps.get_model("flood_mapper", "RW")
     Village = apps.get_model("flood_mapper", "Village")
@@ -16,8 +22,15 @@ def import_rt(apps, schema_editor):
         spamreader = csv.reader(csvfile)
         for row in spamreader:
             village_name = row[0]
-            rw_number = int(row[1])
-            rt_number = int(row[2])
+            try:
+                rw_number = int(row[1])
+            except:
+                rw_number = 0
+            try:
+                rt_number = int(row[2])
+            except:
+                rt_number = 0
+
             village_name_slug = slugify(unicode(village_name))
             try:
                 village = Village.objects.get(slug=village_name_slug)

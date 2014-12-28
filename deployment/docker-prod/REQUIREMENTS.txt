@@ -7,3 +7,8 @@ django-pipeline<1.4
 nodeenv
 raven
 django-user-map
+django-forms-bootstrap
+# Django rest framework support
+djangorestframework
+markdown
+django-filter
