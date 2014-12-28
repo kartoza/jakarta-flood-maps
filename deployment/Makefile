@@ -61,9 +61,16 @@ kill:
 logs:
 	@echo
 	@echo "--------------------------"
-	@echo "Showing logs in production mode"
+	@echo "Showing uwsgi logs in production mode"
 	@echo "--------------------------"
 	@fig -p jakartaflood logs uwsgi
+
+nginxlogs:
+	@echo
+	@echo "--------------------------"
+	@echo "Showing nginx logs in production mode"
+	@echo "--------------------------"
+	@fig -p jakartaflood logs web
 
 shell:
 	@echo

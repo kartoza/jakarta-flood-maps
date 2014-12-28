@@ -62,6 +62,7 @@ web:
   image: nginx
   hostname: nginx
   volumes:
-    - ./sites-enabled:/etc/nginx/conf.d
+    - ./sites-enabled:/etc/nginx/conf.d:ro
+    - ../django_project:/home/web/django_project:ro
   links:
     - uwsgi:uwsgi
