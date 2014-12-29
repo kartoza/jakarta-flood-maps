@@ -11,7 +11,7 @@ deploy: run
 	@echo "--------------------------"
 	#TODO - replace with something more precise
 	@echo "Waiting 20 secs to ensure db is running"
-	@sleep 20
+	#@sleep 20
 	@fig run -p jakartaflood uwsgi python manage.py migrate
 	@fig run -p jakartaflood uwsgi python manage.py collectstatic --noinput
 
@@ -78,6 +78,21 @@ shell:
 	@echo "Shelling in in production mode"
 	@echo "--------------------------"
 	@fig -p jakartaflood run uwsgi /bin/bash
+
+qgis:
+	@echo
+	@echo "--------------------------"
+	@echo "Running QGIS desktop in production mode"
+	@echo "Make sure you have started the services with make run first"
+	@echo "--------------------------"
+	@xhost +; docker run --rm --name="qgis-desktop-2-4" \
+	-i -t \
+	--link jakartaflood_db_1:db \
+	--volumes-from jakartaflood_qgisserver_1 \
+	-v ${HOME}:/home/$(USER) \
+	-v /tmp/.X11-unix:/tmp/.X11-unix \
+	-e DISPLAY=unix$(DISPLAY) \
+	kartoza/qgis-desktop:latest; xhost -
 
 #
 # Staging

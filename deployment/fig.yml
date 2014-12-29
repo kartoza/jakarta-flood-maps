@@ -42,6 +42,25 @@ db:
     - USERNAME=docker
     - PASS=docker
 
+qgisserver:
+  image: kartoza/qgis-server
+  hostname: qgis-server
+  volumes:
+    - ../maps:/web
+  links:
+    - db:db
+
+qgisdesktop:
+  image: kartoza/qgis-desktop
+  hostname: qgis-desktop
+  volumes_from:
+    - qgisserver
+  volumes:
+    - /tmp/.X11-unix:/tmp/.X11-unix
+    - ~:/home
+  links:
+    - db:db
+
 uwsgi:
   build: docker-prod
   hostname: uwsgi
@@ -57,7 +76,7 @@ uwsgi:
     - ../django_project:/home/web/django_project
   links:
     - db:db
-
+    - qgisserver:qgisserver
 web:
   image: nginx
   hostname: nginx
@@ -66,3 +85,5 @@ web:
     - ../django_project:/home/web/django_project:ro
   links:
     - uwsgi:uwsgi
+    - qgisserver:qgisserver
+
