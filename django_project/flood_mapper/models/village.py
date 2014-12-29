@@ -13,8 +13,12 @@ from django.conf.global_settings import MEDIA_ROOT
 from django.utils.text import slugify
 from django.core.validators import MaxValueValidator, MinValueValidator
 
+from flood_mapper.models.boundary import Boundary
 
-class Village(models.Model):
+from rest_framework import serializers
+
+
+class Village(Boundary):
     """Village model.
 
     Note: We should make a boundary base class or decorator and then
@@ -24,11 +28,11 @@ class Village(models.Model):
 
     class Meta:
         """Meta class."""
-        app_label = 'flood_maps'
+        app_label = 'flood_mapper'
 
     slug = models.SlugField(
-        unique=True,
-        primary_key=True
+        max_length=100,
+        unique=True
     )
 
     name = models.CharField(
@@ -46,3 +50,10 @@ class Village(models.Model):
         """Overloaded save method."""
         self.slug = slugify(unicode(self.name))
         super(Village, self).save(*args, **kwargs)
+
+
+class VillageSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Village
+        fields = ('id', 'name', 'slug', 'population', 'geometry')
