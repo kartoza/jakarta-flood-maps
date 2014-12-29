@@ -50,6 +50,14 @@ qgisserver:
   links:
     - db:db
 
+mapproxy:
+  image: kartoza/mapproxy
+  hostname: mapproxy
+  volumes:
+    - ../mapproxy:/mapproxy
+  links:
+    - qgisserver:qgisserver
+
 qgisdesktop:
   image: kartoza/qgis-desktop
   hostname: qgis-desktop

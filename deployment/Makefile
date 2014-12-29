@@ -72,6 +72,13 @@ nginxlogs:
 	@echo "--------------------------"
 	@fig -p jakartaflood logs web
 
+mapproxylogs:
+	@echo
+	@echo "--------------------------"
+	@echo "Showing mapproxy logs in production mode"
+	@echo "--------------------------"
+	@fig -p jakartaflood logs mapproxy
+
 shell:
 	@echo
 	@echo "--------------------------"
