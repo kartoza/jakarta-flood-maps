@@ -300,6 +300,12 @@
         <WMSContactPerson type="QString"></WMSContactPerson>
         <WMSOnlineResource type="QString"></WMSOnlineResource>
         <WMSContactOrganization type="QString">BNPB</WMSContactOrganization>
+        <WMSExtent type="QStringList">
+            <value>11862318.59061895683407784</value>
+            <value>-711825.73820472904480994</value>
+            <value>11922154.96051773615181446</value>
+            <value>-678126.18508681247476488</value>
+        </WMSExtent>
         <WMSKeywordList type="QStringList">
             <value></value>
         </WMSKeywordList>
@@ -316,8 +322,8 @@
             <DegreeFormat type="QString">D</DegreeFormat>
         </PositionPrecision>
         <WCSUrl type="QString"></WCSUrl>
-        <WMSContactPhone type="QString"></WMSContactPhone>
         <WMSServiceCapabilities type="bool">true</WMSServiceCapabilities>
+        <WMSContactPhone type="QString"></WMSContactPhone>
         <WMSServiceAbstract type="QString"></WMSServiceAbstract>
         <WMSAddWktGeometry type="bool">true</WMSAddWktGeometry>
         <Measure>

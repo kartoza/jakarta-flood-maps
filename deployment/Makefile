@@ -95,6 +95,8 @@ qgis:
 	@xhost +; docker run --rm --name="qgis-desktop-2-4" \
 	-i -t \
 	--link jakartaflood_db_1:db \
+	--link jakartaflood_qgisserver_1:qgisserver \
+	--link jakartaflood_mapproxy_1:mapproxy \
 	--volumes-from jakartaflood_qgisserver_1 \
 	-v ${HOME}:/home/$(USER) \
 	-v /tmp/.X11-unix:/tmp/.X11-unix \
@@ -113,7 +115,6 @@ stagingdeploy: stagingrun
 	@echo "--------------------------"
 	#TODO - replace with something more precise
 	@echo "Waiting 20 secs to ensure db is running"
-	@sleep 20
 	@fig  -p jakartaflood -f fig-staging.yml run stagingweb python manage.py migrate
 	@fig  -p jakartaflood -f fig-staging.yml run stagingweb python manage.py collectstatic --noinput
 

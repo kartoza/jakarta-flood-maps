@@ -23,7 +23,7 @@
 #     initial doc: http://localhost:8080/kml/osm/webmercator
 
 services:
-  jk-floods:
+  demo:
   tms:
     use_grid_names: true
     # origin for /tiles service
@@ -50,8 +50,8 @@ sources:
   rw_wms:
     type: wms
     req:
-      url: http://qgisserver/cgi-bin/qgis_mapserv.fcgi?map=/web/jk_floods.qgs
-      layers: rw
+      url: http://qgisserver/cgi-bin/qgis_mapserv.fcgi?map=/web/jk-floods.qgs
+      layers: jk_floods
 
 grids:
     webmercator:
