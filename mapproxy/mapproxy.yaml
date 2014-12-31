@@ -59,3 +59,6 @@ grids:
         bbox: [11862300.0, -711826.0, 11922200.0,-678126.0]
 
 globals:
+  cache:
+    meta_size: [6, 6]
+    meta_buffer: 100

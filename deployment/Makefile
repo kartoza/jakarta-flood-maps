@@ -79,6 +79,13 @@ mapproxylogs:
 	@echo "--------------------------"
 	@fig -p jakartaflood logs mapproxy
 
+seed:
+	@echo
+	@echo "--------------------------"
+	@echo "Seeding mapproxy logs in production mode"
+	@echo "--------------------------"
+	@fig -p jakartaflood run mapproxy /usr/local/bin/mapproxy-seed -f /mapproxy/mapproxy.yaml /mapproxy/seed.yaml
+
 shell:
 	@echo
 	@echo "--------------------------"
