@@ -62,3 +62,8 @@ globals:
   cache:
     meta_size: [6, 6]
     meta_buffer: 100
+
+coverages:
+  jakarta:
+    datasource: 'boundary.geojson'
+    srs: 'EPSG:4326'
