@@ -51,10 +51,11 @@ sources:
     type: wms
     req:
       url: http://qgisserver/cgi-bin/qgis_mapserv.fcgi?map=/web/jk-floods.qgs
-      layers: jk_floods
+      layers: rw
 
 grids:
     webmercator:
         base: GLOBAL_WEBMERCATOR
+        bbox: [11862300.0, -711826.0, 11922200.0,-678126.0]
 
 globals:

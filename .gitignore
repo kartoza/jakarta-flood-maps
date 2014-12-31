@@ -90,3 +90,5 @@ deployment/nginx-conf/
 
 # Mapproxy in docker
 mapproxy/cache_data/
+
+# logs in docker containers
