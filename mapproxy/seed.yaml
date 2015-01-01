@@ -10,7 +10,7 @@ seeds:
   rw_seed:
     caches: [rw_cache]
     grids: [webmercator]
-    # coverages: []
+    coverages: [jakarta]
     levels:
       to: 10
     refresh_before:
@@ -25,3 +25,6 @@ cleanups:
         to: 10
 
 coverages:
+  jakarta:
+    datasource: '/web/jakarta.shp'
+    srs: 'EPSG:4326'
