@@ -49,9 +49,9 @@ caches:
 sources:
   rw_wms:
     type: wms
-    coverage:
-      datasource: '/web/jakarta.shp'
-      srs: 'EPSG:4326'
+    #coverage:
+    #  datasource: '/web/jakarta.shp'
+    #  srs: 'EPSG:4326'
     req:
       transparent: true
       url: http://qgisserver/cgi-bin/qgis_mapserv.fcgi?map=/web/jk-floods.qgs

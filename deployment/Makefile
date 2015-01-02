@@ -1,6 +1,6 @@
 SHELL := /bin/bash
 
-default: run
+default: web
 
 run: build web
 
@@ -29,6 +29,7 @@ web:
 	@echo "Running in production mode"
 	@echo "--------------------------"
 	@fig  -p jakartaflood up -d web
+	@dipall
 
 build:
 	@echo
