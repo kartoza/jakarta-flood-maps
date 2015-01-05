@@ -1,5 +1,5 @@
 #--------- Generic stuff all our Dockerfiles should start with so we get caching ------------
-FROM inasafedjango_web
+FROM jakartaflood_uwsgi
 MAINTAINER Tim Sutton<tim@kartoza.com>
 
 # Use local cached debs from host (saves your bandwidth!)

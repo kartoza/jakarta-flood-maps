@@ -1,6 +1,6 @@
 SHELL := /bin/bash
 
-default: run
+default: web
 
 run: build web
 
@@ -11,7 +11,7 @@ deploy: run
 	@echo "--------------------------"
 	#TODO - replace with something more precise
 	@echo "Waiting 20 secs to ensure db is running"
-	@sleep 20
+	#@sleep 20
 	@fig run -p jakartaflood uwsgi python manage.py migrate
 	@fig run -p jakartaflood uwsgi python manage.py collectstatic --noinput
 
@@ -29,6 +29,7 @@ web:
 	@echo "Running in production mode"
 	@echo "--------------------------"
 	@fig  -p jakartaflood up -d web
+	@dipall
 
 build:
 	@echo
@@ -72,12 +73,43 @@ nginxlogs:
 	@echo "--------------------------"
 	@fig -p jakartaflood logs web
 
+mapproxylogs:
+	@echo
+	@echo "--------------------------"
+	@echo "Showing mapproxy logs in production mode"
+	@echo "--------------------------"
+	@fig -p jakartaflood logs mapproxy
+
+seed:
+	@echo
+	@echo "--------------------------"
+	@echo "Seeding mapproxy in production mode"
+	@echo "--------------------------"
+	@fig -p jakartaflood run mapproxy /usr/local/bin/mapproxy-seed -f /mapproxy/mapproxy.yaml /mapproxy/seed.yaml
+
 shell:
 	@echo
 	@echo "--------------------------"
 	@echo "Shelling in in production mode"
 	@echo "--------------------------"
 	@fig -p jakartaflood run uwsgi /bin/bash
+
+qgis:
+	@echo
+	@echo "--------------------------"
+	@echo "Running QGIS desktop in production mode"
+	@echo "Make sure you have started the services with make run first"
+	@echo "--------------------------"
+	@xhost +; docker run --rm --name="qgis-desktop-2-4" \
+	-i -t \
+	--link jakartaflood_db_1:db \
+	--link jakartaflood_qgisserver_1:qgisserver \
+	--link jakartaflood_mapproxy_1:mapproxy \
+	--volumes-from jakartaflood_qgisserver_1 \
+	-v ${HOME}:/home/$(USER) \
+	-v /tmp/.X11-unix:/tmp/.X11-unix \
+	-e DISPLAY=unix$(DISPLAY) \
+	kartoza/qgis-desktop:latest; xhost -
 
 #
 # Staging
@@ -91,7 +123,6 @@ stagingdeploy: stagingrun
 	@echo "--------------------------"
 	#TODO - replace with something more precise
 	@echo "Waiting 20 secs to ensure db is running"
-	@sleep 20
 	@fig  -p jakartaflood -f fig-staging.yml run stagingweb python manage.py migrate
 	@fig  -p jakartaflood -f fig-staging.yml run stagingweb python manage.py collectstatic --noinput
 

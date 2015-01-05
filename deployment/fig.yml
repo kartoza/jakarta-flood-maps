@@ -42,6 +42,39 @@ db:
     - USERNAME=docker
     - PASS=docker
 
+qgisserver:
+  image: kartoza/qgis-server
+  hostname: qgis-server
+  volumes:
+    - ../maps:/web
+    - ./logs/qgisserver:/var/log/apache2
+  links:
+    - db:db
+
+mapproxy:
+  image: kartoza/mapproxy
+  hostname: mapproxy
+  volumes:
+    - ../mapproxy:/mapproxy
+  volumes_from:
+    - qgisserver
+  links:
+    - qgisserver:qgisserver
+
+# This doesnt work as we need dynamic env var
+# expansion - see Makefile rather for by-hand implementation
+#qgisdesktop:
+#  image: kartoza/qgis-desktop
+#  hostname: qgis-desktop
+#  volumes_from:
+#    - qgisserver
+#  volumes:
+#    - /tmp/.X11-unix:/tmp/.X11-unix
+#    - ~:/home
+#  links:
+#    - db:db
+#    - qgisserver:qgisserver
+
 uwsgi:
   build: docker-prod
   hostname: uwsgi
@@ -66,3 +99,6 @@ web:
     - ../django_project:/home/web/django_project:ro
   links:
     - uwsgi:uwsgi
+    - qgisserver:qgisserver
+    - mapproxy:mapproxy
+
