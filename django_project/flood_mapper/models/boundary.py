@@ -25,7 +25,7 @@ class Boundary(models.Model):
 
     population = models.IntegerField(blank=True, null=True)
 
-    geometry = models.PolygonField(
+    geometry = models.PolygonField(  # MultiPolygonField
         srid=4326, null=True, blank=True, help_text='The geographic boundary')
 
     id = models.AutoField(primary_key=True)

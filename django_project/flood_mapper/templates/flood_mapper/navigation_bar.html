@@ -17,10 +17,10 @@
         <li id="nav_reports">
           <a href="/reports">Reports</a>
         </li>
-        {% if user %}
-          <li><a href="/admin/login/?next=/">Login</a></li>
+        {% if not user.is_staff %}
+          <li><a href="/admin/login/?next=#">Login</a></li>
         {% else %}
-          <li><a href="/admin/logout/?next=/">Logout</a></li>
+          <li><a href="/admin/logout/?next=#">Logout</a></li>
         {% endif %}
 
       </ul>

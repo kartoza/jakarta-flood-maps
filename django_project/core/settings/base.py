@@ -85,7 +85,8 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     'django_forms_bootstrap',
     'rest_framework',
-    'users'
+    'user_profile',
+    # 'users'
 )
 
-AUTH_USER_MODEL = 'users.User'
+# AUTH_USER_MODEL = 'users.User'
