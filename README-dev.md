@@ -1,5 +1,11 @@
 # Developer Documentation
 
+This document describes how to set up this project in developer mode
+so that you can extend / debug the project using the same
+environment as will be deployed in production. Please see
+``deployment/README.md`` for specific details on how to deploy into 
+a production environment.
+
 ## Application architecture under docker
 
 The following diagram provides and overview of the core architecture
@@ -19,13 +25,21 @@ django app using virtualenv and locally installed postgis, nginx etc.
 
 ## Setup pycharm to work with a remove docker development environment
 
+The setup procedure relies on docker and fig being available on your system.
+Please ensure you have at least docker 1.4.1 and fig 1.0.1 available.
+
+We use a makefile so that it is not neccessary to remember tedious fig
+command syntax (we use separated fig files for production, staging and 
+development deployments).
+
 ### Build your dev docker image
 
 This image extends the production one, adding ssh to it. You must
 have built the production one first!
 
 ```
-fig build uwsgi
+cd deployment
+make devbuild
 ```
 
 ### Run the dev container
@@ -33,10 +47,8 @@ fig build uwsgi
 We provide a script to start the container:
 
 ```
-fig -f fig-dev.yml build
-fig -f fig-dev.yml up -d dev
-fig -f fig-dev.yml run devmigrate
-fig -f fig-dev.yml run devcollectstatic
+cd deployment
+make dev
 ```
 
 ### Create a remote interpreter in pycharm
