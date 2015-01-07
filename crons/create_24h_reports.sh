@@ -1,4 +1,4 @@
-NUMBER_OF_HOURS=6
+NUMBER_OF_HOURS=24
 
 # CREATE TEMP TABLE
 SQL_QUERY=$(sed ':a;N;$!ba;s/\n/ /g' ../sql/report_table_create.sql)
