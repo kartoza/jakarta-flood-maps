@@ -30,9 +30,12 @@ PIPELINE_JS = {
         'source_filenames': (
             'js/jquery-1.11.1.min.js',
             'js/bootstrap.js',
+            'flood_mapper/js/bootstrap.min.js',
+            'flood_mapper/js/jquery.js',
             'flood_mapper/js/leaflet.js',
-            'flood_mapper/js/ripples.js',
-            'flood_mapper/js/material.js'
+            'flood_mapper/js/material.min.js',
+            'flood_mapper/js/ripples.min.js',
+            'flood_mapper/js/validate.js'
         ),
         'output_filename': 'js/contrib.js',
     },
@@ -48,11 +51,12 @@ PIPELINE_CSS = {
     'contrib': {
         'source_filenames': (
             'css/bootstrap.min.css',
+            'flood_mapper/css/bootstrap.css',
             'flood_mapper/css/leaflet.css',
             'flood_mapper/css/material-wfont.min.css',
-            'ripples.min.css'
+            'flood_mapper/css/ripples.min.css'
         ),
-    'output_filename': 'css/contrib.css',
+        'output_filename': 'css/contrib.css',
         'extra_context': {
             'media': 'screen, projection',
         },
