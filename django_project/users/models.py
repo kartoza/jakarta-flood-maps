@@ -88,4 +88,4 @@ class User(AbstractBaseUser):
     @property
     def is_staff(self):
         "Is the user a member of staff."
-        return self.is_admin
+        return self.is_admin and self.is_active

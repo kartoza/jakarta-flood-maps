@@ -3,6 +3,7 @@ from django.conf.urls import patterns, include, url
 from django.conf import settings
 
 from django.contrib import admin
+from django.views.generic.base import RedirectView
 
 
 urlpatterns = patterns(
@@ -12,7 +13,8 @@ urlpatterns = patterns(
     url(r'^admin/', include(admin.site.urls)),
 
     # uncomment to enable defaut Django auth
-    url(r'^accounts/login/$', 'django.contrib.auth.views.login'),
+    # url(r'^accounts/login/$', RedirectView.as_view(
+    #     url='^admin/login/$', permanent=False), name='index'),
 
     # include application urls
     url(r'', include('flood_mapper.urls')),
