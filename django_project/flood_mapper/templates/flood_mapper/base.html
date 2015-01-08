@@ -1,62 +1,67 @@
+{% load compressed %}
 <!DOCTYPE html>
 <html>
 <head lang="en">
-  <link rel="stylesheet" href="/static/css/bootstrap.min.css" />
-  <link rel="stylesheet" href="/static/css/leaflet.css" />
-  <script src="/static/js/jquery-1.11.1.min.js"></script>
-  <script src="/static/js/leaflet.js"></script>
-  <script src="/static/js/bootstrap.js"></script>
-  <meta charset="UTF-8">
+    <meta charset="UTF-8">
+    {% compressed_css 'contrib' %}
+
+    {% compressed_js 'contrib' %}
+    {% compressed_js 'appjs' %}
+
+    {% block header %}
+        <title></title>
+    {% endblock %}
+</head>
+
+<body>
+  {% block navigation-bar %}
+
+  {% endblock %}
+
+  <div class="row">
+      <div class="col-xs-8" id="map"></div>
+      <div class="col-xs-4" id="side_panel">
+          {% block content %}
+
+          {%  endblock %}
+      </div>
+  </div>
+
   <script>
     var map;
-
     function show_side_panel(){
-      var map_div = $('#map');
-      var side_panel = $('#side_panel');
-      map_div.addClass('col-xs-8');
-      side_panel.addClass('col-xs-4');
-      side_panel.show();
-      map_div.removeClass('col-xs-12');
-      map.invalidateSize();
+        var map_div = $('#map');
+        var side_panel = $('#side_panel');
+        map_div.addClass('col-xs-8');
+        side_panel.addClass('col-xs-4');
+        side_panel.show();
+        map_div.removeClass('col-xs-12');
+        map.invalidateSize();
     }
 
     function hide_side_panel(){
-      var map_div = $('#map');
-      var side_panel = $('#side_panel');
-      map_div.addClass('col-xs-12');
-      side_panel.removeClass('col-xs-4');
-      side_panel.hide();
-      map_div.removeClass('col-xs-8');
-      map.invalidateSize();
+        var map_div = $('#map');
+        var side_panel = $('#side_panel');
+        map_div.addClass('col-xs-12');
+        side_panel.removeClass('col-xs-4');
+        side_panel.hide();
+        map_div.removeClass('col-xs-8');
+        map.invalidateSize();
     }
 
     $(document).ready(function() {
-      $('#navigationbar').css('height', window.innerHeight * 0.1);
-      $('#map').css('height', window.innerHeight * 0.9);
-      map = L.map('map').setView([-6.2000, 106.8167], 11);
-      L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
-        attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-      }).addTo(map);
+        $('#navigationbar').css('height', window.innerHeight * 0.1);
+        $('#map').css('height', window.innerHeight * 0.9);
+        map = L.map('map').setView([-6.2000, 106.8167], 11);
+        L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
 
     });
-  </script>
-  {% block header %}
-    <title></title>
-  {% endblock %}
-</head>
-<body>
 
-<div id="navigation_bar">
-  {% block navigation-bar %}
-  {% endblock %}
-</div>
-<div class="row">
-  <div class="col-xs-8" id="map">
-  </div>
-  <div class="col-xs-4" id="side_panel">
-    {% block content %}
-    {%  endblock %}
-  </div>
-</div>
+    $(document).ready(function() {
+        $.material.init();
+    });
+  </script>
 </body>
 </html>
