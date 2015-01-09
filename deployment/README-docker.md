@@ -37,6 +37,14 @@ make run
 Now point your browser at the ip of the web container on port 8080.
 
 
+To make a superuser account do:
+
+```
+make shell
+python manage.py createsuperuser
+exit
+```
+
 #### Using make
 
 Using the make commands is probably simpler - the following make commands are
