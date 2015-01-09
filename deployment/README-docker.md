@@ -26,17 +26,16 @@ You can simply run the provided script and it will build and deploy the docker
 images for you in **production mode**.
 
 ```
-fig build
-fig up -d web
-fig run web python manage.py migrate
-fig run web python manage.py collectstatic --noinput
+cd deployment
+# allow pg volume to be written to
+sudo chmod -R a+rwX pg/postgres_data/
+make migrate
+make collectstatic
+make run
 ```
 
-Alternatively you can use make commands if your OS has Gnu Make installed:
+Now point your browser at the ip of the web container on port 8080.
 
-```
-make deploy
-```
 
 #### Using make
 

@@ -1,3 +1,4 @@
+# noinspection PyUnresolvedReferences
 from .prod import *  # noqa
 import os
 print os.environ
@@ -18,3 +19,6 @@ DATABASES = {
         'TEST_NAME': 'unittests',
     }
 }
+
+MEDIA_ROOT = '/home/web/media'
+STATIC_ROOT = '/home/web/static'
