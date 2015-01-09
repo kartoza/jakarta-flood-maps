@@ -19,7 +19,7 @@
       if (village_id == ''){
         return;
       }
-      $.get('/api/locale/' + village_id + '/?format=json', function(data){
+      $.get('/api/locations/' + village_id + '/?format=json', function(data){
         $.each(data, function(dummy, rw){
           $('#id_rw').append($("<option></option>")
            .attr("value", rw['id'])
@@ -39,7 +39,8 @@
         console.log('returning');
         return;
       }
-      $.get('/api/locale/' + village_id + '/' + rw_id + '/?format=json', function(data){
+      $.get('/api/locations/' + village_id + '/' + rw_id + '/?format=json',
+            function(data){
         $.each(data, function(dummy, rt){
           $('#id_rt').append($("<option></option>")
            .attr("value", rt['id'])
