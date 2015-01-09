@@ -94,6 +94,13 @@ shell:
 	@echo "--------------------------"
 	@fig -p jakartaflood run uwsgi /bin/bash
 
+dbshell:
+	@echo
+	@echo "--------------------------"
+	@echo "Shelling in in production database"
+	@echo "--------------------------"
+	@docker exec -t -i jakartaflood_db_1 psql -U docker -h localhost gis
+
 qgis:
 	@echo
 	@echo "--------------------------"
