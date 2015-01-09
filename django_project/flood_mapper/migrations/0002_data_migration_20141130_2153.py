@@ -21,13 +21,22 @@ def import_rw(apps, schema_editor):
         village, created = Village.objects.get_or_create(
             name=village_name, slug=slugify(unicode(village_name)))
         village.save()
-        rw = RW(name=rw_name)
-        if 'MultiPolygon' not in geometry.geojson:
-            geometry = MultiPolygon(Polygon(geometry.coords[0])).geojson
+        rw, created = RW.objects.get_or_create(name=rw_name, village=village)
+        if created:
+            if 'MultiPolygon' not in geometry.geojson:
+                geometry = MultiPolygon(Polygon(geometry.coords[0])).geojson
+            else:
+                geometry = geometry.geojson
         else:
-            geometry = geometry.geojson
+            if 'MultiPolygon' not in geometry.geojson:
+                geometry = MultiPolygon(
+                    [Polygon(coords) for coords in rw.geometry.coords[0]] +
+                    [Polygon(geometry.coords[0])]).geojson
+            else:
+                geometry = MultiPolygon(
+                    [Polygon(coords) for coords in rw.geometry.coords[0]] +
+                    [Polygon(coords) for coords in geometry.coords[0]]).geojson
         rw.geometry = geometry
-        rw.village = village
         rw.slug = slugify(rw_name)
         rw.save()
 

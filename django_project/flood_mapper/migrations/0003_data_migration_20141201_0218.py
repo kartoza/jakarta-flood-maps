@@ -30,12 +30,14 @@ def import_rt(apps, schema_editor):
             try:
                 village = Village.objects.get(slug=village_name_slug)
             except:
-                continue
+                print village_name
+                raise
             try:
                 rw = RW.objects.get(
                     village=village, name='RW %02.0f' % rw_number)
             except:
-                continue
+                print village_name, rw_number
+                raise
             rt = RT()
             rt.rw = rw
             rt.name = 'RT %02.0f' % rt_number
