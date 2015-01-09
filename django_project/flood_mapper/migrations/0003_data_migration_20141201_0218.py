@@ -22,14 +22,9 @@ def import_rt(apps, schema_editor):
         spamreader = csv.reader(csvfile)
         for row in spamreader:
             village_name = row[0]
-            try:
-                rw_number = int(row[1])
-            except:
-                rw_number = 0
-            try:
-                rt_number = int(row[2])
-            except:
-                rt_number = 0
+
+            rw_number = int(row[1])
+            rt_number = int(row[2])
 
             village_name_slug = slugify(unicode(village_name))
             try:

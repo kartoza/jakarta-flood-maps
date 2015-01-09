@@ -5,6 +5,7 @@ from django.db import models, migrations
 from django.utils.text import slugify
 
 from django.contrib.gis.gdal import DataSource
+from django.contrib.gis.geos import MultiPolygon, Polygon
 
 
 def import_rw(apps, schema_editor):
@@ -16,13 +17,16 @@ def import_rw(apps, schema_editor):
     for feature in layer:
         village_name = feature['KEL_NAME'].value
         rw_name = feature['RW'].value
-        geometry = feature.geom.geojson
+        geometry = feature.geom
         village, created = Village.objects.get_or_create(
             name=village_name, slug=slugify(unicode(village_name)))
         village.save()
         rw = RW(name=rw_name)
-        if 'MultiPolygon' not in geometry:
-            rw.geometry = geometry
+        if 'MultiPolygon' not in geometry.geojson:
+            geometry = MultiPolygon(Polygon(geometry.coords[0])).geojson
+        else:
+            geometry = geometry.geojson
+        rw.geometry = geometry
         rw.village = village
         rw.slug = slugify(rw_name)
         rw.save()

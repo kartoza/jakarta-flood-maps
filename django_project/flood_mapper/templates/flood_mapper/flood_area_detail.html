@@ -96,9 +96,13 @@
       $('#staff_details').hide();
       $('#current_flood_depth_div').hide();
       $('#details').show();
+      {% if home_page %}
+        show_side_panel();
+      {% endif %}
 
-      var rw_id = layer["options"]["properties"]["rw_id"];
-      var rw_name = layer["options"]["properties"]["name"];
+      console.log(layer);
+      var rw_id = layer["_options"]["properties"]["rw_id"];
+      var rw_name = layer["_options"]["properties"]["name"];
       updateFloodAreaOptions(rw_id, rw_name);
     }
 
@@ -110,8 +114,12 @@
       });
     }
 
-    $(document).ready(function(){
+    $(document).ready(function() {
       // add rw's to map
+      {% if home_page %}
+        hide_side_panel();
+      {% endif %}
+      $('#nav_flood_area_details').addClass("active");
       add_rw_to_map();
       $('#rt').on('change', updateFloodAreaReport);
     });

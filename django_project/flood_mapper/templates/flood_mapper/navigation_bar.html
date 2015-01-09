@@ -1,15 +1,29 @@
-<div class="navbar navbar-warning">
+<nav class="navbar navbar-default" role="navigation">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="">Jakarta Flood Maps</a>
+      <a class="navbar-brand" href="/">Jakarta Flood Maps</a>
     </div>
 
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav navbar-right">
-        <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
-        <li><a href="#">Link</a></li>
-        <li><a href="#">Login</a></li>
+        <li id="nav_flood_area_details">
+          <a href="/flood_area_detail">Flood area details</a>
+        </li>
+        {% if user.is_staff %}
+          <li id="nav_add_flood_status_report">
+            <a href="/add-flood-status-report">Add flood status report</a>
+          </li>
+        {% endif %}
+        <li id="nav_reports">
+          <a href="/reports">Reports</a>
+        </li>
+        {% if not user.is_staff %}
+          <li><a href="/admin/login/?next=#">Login</a></li>
+        {% else %}
+          <li><a href="/admin/logout/?next=#">Logout</a></li>
+        {% endif %}
+
       </ul>
     </div>
   </div>
-</div>
+</nav>
