@@ -5,8 +5,8 @@ from django.conf.urls import patterns, url
 urlpatterns = patterns(
     '',
     url(
-        r'^home/$',
-        'flood_mapper.views.add_flood_status_report.add_flood_status_report'
+        r'^$',
+        'flood_mapper.views.flood_area_detail.flood_area_detail'
     ),
     url(
         r'^add-flood-status-report/$',

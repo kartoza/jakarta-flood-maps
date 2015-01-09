@@ -75,8 +75,6 @@ TEMPLATE_DIRS = (
     ABS_PATH('core', 'base_templates'),
 )
 
-AUTH_USER_MODEL = 'users.User'
-
 INSTALLED_APPS = (
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -87,5 +85,8 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     'django_forms_bootstrap',
     'rest_framework',
-    'users'
+    'user_profile',
+    # 'users'
 )
+
+# AUTH_USER_MODEL = 'users.User'
