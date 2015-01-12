@@ -54,7 +54,8 @@ PIPELINE_CSS = {
             'flood_mapper/css/bootstrap.css',
             'flood_mapper/css/leaflet.css',
             'flood_mapper/css/material-wfont.min.css',
-            'flood_mapper/css/ripples.min.css'
+            'flood_mapper/css/ripples.min.css',
+            'flood_mapper/css/bnpb-theme.css',
         ),
         'output_filename': 'css/contrib.css',
         'extra_context': {
