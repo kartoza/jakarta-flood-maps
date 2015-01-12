@@ -94,6 +94,13 @@ shell:
 	@echo "--------------------------"
 	@fig -p jakartaflood run uwsgi /bin/bash
 
+dbshell:
+	@echo
+	@echo "--------------------------"
+	@echo "Shelling in in production database"
+	@echo "--------------------------"
+	@docker exec -t -i jakartaflood_db_1 psql -U docker -h localhost gis
+
 qgis:
 	@echo
 	@echo "--------------------------"
@@ -110,6 +117,14 @@ qgis:
 	-v /tmp/.X11-unix:/tmp/.X11-unix \
 	-e DISPLAY=unix$(DISPLAY) \
 	kartoza/qgis-desktop:latest; xhost -
+
+map:
+	@echo
+	@echo "--------------------------"
+	@echo "Getting current 6 hour slot as pdf map"
+	@echo "Make sure you have started the services with make run first"
+	@echo "--------------------------"
+	wget -O map.pdf "http://172.17.0.8/cgi-bin/qgis_mapserv.fcgi?map=/web/jk-floods.qgs&SERVICE=wms&LAYERS=Rw&REQUEST=GetPrint&TEMPLATE=6Hour&map0:EXTENT=11862318.594,-714081.378,11922154.957,-675870.096&map0:ROTATION=0&FORMAT=pdf&DPI=300"
 
 #
 # Staging

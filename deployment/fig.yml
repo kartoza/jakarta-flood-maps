@@ -88,6 +88,8 @@ uwsgi:
     - VIRTUAL_PORT=8080
   volumes:
     - ../django_project:/home/web/django_project
+    - ./static:/home/web/static
+    - ./media:/home/web/media
   links:
     - db:db
 
@@ -96,9 +98,13 @@ web:
   hostname: nginx
   volumes:
     - ./sites-enabled:/etc/nginx/conf.d:ro
-    - ../django_project:/home/web/django_project:ro
+    # I dont use volumes_from as I want to use the ro modifier
+    - ./static:/home/web/static:ro
+    - ./media:/home/web/media:ro
   links:
     - uwsgi:uwsgi
     - qgisserver:qgisserver
     - mapproxy:mapproxy
+  ports:
+    - "61000:8080"
 
