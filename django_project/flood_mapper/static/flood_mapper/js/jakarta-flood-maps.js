@@ -110,3 +110,116 @@ function update_rts_rws(){
             format: 'YYYY-MM-DD HH:mm'
         });
 }
+
+function add_rw_to_map(){
+    $.get('/api/locations/?format=json', function(data){
+        $.each(data, function(dummy, village){
+            $.get('/api/locations/' + village['id'] + '/?format=json', function(data){
+                $.each(data, function(dummy, rw){
+                    var rw_layer = JSON.parse(rw['geometry']);
+                    L.geoJson(rw_layer, {
+                        style: style,
+                        onEachFeature: onEachFeature,
+                        properties: {
+                            rw_id: rw['id'],
+                            name: rw['name'],
+                            population: rw['population']
+                        }
+                    }).addTo(map);
+                });
+            });
+        });
+    });
+}
+
+function updateFloodAreaReport(){
+    var rt = $('#rt');
+    rt.prop('disabled', 'disabled');
+    var rt_id = rt.val();
+    $.get('/api/reports/rt/' + rt_id + '/?format=json', function(data){
+        console.log(data);
+        if (data.length == 0){
+            console.log('No reported flood info');
+        } else {
+            $('#current_flood_depth').text(data[0]["depth"]);
+            $('#current_flood_depth_div').show();
+        }
+        rt.prop('disabled', false);
+    })
+}
+
+function updateFloodAreaOptions(rw_id, rw_name){
+    $('#rw').text(rw_name);
+    $('#village').text('');
+    var rt_select = $('#rt');
+    rt_select.find('option').remove().end();
+    rt_select.append($("<option></option>")
+        .attr("value", '')
+        .text('---------'));
+    $.get('/api/village/' + rw_id + '/?format=json', function(data){
+        $('#village').text(data['name']);
+        var village_id = data['id'];
+        $.get('/api/locations/' + village_id + '/' +rw_id + '/?format=json', function(data) {
+            $.each(data, function(dummy, rt) {
+                rt_select.append($("<option></option>")
+                    .attr("value", rt['id'])
+                    .text(rt['name']));
+            });
+        });
+    });
+}
+
+function style(feature) {
+    return {
+        weight: 2,
+        opacity: 1,
+        color: 'blue',
+        dashArray: '3',
+        fillOpacity: 0.5,
+        fillColor: 'blue'
+    };
+}
+
+function highlightFeature(e) {
+    var layer = e.target;
+    layer.setStyle({
+        weight: 5,
+        color: 'white',
+        dashArray: '',
+        fillOpacity: 0.3,
+        fillColor: 'blue'
+    });
+    if (!L.Browser.ie && !L.Browser.opera) {
+        layer.bringToFront();
+    }
+}
+
+function resetHighlight(e) {
+    var layer = e.target;
+    layer.setStyle(style(e));
+}
+
+function zoomToFeature(e) {
+    var layer = e.target;
+    map.fitBounds(layer.getBounds());
+    $('#select_rw').hide();
+    $('#staff_details').hide();
+    $('#current_flood_depth_div').hide();
+    $('#details').show();
+    if (window.location.pathname == '/'){
+        show_side_panel();
+    }
+
+    console.log(layer);
+    var rw_id = layer["_options"]["properties"]["rw_id"];
+    var rw_name = layer["_options"]["properties"]["name"];
+    updateFloodAreaOptions(rw_id, rw_name);
+}
+
+function onEachFeature(feature, layer) {
+    layer.on({
+        mouseover: highlightFeature,
+        mouseout: resetHighlight,
+        click: zoomToFeature
+    });
+}
