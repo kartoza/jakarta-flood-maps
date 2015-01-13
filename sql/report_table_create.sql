@@ -32,10 +32,10 @@ WITH currently_reported AS (
     flood_mapper_rt.rw_id=flood_mapper_rw.id
   WHERE
     flood_mapper_floodstatus.date_time >= (
-    select start_time from time_slices_{{NUMBER_OF_HOURS}}_hours(cast(now() as TIMESTAMP)))
+    select start_time from time_slices_{{NUMBER_OF_HOURS}}_hours(cast('{{DATE_TIME_NOW}}' as TIMESTAMP)))
   AND
     flood_mapper_floodstatus.date_time <= (
-    select end_time from time_slices_{{NUMBER_OF_HOURS}}_hours(cast(now() as TIMESTAMP)))
+    select end_time from time_slices_{{NUMBER_OF_HOURS}}_hours(cast('{{DATE_TIME_NOW}}' as TIMESTAMP)))
 )
   SELECT temp.*
   INTO REPORT_{{NUMBER_OF_HOURS}}_HOUR_TEMP
@@ -47,4 +47,3 @@ WITH currently_reported AS (
   ON temp.rw_id = grouped_temp.rw_id
   AND temp.date_time = grouped_temp.max_date_time;
 
--- DROP TABLE REPORT_6_HOUR_TEMP;

@@ -52,8 +52,28 @@
             <br><br><span class="caret"></span>
           </button>
            <ul class="dropdown-menu">
-             <li>Yesterday</li>
-             <li>2 days ago</li>
+             {% for report in reports.pdf.6h %}
+               <li>{{ report }}</li>
+             {% endfor %}
+            </ul>
+        </div>
+        <br>
+        <br>
+        <div class="btn-group btn-block">
+          <button class="col-xs-10 btn">
+            24h report <br>
+            Download to open with<br>
+            a document viewer<br>
+            (PDF)
+          </button>
+          <button class="col-sm-2 btn dropdown-toggle"
+              data-toggle="dropdown">
+            <br><br><br><span class="caret"></span>
+          </button>
+           <ul class="dropdown-menu">
+             {% for report in reports.pdf.24h %}
+               <li>{{ report }}</li>
+             {% endfor %}
             </ul>
         </div>
         <div class="page-header"></div>

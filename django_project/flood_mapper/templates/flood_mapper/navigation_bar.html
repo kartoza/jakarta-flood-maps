@@ -18,9 +18,9 @@
           <a href="/reports">Reports</a>
         </li>
         {% if not user.is_staff %}
-          <li><a href="/admin/login/?next=#">Login</a></li>
+          <li><a href="/accounts/login/?next=/#">Login</a></li>
         {% else %}
-          <li><a href="/admin/logout/?next=#">Logout</a></li>
+          <li><a href="/accounts/logout/?next=/#">Logout</a></li>
         {% endif %}
 
       </ul>
