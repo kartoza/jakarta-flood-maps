@@ -35,7 +35,8 @@ PIPELINE_JS = {
             'flood_mapper/js/leaflet.js',
             'flood_mapper/js/material.min.js',
             'flood_mapper/js/ripples.min.js',
-            'flood_mapper/js/validate.js'
+            'flood_mapper/js/validate.js',
+            'flood_mapper/js/jakarta-flood-maps.js'
         ),
         'output_filename': 'js/contrib.js',
     },

@@ -1,6 +1,9 @@
 {% extends "flood_mapper/base.html" %}
 {% block header %}
   <script>
+      $(document).ready(function() {
+          show_map()
+      });
     function add_rw_to_map(){
       $.get('/api/locations/?format=json', function(data){
         $.each(data, function(dummy, village){
