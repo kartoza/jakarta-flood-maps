@@ -17,6 +17,10 @@ urlpatterns = patterns(
         'flood_mapper.views.flood_area_detail.flood_area_detail'
     ),
     url(
+        r'^flood_area_detail_next/$',
+        'flood_mapper.views.flood_area_detail.flood_area_detail'
+    ),
+    url(
         r'^reports/$',
         'flood_mapper.views.reports.reports'
     ),
@@ -38,6 +42,14 @@ urlpatterns = patterns(
     url(
         r'^api/locations/(?P<village>[\d]+)/$',
         'flood_mapper.views.boundary_api.boundary_api'
+    ),
+    url(
+        r'^api/locations/flooded/(?P<time_slice>[\w]+)/(?P<village>['r'\d]+)/$',
+        'flood_mapper.views.boundary_api.boundary_flooded_api'
+    ),
+    url(
+        r'^api/locations/flooded/(?P<time_slice>[\w]+)/$',
+        'flood_mapper.views.boundary_api.boundary_flooded_api'
     ),
     url(
         r'^api/locations/$',

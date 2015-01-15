@@ -2,9 +2,9 @@
 {% block header %}
   <script>
     function add_rw_to_map(){
-      $.get('/api/locations/?format=json', function(data){
+      $.get('/api/locations/flooded/{{ time_slice }}/?format=json', function(data){
         $.each(data, function(dummy, village){
-          $.get('/api/locations/' + village['id'] + '/?format=json', function(data){
+          $.get('/api/locations/flooded/{{ time_slice }}/' + village['id'] + '/?format=json', function(data){
             $.each(data, function(dummy, rw){
               var rw_layer = JSON.parse(rw['geometry']);
               L.geoJson(rw_layer, {
@@ -119,7 +119,11 @@
       {% if home_page %}
         hide_side_panel();
       {% endif %}
-      $('#nav_flood_area_details').addClass("active");
+      {% if time_slice == 'current' %}
+        $('#nav_flood_area_details').addClass("active");
+      {% else %}
+        $('#nav_flood_area_details_next').addClass("active");
+      {% endif %}
       add_rw_to_map();
       $('#rt').on('change', updateFloodAreaReport);
     });
@@ -136,9 +140,13 @@
 
 {% block content %}
 <div>
+  <h4>{{ time_slice_verbose }}</h4>
   <h1>Flood Area Detail</h1>
   <div id="select_rw">
     <h2>Select a RW</h2>
+    <div>The RWs shown have RTs flood levels reported on in this time
+      slot. These can be selected. Once selected the RT of interest can
+      be selected and the flood levels will be shown.</div>
   </div>
   <div id="details" style="display: None">
     <div class="row">
