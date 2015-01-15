@@ -9,6 +9,6 @@ raven
 django-user-map
 django-forms-bootstrap
 # Django rest framework support
-djangorestframework
+djangorestframework==2.4.4
 markdown
 django-filter

@@ -19,111 +19,117 @@
 {%  endblock %}
 
 {% block content %}
-    <div class="row">
-        <div class="row">
-            <div class="col-xs-4">
-                <h4 class="col-xs-offset-1 col-xs-10"> What do you want to do?</h4>
-            </div>
-            <div class="col-xs-4">
-            </div>
-            <div class="col-xs-4">
-                {# % if user.is_staff % #}
-                <div class="col-xs-offset-1 col-xs-10">
-                    <button type="button" class="btn btn-block" aria-label="Left Align">
-                        Custom Reports
-                    </button>
-                </div>
-                {# % endif % #}
-            </div>
-        </div>
-        <div class="row equalHeight">
-            <div class="col-xs-4">
-                <div class="col-xs-offset-1 col-xs-10 jumbotron alert-success">
-                    <div class="btn-group btn-block">
-                        <button class="col-xs-10 btn">
-                            Download to open with<br>
-                            a document viewer<br>
-                            (PDF)*
-                        </button>
-                        <button class="col-sm-2 btn dropdown-toggle"
-                                data-toggle="dropdown">
-                            <br><br><span class="caret"></span>
-                        </button>
-                        <ul class="dropdown-menu">
-                            <li>Yesterday</li>
-                            <li>2 days ago</li>
-                        </ul>
-                    </div>
-                    <div class="page-header"></div>
-                    <h4>*Recommended</h4>
-                </div>
-            </div>
-            <div class="col-xs-4">
-                <div class="col-xs-offset-1 col-xs-10 jumbotron alert-warning">
-                    <div class="btn-group btn-block">
-                        <button class="col-xs-10 btn">
-                            Download to view in<br>
-                            spreadsheet<br>
-                            (CSV)
-                        </button>
-                        <button class="col-sm-2 btn dropdown-toggle" data-toggle="dropdown">
-                            <br><br></b><span class="caret"></span>
-                        </button>
-                        <ul class="dropdown-menu">
-                            <li>Yesterday</li>
-                            <li>2 days ago</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xs-4">
-                <div class="col-xs-offset-1 col-xs-10 jumbotron alert-warning">
-                    <div class="btn-group btn-block">
-                        <button class="col-xs-10 btn">
-                            Download to view in<br>
-                            Google Earth<br>
-                            (KML)
-                        </button>
-                        <button class="col-sm-2 btn dropdown-toggle" data-toggle="dropdown">
-                            <br><br><span class="caret"></span>
-                        </button>
-                        <ul class="dropdown-menu">
-                            <li>Yesterday</li>
-                            <li>2 days ago</li>
-                        </ul>
-                    </div>
-                    <br><br>
-                    <div class="btn-group btn-block">
-                        <button class="col-xs-10 btn">
-                            Download to view in<br>
-                            GIS<br>
-                            (SHP)
-                        </button>
-                        <button class="col-sm-2 btn dropdown-toggle" data-toggle="dropdown">
-                            <br><br><span class="caret"></span>
-                        </button>
-                        <ul class="dropdown-menu">
-                            <li>Yesterday</li>
-                            <li>2 days ago</li>
-                        </ul>
-                    </div>
-                    <br><br>
-                    <div class="btn-group btn-block">
-                        <button class="col-xs-10 btn">
-                            Download to view in<br>
-                            GIS<br>
-                            (spatialite)
-                        </button>
-                        <button class="col-sm-2 btn dropdown-toggle" data-toggle="dropdown">
-                            <br><br><span class="caret"></span>
-                        </button>
-                        <ul class="dropdown-menu">
-                            <li>Yesterday</li>
-                            <li>2 days ago</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
+<div class="row">
+  <div class="row">
+    <div class="col-xs-4">
+        <h4 class="col-xs-offset-1 col-xs-10"> What do you want to do?</h4>
     </div>
+    <div class="col-xs-4">
+    </div>
+    <div class="col-xs-4">
+      {# % if user.is_staff % #}
+      <div class="col-xs-offset-1 col-xs-10">
+      <button type="button" class="btn btn-block btn-default" aria-label="Left
+      Align">
+        Custom Reports
+      </button>
+      </div>
+      {# % endif % #}
+    </div>
+  </div>
+  <div class="row equalHeight">
+    <div class="col-xs-4">
+      <div class="col-xs-offset-1 col-xs-10 jumbotron alert-success">
+        <div class="btn-group btn-block">
+          <button class="col-xs-10 btn">
+            Download to open with<br>
+            a document viewer<br>
+            (PDF)*
+          </button>
+          <button class="col-sm-2 btn dropdown-toggle"
+              data-toggle="dropdown">
+            <br><br><span class="caret"></span>
+          </button>
+           <ul class="dropdown-menu">
+             {% for report in reports.pdf.6h %}
+               <li>{{ report }}</li>
+             {% endfor %}
+            </ul>
+        </div>
+        <br>
+        <br>
+        <div class="btn-group btn-block">
+          <button class="col-xs-10 btn">
+            24h report <br>
+            Download to open with<br>
+            a document viewer<br>
+            (PDF)
+          </button>
+          <button class="col-sm-2 btn dropdown-toggle"
+              data-toggle="dropdown">
+            <br><br><br><span class="caret"></span>
+          </button>
+           <ul class="dropdown-menu">
+             {% for report in reports.pdf.24h %}
+               <li>{{ report }}</li>
+             {% endfor %}
+            </ul>
+        </div>
+        <div class="page-header"></div>
+        <h4>*Recommended</h4>
+      </div>
+    </div>
+    <div class="col-xs-4">
+      <div class="col-xs-offset-1 col-xs-10 jumbotron alert-warning">
+        <div class="btn-group btn-block">
+          <button class="col-xs-10 btn btn-default">
+            Download to view in<br>
+            spreadsheet<br>
+            (CSV)
+          </button>
+          <button class="col-sm-2 btn dropdown-toggle" data-toggle="dropdown">
+            <br><br></b><span class="caret"></span>
+          </button>
+           <ul class="dropdown-menu">
+             <li><a>Yesterday</a></li>
+             <li><a>2 days ago</a></li>
+            </ul>
+        </div>
+      </div>
+    </div>
+    <div class="col-xs-4">
+      <div class="col-xs-offset-1 col-xs-10 jumbotron alert-warning">
+        <div class="btn-group btn-block">
+          <button class="col-xs-10 btn">
+            Download to view in<br>
+            Google Earth<br>
+            (KML)
+          </button>
+          <button class="col-sm-2 btn dropdown-toggle" data-toggle="dropdown">
+            <br><br><span class="caret"></span>
+          </button>
+           <ul class="dropdown-menu">
+                <li><a>Yesterday</a></li>
+                <li><a>2 days ago</a></li>
+            </ul>
+        </div>
+        <br><br>
+        <div class="btn-group btn-block">
+          <button class="col-xs-10 btn">
+            Download to view in<br>
+            GIS<br>
+            (SHP)
+          </button>
+          <button class="col-sm-2 btn dropdown-toggle" data-toggle="dropdown">
+            <br><br><span class="caret"></span>
+          </button>
+           <ul class="dropdown-menu">
+               <li><a>Yesterday</a></li>
+               <li><a>2 days ago</a></li>
+            </ul>
+            </div>
+          </div>
+        </div>
+  </div>
+</div>
 {%  endblock %}
