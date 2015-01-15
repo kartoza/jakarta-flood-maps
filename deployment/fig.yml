@@ -106,5 +106,5 @@ web:
     - qgisserver:qgisserver
     - mapproxy:mapproxy
   ports:
-    - "8080:61000"
+    - "61000:8080"
 
