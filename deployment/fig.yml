@@ -90,6 +90,7 @@ uwsgi:
     - ../django_project:/home/web/django_project
     - ./static:/home/web/static
     - ./media:/home/web/media
+    - ./logs:/var/log/
   links:
     - db:db
 
@@ -101,6 +102,7 @@ web:
     # I dont use volumes_from as I want to use the ro modifier
     - ./static:/home/web/static:ro
     - ./media:/home/web/media:ro
+    - ./logs:/var/log/nginx
   links:
     - uwsgi:uwsgi
     - qgisserver:qgisserver
