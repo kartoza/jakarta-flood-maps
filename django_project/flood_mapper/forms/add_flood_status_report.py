@@ -30,7 +30,8 @@ class AddFlodStatusForm(forms.ModelForm):
         print self.fields['rw'].validators
         # TODO: only show the villages, that this user is allowed to sees
         self.fields['village'].choices = [('', '---------')] + [
-            (village.id, village.name) for village in Village.objects.all()]
+            (village.id, village.name) for village in
+            Village.objects.order_by('name')]
 
     def clean(self):
         cleaned_data = self.cleaned_data

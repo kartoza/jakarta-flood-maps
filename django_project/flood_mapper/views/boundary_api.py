@@ -28,12 +28,12 @@ def boundary_api(request, village=None, rw=None, rt=None):
             return Response(None)
         matching_rts = RT.objects.filter(
             rw__id=int(rw),
-            rw__village__id=int(village))
+            rw__village__id=int(village)).order_by('name')
         return Response(RTSerializer(matching_rts, many=True).data)
     elif village:
-        matching_rts = RW.objects.filter(
-            village__id=int(village))
-        return Response(RWSerializer(matching_rts, many=True).data)
+        matching_rws = RW.objects.filter(
+            village__id=int(village)).order_by('name')
+        return Response(RWSerializer(matching_rws, many=True).data)
     else:
         return Response(
             VillageSerializer(Village.objects.all(), many=True).data)
