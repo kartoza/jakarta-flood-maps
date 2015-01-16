@@ -5,7 +5,8 @@
   <link rel="stylesheet" href="/static/css/bootstrap-datetimepicker.min.css" />
   <script>
     function update_rws(){
-      var village_id = $('#id_village').val();
+      var village_select = $('#id_village');
+      var village_id = village_select.val();
       var rw_select = $('#id_rw');
       var rt_select = $('#id_rt');
       rw_select.find('option').remove().end();
@@ -19,17 +20,20 @@
       if (village_id == ''){
         return;
       }
+      village_select.attr("disabled", "disabled");
       $.get('/api/locations/' + village_id + '/?format=json', function(data){
         $.each(data, function(dummy, rw){
           $('#id_rw').append($("<option></option>")
            .attr("value", rw['id'])
            .text(rw['name']));
         });
+        village_select.removeAttr("disabled");
       });
     }
     function update_rts(){
       var village_id = $('#id_village').val();
-      var rw_id = $('#id_rw').val();
+      var rw_select = $('#id_rw');
+      var rw_id = rw_select.val();
       var rt_select = $('#id_rt');
       rt_select.find('option').remove().end();
       rt_select.append($("<option></option>")
@@ -39,6 +43,7 @@
         console.log('returning');
         return;
       }
+      rw_select.attr("disabled", "disabled");
       $.get('/api/locations/' + village_id + '/' + rw_id + '/?format=json',
             function(data){
         $.each(data, function(dummy, rt){
@@ -46,6 +51,7 @@
            .attr("value", rt['id'])
            .text(rt['name']));
         });
+        rw_select.removeAttr("disabled");
       });
     }
     $(document).ready(function(){
