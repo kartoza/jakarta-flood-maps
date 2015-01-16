@@ -82,8 +82,6 @@ postfix:
     # You could change this to something more suitable
     - maildomain=kartoza.com
     - smtp_user=noreply:docker
-  volumes:
-    - ./logs:/var/log
 
 uwsgi:
   build: docker-prod
