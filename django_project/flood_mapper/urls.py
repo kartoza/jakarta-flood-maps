@@ -44,6 +44,10 @@ urlpatterns = patterns(
         'flood_mapper.views.boundary_api.boundary_api'
     ),
     url(
+        r'^api/locations/flooded/rw/(?P<time_slice>[\w]+)/$',
+        'flood_mapper.views.boundary_api.all_flooded_rw'
+    ),
+    url(
         r'^api/locations/flooded/(?P<time_slice>[\w]+)/(?P<village>['r'\d]+)/$',
         'flood_mapper.views.boundary_api.boundary_flooded_api'
     ),
@@ -59,4 +63,8 @@ urlpatterns = patterns(
         r'^api/village/(?P<rw_id>[\d]+)/$',
         'flood_mapper.views.boundary_api.get_village_api'
     ),
+    url(
+        r'^api/rw/(?P<rw_id>[\d]+)/$',
+        'flood_mapper.views.boundary_api.get_rw_by_id'
+    )
 )

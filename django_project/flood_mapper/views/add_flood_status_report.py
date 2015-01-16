@@ -33,7 +33,8 @@ def add_flood_status_report(request):
             # model_instance.recorded_by = request.user
             model_instance.recorded_by = User.objects.all()[0]
             model_instance.save()
-            return redirect('/')
+            return redirect(
+                '/flood_area_detail_next/?rw=%s' % model_instance.rt.rw.id)
         else:
             return render(
                 request,

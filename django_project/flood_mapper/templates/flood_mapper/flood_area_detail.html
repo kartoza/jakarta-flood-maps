@@ -2,12 +2,21 @@
 {% block header %}
   <script>
     function add_rw_to_map(){
-      $.get('/api/locations/flooded/{{ time_slice }}/?format=json', function(data){
-        $.each(data, function(dummy, village){
-          $.get('/api/locations/flooded/{{ time_slice }}/' + village['id'] + '/?format=json', function(data){
-            $.each(data, function(dummy, rw){
+      var selected_rw;
+      {% if time_slice != 'current' %}
+        var query = window.location.search.substring(1);
+        if (query.length > 0){
+          var rw = query.split('&')[0].split('=');
+          if (rw[0] == 'rw'){
+            selected_rw = rw[1];
+          }
+        }
+      {% endif %}
+      $.get('/api/locations/flooded/rw/{{ time_slice }}/?format=json', function(data){
+        $.each(data, function(dummy, rw_id){
+          $.get('/api/rw/' + rw_id + '/?format=json', function(rw){
               var rw_layer = JSON.parse(rw['geometry']);
-              L.geoJson(rw_layer, {
+              var layer = L.geoJson(rw_layer, {
                 style: style,
                 onEachFeature: onEachFeature,
                 properties: {
@@ -16,7 +25,9 @@
                   population: rw['population']
                 }
               }).addTo(map);
-            });
+              if (rw_id == selected_rw){
+                map.fitBounds(layer.getBounds());
+              }
           });
         });
       });
