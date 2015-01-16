@@ -1,15 +1,15 @@
 NUMBER_OF_HOURS=6;
 
-if [ $(date +'%H') > 18 ]; then
+if [ $(date +'%H') -gt 18 ]; then
     HOUR=18;
 else
-   if [ $(date +'%H') > 12 ]; then
-        HOUR = 12;
+   if [ $(date +'%H') -gt 12 ]; then
+        HOUR=12;
     else
-        if [ $(date +'%H') > 6 ]; then
-            HOUR = 6;
+        if [ $(date +'%H') -gt 6 ]; then
+            HOUR=6;
         else
-            HOUR = 0;
+            HOUR=0;
         fi
     fi
 fi
