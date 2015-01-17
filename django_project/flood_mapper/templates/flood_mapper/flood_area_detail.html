@@ -2,12 +2,21 @@
 {% block header %}
   <script>
     function add_rw_to_map(){
-      $.get('/api/locations/?format=json', function(data){
-        $.each(data, function(dummy, village){
-          $.get('/api/locations/' + village['id'] + '/?format=json', function(data){
-            $.each(data, function(dummy, rw){
+      var selected_rw;
+      {% if time_slice != 'current' %}
+        var query = window.location.search.substring(1);
+        if (query.length > 0){
+          var rw = query.split('&')[0].split('=');
+          if (rw[0] == 'rw'){
+            selected_rw = rw[1];
+          }
+        }
+      {% endif %}
+      $.get('/api/locations/flooded/rw/{{ time_slice }}/?format=json', function(data){
+        $.each(data, function(dummy, rw_id){
+          $.get('/api/rw/' + rw_id + '/?format=json', function(rw){
               var rw_layer = JSON.parse(rw['geometry']);
-              L.geoJson(rw_layer, {
+              var layer = L.geoJson(rw_layer, {
                 style: style,
                 onEachFeature: onEachFeature,
                 properties: {
@@ -16,7 +25,9 @@
                   population: rw['population']
                 }
               }).addTo(map);
-            });
+              if (rw_id == selected_rw){
+                map.fitBounds(layer.getBounds());
+              }
           });
         });
       });
@@ -119,7 +130,11 @@
       {% if home_page %}
         hide_side_panel();
       {% endif %}
-      $('#nav_flood_area_details').addClass("active");
+      {% if time_slice == 'current' %}
+        $('#nav_flood_area_details').addClass("active");
+      {% else %}
+        $('#nav_flood_area_details_next').addClass("active");
+      {% endif %}
       add_rw_to_map();
       $('#rt').on('change', updateFloodAreaReport);
     });
@@ -136,9 +151,13 @@
 
 {% block content %}
 <div>
+  <h4>{{ time_slice_verbose }}</h4>
   <h1>Flood Area Detail</h1>
   <div id="select_rw">
     <h2>Select a RW</h2>
+    <div>The RWs shown have RTs flood levels reported on in this time
+      slot. These can be selected. Once selected the RT of interest can
+      be selected and the flood levels will be shown.</div>
   </div>
   <div id="details" style="display: None">
     <div class="row">

@@ -25,20 +25,38 @@ class AddFlodStatusForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super(AddFlodStatusForm, self).__init__(*args, **kwargs)
-        self.fields['rt'].widget.choices = [('', '---------')]
-        self.fields['rw'].widget.choices = [('', '---------')]
-        print self.fields['rw'].validators
+        if args:
+            village_id = args[0].get('village')
+            rw_id = args[0].get('rw')
+        else:
+            village_id = None
+            rw_id = None
         # TODO: only show the villages, that this user is allowed to sees
         self.fields['village'].choices = [('', '---------')] + [
-            (village.id, village.name) for village in Village.objects.all()]
+            (village.id, village.name) for village in
+            Village.objects.order_by('name')
+        ]
+        if village_id:
+            self.fields['rw'].widget.choices = [('', '---------')] + [
+                (rw.id, rw.name) for rw in
+                RW.objects.filter(village__id=village_id).order_by('name')
+            ]
+        else:
+            self.fields['rw'].widget.choices = [('', '---------')]
+        if rw_id:
+            self.fields['rt'].widget.choices = [('', '---------')] + [
+                (rt.id, rt.name) for rt in
+                RT.objects.filter(rw__id=rw_id).order_by('name')
+            ]
+        else:
+            self.fields['rt'].widget.choices = [('', '---------')]
+
 
     def clean(self):
         cleaned_data = self.cleaned_data
         depth = cleaned_data.get('depth')
         if depth is not None:
             cleaned_data['depth'] = decimal.Decimal(depth)
-        print cleaned_data
-        print self.errors
         return cleaned_data
 
     class Meta:

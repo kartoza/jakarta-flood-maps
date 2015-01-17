@@ -31,13 +31,21 @@ class FloodStatus(models.Model):
     depth = models.DecimalField(
         max_digits=4,
         decimal_places=2,
-        help_text='The depth in metres that the RT is flooded.',
+        help_text=(
+            'The depth in metres that the RT is flooded. <br>'
+            'Choose a depth between 0m and 10m'
+        ),
         validators=[
             MaxValueValidator(10),
             MinValueValidator(0)
         ]
     )
-    date_time = models.DateTimeField()
+    date_time = models.DateTimeField(
+        help_text=(
+            'When the flood level was reached. <br>'
+            'Use the date time picker or add manually. <br>'
+            'YYYY-MM-DD hh:mm'
+        ))
     recorded_by = models.ForeignKey(User)
     reporter_name = models.CharField(
         max_length=100
