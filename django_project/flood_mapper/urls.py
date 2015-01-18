@@ -29,6 +29,13 @@ urlpatterns = patterns(
         'flood_mapper.views.reports_api.reports_rt_api'
     ),
     url(
+        r'^api/download/'
+        r'(?P<report_type>[\w]+)/'
+        r'(?P<time_slice>[\w\d]+)/'
+        r'(?P<filename>[\w\.\-\d]+)/$',
+        'flood_mapper.views.download_api.download_api'
+    ),
+    url(
         r'^api/locations/(?P<village>[\d]+)'
         r'/(?P<rw>[\d]+)'
         r'/('r'?P<rt>[\d]+)/$',
