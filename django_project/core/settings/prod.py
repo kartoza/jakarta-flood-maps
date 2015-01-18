@@ -26,8 +26,8 @@ DEBUG = TEMPLATE_DEBUG = False
 if 'raven.contrib.django.raven_compat' in INSTALLED_APPS:
     print '*********** Setting up sentry logging ************'
     SENTRY_DSN = (
-        'http://05ac39e9c6754f71b697d0b694bca657:6c2a47fc6ce04e'
-        'd2bb966df9454df7d3@sentry.linfiniti.com/13')
+        'http://b27ef117167546958e2d49723f72c654:'
+        'bd4964012fb842a087b6d48c8f55821d@sentry.linfiniti.com/14')
 
     # MIDDLEWARE_CLASSES = (
     #     'raven.contrib.django.middleware.SentryResponseErrorIdMiddleware',
