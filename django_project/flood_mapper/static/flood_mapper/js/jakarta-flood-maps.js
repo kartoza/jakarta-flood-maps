@@ -11,17 +11,17 @@ function show_side_panel() {
         show_hide_div = $('#show_hide'),
         show_hide_div_sub = $(show_hide_div.children()[0]),
         show_hide_glyph = $('#show_hide_glyph');
-    show_hide_div.addClass('col-xs-offset-7');
-    show_hide_div.removeClass('col-xs-offset-11');
-    show_hide_div_sub.addClass('col-xs-offset-11');
-    show_hide_div_sub.removeClass('col-xs-offset-7');
+    show_hide_div.addClass('col-lg-offset-7');
+    show_hide_div.removeClass('col-lg-offset-11');
+    show_hide_div_sub.addClass('col-lg-offset-11');
+    show_hide_div_sub.removeClass('col-lg-offset-7');
     show_hide_div_sub.attr("onclick", "hide_side_panel()");
     show_hide_glyph.removeClass('glyphicon-chevron-left');
     show_hide_glyph.addClass('glyphicon-chevron-right');
-    map_div.addClass('col-xs-8');
-    side_panel.addClass('col-xs-4');
+    map_div.addClass('col-lg-8');
+    side_panel.addClass('col-lg-4');
     side_panel.show();
-    map_div.removeClass('col-xs-12');
+    map_div.removeClass('col-lg-12');
     map.invalidateSize();
 }
 
@@ -30,19 +30,14 @@ function hide_side_panel() {
     var map_div = $('#map'),
         side_panel = $('#side_panel'),
         show_hide_div = $('#show_hide'),
-        show_hide_div_sub = $(show_hide_div.children()[0]),
-        show_hide_glyph = $('#show_hide_glyph');
-    show_hide_div.addClass('col-xs-offset-11');
-    show_hide_div.removeClass('col-xs-offset-7');
-    show_hide_div_sub.addClass('col-xs-offset-7');
-    show_hide_div_sub.removeClass('col-xs-offset-11');
+        show_hide_div_sub = $(show_hide_div.children()[0]);
     show_hide_div_sub.attr("onclick", "show_side_panel()");
-    show_hide_glyph.removeClass('glyphicon-chevron-right');
-    show_hide_glyph.addClass('glyphicon-chevron-left');
-    map_div.addClass('col-xs-12');
-    side_panel.removeClass('col-xs-4');
+    show_hide_div.removeClass('glyphicon-chevron-right');
+    show_hide_div.addClass('glyphicon-chevron-left');
+    map_div.addClass('col-lg-12');
+    side_panel.removeClass('col-lg-4');
     side_panel.hide();
-    map_div.removeClass('col-xs-8');
+    map_div.removeClass('col-lg-8');
     map.invalidateSize();
 }
 

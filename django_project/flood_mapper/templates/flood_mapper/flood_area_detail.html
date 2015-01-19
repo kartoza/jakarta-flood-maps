@@ -1,78 +1,108 @@
 {% extends "flood_mapper/base.html" %}
 {% block header %}
-  <script>
-    $(document).ready(function() {
-      // add rw's to map
-      show_map();
-      {% if home_page %}
+<script>
+    $(document).ready(function () {
+        // add rw's to map
+        show_map();
+        {% if home_page %}
         hide_side_panel();
-      {% endif %}
-      {% if time_slice == 'current' %}
+        {% endif %}
+        {% if time_slice == 'current' %}
         $('#nav_flood_area_details').addClass("active");
-      {% else %}
-        $('#nav_flood_area_details_next').addClass("active");
-      {% endif %}
-      add_rw_to_map('{{ time_slice }}');
-      $('#rt').on('change', updateFloodAreaReport);
-    });
+        {% else %}
+         $('#nav_flood_area_details_next').addClass("active");
+         {% endif %}
+         add_rw_to_map('{{ time_slice }}');
+         $('#rt').on('change', updateFloodAreaReport);
+            }
+        )
+            ;
 
-  </script>
-  <title>Flood area details</title>
+</script>
+<title>Flood area details</title>
 {%  endblock %}
 
 {% load bootstrap_tags %}
 
 {% block navigation-bar %}
-  {% include "flood_mapper/navigation_bar.html" %}
+{% include "flood_mapper/navigation_bar.html" %}
 {%  endblock %}
 
 {% block content %}
 <div>
-  {% include "flood_mapper/map.html" %}
-  <div class="col-xs-offset-8 col-xs-4" id="side_panel">
-  <h4>{{ time_slice_verbose }}</h4>
-  <h1>Flood Area Detail</h1>
-  <div id="select_rw">
-    <h2>Select a RW</h2>
-    <div>The RWs shown have RTs flood levels reported on in this time
-      slot. These can be selected. Once selected the RT of interest can
-      be selected and the flood levels will be shown.</div>
-  </div>
-  <div id="details" style="display: None">
-    <div class="row">
-      <div class="col-xs-4">Village:</div>
-      <div class="col-xs-8" id="village"></div>
+    {% include "flood_mapper/map.html" %}
+    <div class="col-lg-offset-8 col-lg-4" id="side_panel">
+
+        <div class="bs-component">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title">{{ time_slice_verbose }}</h3>
+                </div>
+                <div class="panel-body">
+
+                </div>
+            </div>
+
+            <div class="panel panel-success">
+                <div class="panel-heading">
+                    <h3 class="panel-title">
+                        <i class="mdi-editor-border-color"></i>
+                        Flood Area Detail</h3>
+                </div>
+                <div class="panel-body">
+                    The RWs shown on the map have RTs flood levels reported on
+                    in this time period. Click on an RW to select it.
+                    Once selected the RT of interest can
+                    be selected and the flood levels will be shown.
+                </div>
+                <div id="details" >
+                </div>
+
+                <div class="panel panel-warning" id="select_rw" style="display: None">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Select an RW</h3>
+                    </div>
+                    <div class="panel-body">
+
+                        <div class="row">
+                            <div class="col-lg-4">Village:</div>
+                            <div class="col-lg-7" id="village"></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-4">RW:</div>
+                            <div class="col-lg-7" id="rw"></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-4">RT:</div>
+                            <select class="col-lg-7" id="rt">
+                                <option value="">---------</option>
+                            </select>
+                        </div>
+                        <div class="row" id="current_flood_depth_div">
+                            <div class="col-lg-4">Current depth:</div>
+                            <div class="col-lg-7"
+                                 id="current_flood_depth"></div>
+                        </div>
+                        {% comment %}
+                        <div id="staff_details">
+                            <div class="row">
+                                <h2> Details visible to staff only</h2>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-4">Contact person:</div>
+                                <div class="col-lg-7" id="contact_person"></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-4">Contact number:</div>
+                                <div class="col-lg-7" id="contact_number"></div>
+                            </div>
+                        </div>
+                        {% endcomment %}
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="row">
-      <div class="col-xs-4">RW:</div>
-      <div class="col-xs-8" id="rw"></div>
-    </div>
-    <div class="row">
-      <div class="col-xs-4">RT:</div>
-      <select class="col-xs-8" id="rt">
-        <option value="">---------</option>
-      </select>
-    </div>
-    <div class="row" id="current_flood_depth_div">
-      <div class="col-xs-4">Current flood depth:</div>
-      <div class="col-xs-8" id="current_flood_depth"></div>
-    </div>
-    {% comment %}
-    <div id="staff_details">
-      <div class="row">
-        <h2> Details visible to staff only</h2>
-      </div>
-      <div class="row">
-        <div class="col-xs-4">Contact person:</div>
-        <div class="col-xs-8" id="contact_person"></div>
-      </div>
-      <div class="row">
-        <div class="col-xs-4">Contact number:</div>
-        <div class="col-xs-8" id="contact_number"></div>
-      </div>
-    </div>
-    {% endcomment %}
-  </div>
-  </div>
-</div> <!-- /container -->
-{%  endblock %}
+    <!-- /container -->
+    {% endblock %}
+</div>
