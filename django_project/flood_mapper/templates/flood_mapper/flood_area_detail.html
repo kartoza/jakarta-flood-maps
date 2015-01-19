@@ -1,132 +1,9 @@
 {% extends "flood_mapper/base.html" %}
 {% block header %}
   <script>
-    function add_rw_to_map(){
-      var selected_rw;
-      {% if time_slice != 'current' %}
-        var query = window.location.search.substring(1);
-        if (query.length > 0){
-          var rw = query.split('&')[0].split('=');
-          if (rw[0] == 'rw'){
-            selected_rw = rw[1];
-          }
-        }
-      {% endif %}
-      $.get('/api/locations/flooded/rw/{{ time_slice }}/?format=json', function(data){
-        $.each(data, function(dummy, rw_id){
-          $.get('/api/rw/' + rw_id + '/?format=json', function(rw){
-              var rw_layer = JSON.parse(rw['geometry']);
-              var layer = L.geoJson(rw_layer, {
-                style: style,
-                onEachFeature: onEachFeature,
-                properties: {
-                  rw_id: rw['id'],
-                  name: rw['name'],
-                  population: rw['population']
-                }
-              }).addTo(map);
-              if (rw_id == selected_rw){
-                map.fitBounds(layer.getBounds());
-              }
-          });
-        });
-      });
-    }
-
-    function updateFloodAreaReport(){
-      var rt = $('#rt');
-      rt.prop('disabled', 'disabled');
-      var rt_id = rt.val();
-      $.get('/api/reports/rt/' + rt_id + '/?format=json', function(data){
-        console.log(data);
-        if (data.length == 0){
-          console.log('No reported flood info');
-        } else {
-          $('#current_flood_depth').text(data[0]["depth"]);
-          $('#current_flood_depth_div').show();
-        }
-        rt.prop('disabled', false);
-      })
-    }
-
-    function updateFloodAreaOptions(rw_id, rw_name){
-      $('#rw').text(rw_name);
-      $('#village').text('');
-      var rt_select = $('#rt');
-      rt_select.find('option').remove().end();
-      rt_select.append($("<option></option>")
-        .attr("value", '')
-        .text('---------'));
-      $.get('/api/village/' + rw_id + '/?format=json', function(data){
-        $('#village').text(data['name']);
-        var village_id = data['id'];
-        $.get('/api/locations/' + village_id + '/' +rw_id + '/?format=json', function(data) {
-           $.each(data, function(dummy, rt) {
-             rt_select.append($("<option></option>")
-               .attr("value", rt['id'])
-               .text(rt['name']));
-           });
-        });
-      });
-    }
-
-    function style(feature) {
-      return {
-        weight: 2,
-        opacity: 1,
-        color: 'blue',
-        dashArray: '3',
-        fillOpacity: 0.5,
-        fillColor: 'blue'
-      };
-    }
-
-    function highlightFeature(e) {
-      var layer = e.target;
-      layer.setStyle({
-        weight: 5,
-        color: 'white',
-        dashArray: '',
-        fillOpacity: 0.3,
-        fillColor: 'blue'
-      });
-      if (!L.Browser.ie && !L.Browser.opera) {
-        layer.bringToFront();
-      }
-    }
-
-    function resetHighlight(e) {
-      var layer = e.target;
-      layer.setStyle(style(e));
-    }
-
-    function zoomToFeature(e) {
-      var layer = e.target;
-      map.fitBounds(layer.getBounds());
-      $('#select_rw').hide();
-      $('#staff_details').hide();
-      $('#current_flood_depth_div').hide();
-      $('#details').show();
-      {% if home_page %}
-        show_side_panel();
-      {% endif %}
-
-      console.log(layer);
-      var rw_id = layer["_options"]["properties"]["rw_id"];
-      var rw_name = layer["_options"]["properties"]["name"];
-      updateFloodAreaOptions(rw_id, rw_name);
-    }
-
-    function onEachFeature(feature, layer) {
-      layer.on({
-        mouseover: highlightFeature,
-        mouseout: resetHighlight,
-        click: zoomToFeature
-      });
-    }
-
     $(document).ready(function() {
       // add rw's to map
+      show_map();
       {% if home_page %}
         hide_side_panel();
       {% endif %}
@@ -135,7 +12,7 @@
       {% else %}
         $('#nav_flood_area_details_next').addClass("active");
       {% endif %}
-      add_rw_to_map();
+      add_rw_to_map('{{ time_slice }}');
       $('#rt').on('change', updateFloodAreaReport);
     });
 
@@ -151,6 +28,8 @@
 
 {% block content %}
 <div>
+  {% include "flood_mapper/map.html" %}
+  <div class="col-xs-offset-8 col-xs-4" id="side_panel">
   <h4>{{ time_slice_verbose }}</h4>
   <h1>Flood Area Detail</h1>
   <div id="select_rw">
@@ -178,6 +57,7 @@
       <div class="col-xs-4">Current flood depth:</div>
       <div class="col-xs-8" id="current_flood_depth"></div>
     </div>
+    {% comment %}
     <div id="staff_details">
       <div class="row">
         <h2> Details visible to staff only</h2>
@@ -191,6 +71,8 @@
         <div class="col-xs-8" id="contact_number"></div>
       </div>
     </div>
+    {% endcomment %}
+  </div>
   </div>
 </div> <!-- /container -->
 {%  endblock %}

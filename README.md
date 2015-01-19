@@ -77,6 +77,7 @@ commented out in your hosts:
 
 
 ```
+cd deployment
 fig build
 fig up -d uwsgi
 fig run migrate
@@ -129,7 +130,7 @@ python manage.py runserver --settings=core.settings.dev_${USER}
 ```
 
 **Note:** You can also develop in docker using the instructions provided in
-[README-dev.md](https://github.com/aifdr/jakarta-flood-maps-django/blob/develop/README-dev.md).
+[README-dev.md](https://github.com/kartoza/jakarta-flood-maps/blob/develop/README-dev.md).
 
 
 
