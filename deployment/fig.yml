@@ -44,9 +44,6 @@ smtp:
     # You could change this to something more suitable
     - maildomain=kartoza.com
     - smtp_user=noreply:docker
-  volumes:
-    - ./logs:/var/log
-
 
 db:
   image: kartoza/postgis
@@ -89,14 +86,6 @@ mapproxy:
 #    - db:db
 #    - qgisserver:qgisserver
 
-postfix:
-  image: catatnight/postfix
-  hostname: postfix
-  environment:
-    # You could change this to something more suitable
-    - maildomain=kartoza.com
-    - smtp_user=noreply:docker
-
 uwsgi:
   build: docker-prod
   hostname: uwsgi
@@ -112,6 +101,7 @@ uwsgi:
     - ../django_project:/home/web/django_project
     - ./static:/home/web/static
     - ./media:/home/web/media
+    - ./reports:/home/web/reports
     - ./logs:/var/log/
   links:
     - smtp:smtp
