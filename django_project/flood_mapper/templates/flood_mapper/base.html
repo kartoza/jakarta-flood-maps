@@ -1,65 +1,21 @@
+{% load compressed %}
 <!DOCTYPE html>
 <html>
 <head lang="en">
-  <link rel="stylesheet" href="/static/css/bootstrap.min.css" />
-  <link rel="stylesheet" href="/static/css/leaflet.css" />
-  <script src="/static/js/jquery-1.11.1.min.js"></script>
-  <script src="/static/js/leaflet.js"></script>
-  <script src="/static/js/bootstrap.js"></script>
-  <meta charset="UTF-8">
+    {% compressed_css 'contrib' %}
+
+    {% compressed_js 'contrib' %}
+    {% compressed_js 'appjs' %}
+
+    <meta charset="UTF-8">
+
   <script>
-    var map;
-
-    function show_side_panel(){
-      var map_div = $('#map');
-      var side_panel = $('#side_panel');
-      var show_hide_div = $('#show_hide');
-      var show_hide_div_sub = $(show_hide_div.children()[0]);
-      var show_hide_glyph = $('#show_hide_glyph');
-      show_hide_div.addClass('col-xs-offset-7');
-      show_hide_div.removeClass('col-xs-offset-11');
-      show_hide_div_sub.addClass('col-xs-offset-11');
-      show_hide_div_sub.removeClass('col-xs-offset-7');
-      show_hide_div_sub.attr("onclick", "hide_side_panel()");
-      show_hide_glyph.removeClass('glyphicon-chevron-left');
-      show_hide_glyph.addClass('glyphicon-chevron-right');
-      map_div.addClass('col-xs-8');
-      side_panel.addClass('col-xs-4');
-      side_panel.show();
-      map_div.removeClass('col-xs-12');
-      map.invalidateSize();
-    }
-
-    function hide_side_panel(){
-      var map_div = $('#map');
-      var side_panel = $('#side_panel');
-      var show_hide_div = $('#show_hide');
-      var show_hide_div_sub = $(show_hide_div.children()[0]);
-      var show_hide_glyph = $('#show_hide_glyph');
-      show_hide_div.addClass('col-xs-offset-11');
-      show_hide_div.removeClass('col-xs-offset-7');
-      show_hide_div_sub.addClass('col-xs-offset-7');
-      show_hide_div_sub.removeClass('col-xs-offset-11');
-      show_hide_div_sub.attr("onclick", "show_side_panel()");
-      show_hide_glyph.removeClass('glyphicon-chevron-right');
-      show_hide_glyph.addClass('glyphicon-chevron-left');
-      map_div.addClass('col-xs-12');
-      side_panel.removeClass('col-xs-4');
-      side_panel.hide();
-      map_div.removeClass('col-xs-8');
-      map.invalidateSize();
-    }
-
     $(document).ready(function() {
-      $('#navigationbar').css('height', window.innerHeight * 0.1);
-      $('#map').css('height', window.innerHeight * 0.9);
-      map = L.map('map').setView([-6.2000, 106.8167], 11);
-      L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
-        attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-      }).addTo(map);
-
+        $.material.init();
+        setOffset();
     });
   </script>
+
   {% block header %}
     <title></title>
   {% endblock %}
@@ -70,18 +26,9 @@
   {% block navigation-bar %}
   {% endblock %}
 </div>
-<div class="row">
-  <div class="col-xs-8 affix" id="map">
-  </div>
-  <div id="show_hide" class="col-xs-offset-7 col-xs-1">
-    <div class="col-xs-offset-11 col-xs-1" onclick="hide_side_panel()">
-      <span id="show_hide_glyph" class="glyphicon glyphicon-chevron-right"></span>
-    </div>
-  </div>
-  <div class="col-xs-offset-8 col-xs-4" id="side_panel">
+<div class="row" id="content">
     {% block content %}
     {%  endblock %}
-  </div>
 </div>
 </body>
 </html>

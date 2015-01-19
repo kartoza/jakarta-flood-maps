@@ -1,26 +1,24 @@
-<!DOCTYPE html>
-<html>
-<head lang="en">
-  <link rel="stylesheet" href="/static/css/bootstrap.min.css" />
-  <script src="/static/js/jquery-1.11.1.min.js"></script>
-  <script src="/static/js/bootstrap.js"></script>
-  <meta charset="UTF-8">
-  <script>
-    $(document).ready(function() {
-      $('.equalHeight').each(function() {
-        var eHeight = $(this).innerHeight();
-        $(this).find('.jumbotron').outerHeight(eHeight);
-      });
-    });
-  </script>
+{% extends "flood_mapper/base.html" %}
+
+{% block header %}
+    <script>
+        $(document).ready(function() {
+            $('.equalHeight').each(function() {
+                var eHeight = $(this).innerHeight();
+                $(this).find('.jumbotron').outerHeight(eHeight);
+            });
+        });
+    </script>
     <title>Report Selection</title>
-</head>
-<body>
+{% endblock %}
 
-<div id="navigation_bar">
-{% include "flood_mapper/navigation_bar.html" %}
-</div>
+{% load bootstrap_tags %}
 
+{% block navigation-bar %}
+    {% include "flood_mapper/navigation_bar.html" %}
+{%  endblock %}
+
+{% block content %}
 <div class="row">
   <div class="row">
     <div class="col-xs-4">
@@ -204,7 +202,6 @@
                    download="{{report}}">{{ report }}</a></li>
              {% endfor %}
             </ul>
-            </ul>
         </div>
         <br><br>
         <div class="btn-group btn-block">
@@ -275,5 +272,4 @@
     </div>
   </div>
 </div>
-</body>
-</html>
+{%  endblock %}
