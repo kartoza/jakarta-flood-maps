@@ -31,7 +31,7 @@ def reports(request):
             available_reports[report_type][report_period] = [
                 f for f in directory_content if f.endswith(extention)
             ]
-            available_reports[report_type][report_period].sort()
+            available_reports[report_type][report_period].sort(reverse=True)
 
     return render(
         request,
