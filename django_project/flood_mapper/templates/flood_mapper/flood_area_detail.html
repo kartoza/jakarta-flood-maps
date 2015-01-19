@@ -2,16 +2,20 @@
 {% block header %}
   <script>
     $(document).ready(function() {
-        show_map();
-
-        // add rw's to map
-        if (window.location.pathname == '/'){
-            hide_side_panel();
-        }
+      // add rw's to map
+      show_map();
+      {% if home_page %}
+        hide_side_panel();
+      {% endif %}
+      {% if time_slice == 'current' %}
         $('#nav_flood_area_details').addClass("active");
-        add_rw_to_map();
-        $('#rt').on('change', updateFloodAreaReport);
-      });
+      {% else %}
+        $('#nav_flood_area_details_next').addClass("active");
+      {% endif %}
+      add_rw_to_map('{{ time_slice }}');
+      $('#rt').on('change', updateFloodAreaReport);
+    });
+
   </script>
   <title>Flood area details</title>
 {%  endblock %}
@@ -24,46 +28,51 @@
 
 {% block content %}
 <div>
-    {% include "flood_mapper/map.html" %}
-
-    <div class="col-xs-offset-8 col-xs-4" id="side_panel">
-      <h1>Flood Area Detail</h1>
-      <div id="select_rw">
-        <h2>Select a RW</h2>
+  {% include "flood_mapper/map.html" %}
+  <div class="col-xs-offset-8 col-xs-4" id="side_panel">
+  <h4>{{ time_slice_verbose }}</h4>
+  <h1>Flood Area Detail</h1>
+  <div id="select_rw">
+    <h2>Select a RW</h2>
+    <div>The RWs shown have RTs flood levels reported on in this time
+      slot. These can be selected. Once selected the RT of interest can
+      be selected and the flood levels will be shown.</div>
+  </div>
+  <div id="details" style="display: None">
+    <div class="row">
+      <div class="col-xs-4">Village:</div>
+      <div class="col-xs-8" id="village"></div>
+    </div>
+    <div class="row">
+      <div class="col-xs-4">RW:</div>
+      <div class="col-xs-8" id="rw"></div>
+    </div>
+    <div class="row">
+      <div class="col-xs-4">RT:</div>
+      <select class="col-xs-8" id="rt">
+        <option value="">---------</option>
+      </select>
+    </div>
+    <div class="row" id="current_flood_depth_div">
+      <div class="col-xs-4">Current flood depth:</div>
+      <div class="col-xs-8" id="current_flood_depth"></div>
+    </div>
+    {% comment %}
+    <div id="staff_details">
+      <div class="row">
+        <h2> Details visible to staff only</h2>
       </div>
-      <div id="details" style="display: None">
-        <div class="row">
-          <div class="col-xs-4">Village:</div>
-          <div class="col-xs-8" id="village"></div>
-        </div>
-        <div class="row">
-          <div class="col-xs-4">RW:</div>
-          <div class="col-xs-8" id="rw"></div>
-        </div>
-        <div class="row">
-          <div class="col-xs-4">RT:</div>
-          <select class="col-xs-8" id="rt">
-            <option value="">---------</option>
-          </select>
-        </div>
-        <div class="row" id="current_flood_depth_div">
-          <div class="col-xs-4">Current flood depth:</div>
-          <div class="col-xs-8" id="current_flood_depth"></div>
-        </div>
-        <div id="staff_details">
-          <div class="row">
-            <h2> Details visible to staff only</h2>
-          </div>
-          <div class="row">
-            <div class="col-xs-4">Contact person:</div>
-            <div class="col-xs-8" id="contact_person"></div>
-          </div>
-          <div class="row">
-            <div class="col-xs-4">Contact number:</div>
-            <div class="col-xs-8" id="contact_number"></div>
-          </div>
-        </div>
+      <div class="row">
+        <div class="col-xs-4">Contact person:</div>
+        <div class="col-xs-8" id="contact_person"></div>
+      </div>
+      <div class="row">
+        <div class="col-xs-4">Contact number:</div>
+        <div class="col-xs-8" id="contact_number"></div>
       </div>
     </div>
+    {% endcomment %}
+  </div>
+  </div>
 </div> <!-- /container -->
 {%  endblock %}

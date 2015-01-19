@@ -10,6 +10,9 @@
           <a href="/flood_area_detail">Flood area details</a>
         </li>
         {% if user.is_staff %}
+          <li id="nav_flood_area_details_next">
+            <a href="/flood_area_detail_next">Pending flood status reports</a>
+          </li>
           <li id="nav_add_flood_status_report">
             <a href="/add-flood-status-report">Add flood status report</a>
           </li>

@@ -17,12 +17,23 @@ urlpatterns = patterns(
         'flood_mapper.views.flood_area_detail.flood_area_detail'
     ),
     url(
+        r'^flood_area_detail_next/$',
+        'flood_mapper.views.flood_area_detail.flood_area_detail'
+    ),
+    url(
         r'^reports/$',
         'flood_mapper.views.reports.reports'
     ),
     url(
         r'^api/reports/rt/(?P<rt_id>[\d]+)/$',
         'flood_mapper.views.reports_api.reports_rt_api'
+    ),
+    url(
+        r'^api/download/'
+        r'(?P<report_type>[\w]+)/'
+        r'(?P<time_slice>[\w\d]+)/'
+        r'(?P<filename>[\w\.\-\d]+)/$',
+        'flood_mapper.views.download_api.download_api'
     ),
     url(
         r'^api/locations/(?P<village>[\d]+)'
@@ -40,6 +51,18 @@ urlpatterns = patterns(
         'flood_mapper.views.boundary_api.boundary_api'
     ),
     url(
+        r'^api/locations/flooded/rw/(?P<time_slice>[\w]+)/$',
+        'flood_mapper.views.boundary_api.all_flooded_rw'
+    ),
+    url(
+        r'^api/locations/flooded/(?P<time_slice>[\w]+)/(?P<village>['r'\d]+)/$',
+        'flood_mapper.views.boundary_api.boundary_flooded_api'
+    ),
+    url(
+        r'^api/locations/flooded/(?P<time_slice>[\w]+)/$',
+        'flood_mapper.views.boundary_api.boundary_flooded_api'
+    ),
+    url(
         r'^api/locations/$',
         'flood_mapper.views.boundary_api.boundary_api'
     ),
@@ -47,4 +70,8 @@ urlpatterns = patterns(
         r'^api/village/(?P<rw_id>[\d]+)/$',
         'flood_mapper.views.boundary_api.get_village_api'
     ),
+    url(
+        r'^api/rw/(?P<rw_id>[\d]+)/$',
+        'flood_mapper.views.boundary_api.get_rw_by_id'
+    )
 )

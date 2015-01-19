@@ -54,49 +54,57 @@ function show_map() {
 }
 
 function update_rws(){
-    var village_id = $('#id_village').val();
-    var rw_select = $('#id_rw');
-    var rt_select = $('#id_rt');
-    rw_select.find('option').remove().end();
-    rw_select.append($("<option></option>")
-        .attr("value", '')
-        .text('---------'));
-    rt_select.find('option').remove().end();
-    rt_select.append($("<option></option>")
-        .attr("value", '')
-        .text('---------'));
-    if (village_id == ''){
-        return;
-    }
-    $.get('/api/locations/' + village_id + '/?format=json', function(data){
-        $.each(data, function(dummy, rw){
-            $('#id_rw').append($("<option></option>")
-                .attr("value", rw['id'])
-                .text(rw['name']));
-        });
+  var village_select = $('#id_village');
+  var village_id = village_select.val();
+  var rw_select = $('#id_rw');
+  var rt_select = $('#id_rt');
+  rw_select.find('option').remove().end();
+  rw_select.append($("<option></option>")
+    .attr("value", '')
+    .text('---------'));
+  rt_select.find('option').remove().end();
+  rt_select.append($("<option></option>")
+    .attr("value", '')
+    .text('---------'));
+  if (village_id == ''){
+    return;
+  }
+  village_select.attr("disabled", "disabled");
+  $.get('/api/locations/' + village_id + '/?format=json', function(data){
+    $.each(data, function(dummy, rw){
+      $('#id_rw').append($("<option></option>")
+       .attr("value", rw['id'])
+       .text(rw['name']));
     });
+    village_select.removeAttr("disabled");
+  });
 }
+
 function update_rts(){
-    var village_id = $('#id_village').val();
-    var rw_id = $('#id_rw').val();
-    var rt_select = $('#id_rt');
-    rt_select.find('option').remove().end();
-    rt_select.append($("<option></option>")
-        .attr("value", '')
-        .text('---------'));
-    if ((village_id == '') || (rw_id == '')){
-        console.log('returning');
-        return;
-    }
-    $.get('/api/locations/' + village_id + '/' + rw_id + '/?format=json',
+  var village_id = $('#id_village').val();
+  var rw_select = $('#id_rw');
+  var rw_id = rw_select.val();
+  var rt_select = $('#id_rt');
+  rt_select.find('option').remove().end();
+  rt_select.append($("<option></option>")
+    .attr("value", '')
+    .text('---------'));
+  if ((village_id == '') || (rw_id == '')){
+    console.log('returning');
+    return;
+  }
+  rw_select.attr("disabled", "disabled");
+  $.get('/api/locations/' + village_id + '/' + rw_id + '/?format=json',
         function(data){
-            $.each(data, function(dummy, rt){
-                $('#id_rt').append($("<option></option>")
-                    .attr("value", rt['id'])
-                    .text(rt['name']));
-            });
-        });
+    $.each(data, function(dummy, rt){
+      $('#id_rt').append($("<option></option>")
+       .attr("value", rt['id'])
+       .text(rt['name']));
+    });
+    rw_select.removeAttr("disabled");
+  });
 }
+
 
 function update_rts_rws(){
     $('#nav_add_flood_status_report').addClass("active");
@@ -111,62 +119,41 @@ function update_rts_rws(){
         });
 }
 
-function add_rw_to_map(){
-    $.get('/api/locations/?format=json', function(data){
-        $.each(data, function(dummy, village){
-            $.get('/api/locations/' + village['id'] + '/?format=json', function(data){
-                $.each(data, function(dummy, rw){
-                    var rw_layer = JSON.parse(rw['geometry']);
-                    L.geoJson(rw_layer, {
-                        style: style,
-                        onEachFeature: onEachFeature,
-                        properties: {
-                            rw_id: rw['id'],
-                            name: rw['name'],
-                            population: rw['population']
-                        }
-                    }).addTo(map);
-                });
-            });
-        });
-    });
-}
-
 function updateFloodAreaReport(){
-    var rt = $('#rt');
-    rt.prop('disabled', 'disabled');
-    var rt_id = rt.val();
-    $.get('/api/reports/rt/' + rt_id + '/?format=json', function(data){
-        console.log(data);
-        if (data.length == 0){
-            console.log('No reported flood info');
-        } else {
-            $('#current_flood_depth').text(data[0]["depth"]);
-            $('#current_flood_depth_div').show();
-        }
-        rt.prop('disabled', false);
-    })
+  var rt = $('#rt');
+  rt.prop('disabled', 'disabled');
+  var rt_id = rt.val();
+  $.get('/api/reports/rt/' + rt_id + '/?format=json', function(data){
+    console.log(data);
+    if (data.length == 0){
+      console.log('No reported flood info');
+    } else {
+      $('#current_flood_depth').text(data[0]["depth"]);
+      $('#current_flood_depth_div').show();
+    }
+    rt.prop('disabled', false);
+  })
 }
 
 function updateFloodAreaOptions(rw_id, rw_name){
-    $('#rw').text(rw_name);
-    $('#village').text('');
-    var rt_select = $('#rt');
-    rt_select.find('option').remove().end();
-    rt_select.append($("<option></option>")
-        .attr("value", '')
-        .text('---------'));
-    $.get('/api/village/' + rw_id + '/?format=json', function(data){
-        $('#village').text(data['name']);
-        var village_id = data['id'];
-        $.get('/api/locations/' + village_id + '/' +rw_id + '/?format=json', function(data) {
-            $.each(data, function(dummy, rt) {
-                rt_select.append($("<option></option>")
-                    .attr("value", rt['id'])
-                    .text(rt['name']));
-            });
-        });
+  $('#rw').text(rw_name);
+  $('#village').text('');
+  var rt_select = $('#rt');
+  rt_select.find('option').remove().end();
+  rt_select.append($("<option></option>")
+    .attr("value", '')
+    .text('---------'));
+  $.get('/api/village/' + rw_id + '/?format=json', function(data){
+    $('#village').text(data['name']);
+    var village_id = data['id'];
+    $.get('/api/locations/' + village_id + '/' +rw_id + '/?format=json', function(data) {
+       $.each(data, function(dummy, rt) {
+         rt_select.append($("<option></option>")
+           .attr("value", rt['id'])
+           .text(rt['name']));
+       });
     });
+  });
 }
 
 function style(feature) {
@@ -239,4 +226,36 @@ function setOffset(){
         content.offset({ top: navbar_height, left: content_offset.left})
     }
 
+}
+
+function add_rw_to_map(time_slice){
+  var selected_rw;
+  if (time_slice != 'current') {
+    var query = window.location.search.substring(1);
+    if (query.length > 0) {
+      var rw = query.split('&')[0].split('=');
+      if (rw[0] == 'rw') {
+        selected_rw = rw[1];
+      }
+    }
+  }
+  $.get('/api/locations/flooded/rw/' + time_slice + '/?format=json', function(data){
+    $.each(data, function(dummy, rw_id){
+      $.get('/api/rw/' + rw_id + '/?format=json', function(rw){
+          var rw_layer = JSON.parse(rw['geometry']);
+          var layer = L.geoJson(rw_layer, {
+            style: style,
+            onEachFeature: onEachFeature,
+            properties: {
+              rw_id: rw['id'],
+              name: rw['name'],
+              population: rw['population']
+            }
+          }).addTo(map);
+          if (rw_id == selected_rw){
+            map.fitBounds(layer.getBounds());
+          }
+      });
+    });
+  });
 }

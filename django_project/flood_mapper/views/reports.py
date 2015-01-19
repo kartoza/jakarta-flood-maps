@@ -15,14 +15,23 @@ def reports(request):
         os.path.pardir,
         os.path.pardir,
         'reports'))
-    for report_type in ['pdf', 'sqlite', 'shp', 'kml', 'csv']:
+    for (report_type, extention) in [
+            ('pdf', '.pdf'),
+            ('sqlite', '.sqlite'),
+            ('shp', '.zip'),
+            ('kml', '.kml'),
+            ('csv', '.csv')]:
         report_type_dir = os.path.join(reports_dir, report_type)
         available_reports[report_type] = {}
         for report_period in ['6h', '24h']:
             report_type_time_period_dir = os.path.join(
                 report_type_dir, report_period)
-            available_reports[report_type][report_period] = os.listdir(
+            directory_content = os.listdir(
                 report_type_time_period_dir)
+            available_reports[report_type][report_period] = [
+                f for f in directory_content if f.endswith(extention)
+            ]
+            available_reports[report_type][report_period].sort(reverse=True)
 
     return render(
         request,
