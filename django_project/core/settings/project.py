@@ -35,7 +35,6 @@ PIPELINE_JS = {
             'flood_mapper/js/material.min.js',
             'flood_mapper/js/ripples.min.js',
             'flood_mapper/js/validate.js',
-            'flood_mapper/js/jakarta-flood-maps.js',
             'js/bootstrap-datetimepicker.min.js',
         ),
         'output_filename': 'js/contrib.js',
@@ -43,6 +42,7 @@ PIPELINE_JS = {
     'appjs': {
         'source_filenames': (
             'js/csrf-ajax.js',
+            'flood_mapper/js/jakarta-flood-maps.js',
         ),
         'output_filename': 'js/appjs.js'
     }
