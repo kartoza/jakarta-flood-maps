@@ -2,19 +2,16 @@
 {% block header %}
   <script>
     $(document).ready(function() {
-        show_map()
-      });
+        show_map();
 
-    $(document).ready(function() {
-      // add rw's to map
-      if (window.location.pathname == '/'){
+        // add rw's to map
+        if (window.location.pathname == '/'){
             hide_side_panel();
         }
-      $('#nav_flood_area_details').addClass("active");
-      add_rw_to_map();
-      $('#rt').on('change', updateFloodAreaReport);
-    });
-
+        $('#nav_flood_area_details').addClass("active");
+        add_rw_to_map();
+        $('#rt').on('change', updateFloodAreaReport);
+      });
   </script>
   <title>Flood area details</title>
 {%  endblock %}

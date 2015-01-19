@@ -223,3 +223,20 @@ function onEachFeature(feature, layer) {
         click: zoomToFeature
     });
 }
+
+function setOffset(){
+    var navbar = $('.navbar');
+    var navbar_height = navbar.height();
+    var map = $('#map');
+    var content = $('#content');
+
+    if (map.length){
+        var map_offset = map.offset();
+        map.offset({ top: navbar_height, left: map_offset.left})
+    }
+    if (content.length){
+        var content_offset = content.offset();
+        content.offset({ top: navbar_height, left: content_offset.left})
+    }
+
+}

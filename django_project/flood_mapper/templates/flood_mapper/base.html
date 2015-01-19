@@ -10,10 +10,9 @@
     <meta charset="UTF-8">
 
   <script>
-
-
     $(document).ready(function() {
         $.material.init();
+
     });
   </script>
 
@@ -27,9 +26,12 @@
   {% block navigation-bar %}
   {% endblock %}
 </div>
-<div class="row">
+<div class="row" id="content">
     {% block content %}
     {%  endblock %}
 </div>
+<script>
+    setOffset();
+</script>
 </body>
 </html>
