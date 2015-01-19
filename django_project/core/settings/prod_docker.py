@@ -29,7 +29,7 @@ STATIC_ROOT = '/home/web/static'
 #
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 # Host for sending e-mail.
-EMAIL_HOST = 'postfix'
+EMAIL_HOST = 'smtp'
 # Port for sending e-mail.
 EMAIL_PORT = 25
 # SMTP authentication information for EMAIL_HOST.
