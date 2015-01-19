@@ -7,7 +7,7 @@ DATABASES = {
         'NAME': 'gis',
         'USER': 'docker',
         'PASSWORD': 'docker',
-        'HOST': 'jakarta-flood-maps-postgis',
+        'HOST': '172.17.0.5',
         # Set to empty string for default.
         'PORT': '5432',
     }

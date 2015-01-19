@@ -30,15 +30,19 @@ PIPELINE_JS = {
         'source_filenames': (
             'js/jquery-1.11.1.min.js',
             'js/bootstrap.js',
+            'js/moment.min.js',
             'flood_mapper/js/leaflet.js',
-            'flood_mapper/js/ripples.js',
-            'flood_mapper/js/material.js'
+            'flood_mapper/js/material.min.js',
+            'flood_mapper/js/ripples.min.js',
+            'flood_mapper/js/validate.js',
+            'js/bootstrap-datetimepicker.min.js',
         ),
         'output_filename': 'js/contrib.js',
     },
     'appjs': {
         'source_filenames': (
             'js/csrf-ajax.js',
+            'flood_mapper/js/jakarta-flood-maps.js',
         ),
         'output_filename': 'js/appjs.js'
     }
@@ -50,9 +54,11 @@ PIPELINE_CSS = {
             'css/bootstrap.min.css',
             'flood_mapper/css/leaflet.css',
             'flood_mapper/css/material-wfont.min.css',
-            'ripples.min.css'
+            'flood_mapper/css/ripples.min.css',
+            'flood_mapper/css/bnpb-theme.css',
+            'css/bootstrap-datetimepicker.min.css',
         ),
-    'output_filename': 'css/contrib.css',
+        'output_filename': 'css/contrib.css',
         'extra_context': {
             'media': 'screen, projection',
         },

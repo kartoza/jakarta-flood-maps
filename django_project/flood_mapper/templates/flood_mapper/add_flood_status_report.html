@@ -1,68 +1,13 @@
 {% extends "flood_mapper/base.html" %}
 {% block header %}
-  <script src="/static/js/moment.min.js"></script>
-  <script src="/static/js/bootstrap-datetimepicker.min.js"></script>
-  <link rel="stylesheet" href="/static/css/bootstrap-datetimepicker.min.css" />
   <script>
-    function update_rws(){
-      var village_id = $('#id_village').val();
-      var rw_select = $('#id_rw');
-      var rt_select = $('#id_rt');
-      rw_select.find('option').remove().end();
-      rw_select.append($("<option></option>")
-        .attr("value", '')
-        .text('---------'));
-      rt_select.find('option').remove().end();
-      rt_select.append($("<option></option>")
-        .attr("value", '')
-        .text('---------'));
-      if (village_id == ''){
-        return;
-      }
-      $.get('/api/locations/' + village_id + '/?format=json', function(data){
-        $.each(data, function(dummy, rw){
-          $('#id_rw').append($("<option></option>")
-           .attr("value", rw['id'])
-           .text(rw['name']));
-        });
-      });
-    }
-    function update_rts(){
-      var village_id = $('#id_village').val();
-      var rw_id = $('#id_rw').val();
-      var rt_select = $('#id_rt');
-      rt_select.find('option').remove().end();
-      rt_select.append($("<option></option>")
-        .attr("value", '')
-        .text('---------'));
-      if ((village_id == '') || (rw_id == '')){
-        console.log('returning');
-        return;
-      }
-      $.get('/api/locations/' + village_id + '/' + rw_id + '/?format=json',
-            function(data){
-        $.each(data, function(dummy, rt){
-          $('#id_rt').append($("<option></option>")
-           .attr("value", rt['id'])
-           .text(rt['name']));
-        });
-      });
-    }
-    $(document).ready(function(){
-      $('#nav_add_flood_status_report').addClass("active");
-      // Setup location selecton
-      $('#id_village').on('change', update_rws);
-      $('#id_rw').on('change', update_rts);
-      // Setup date time picker
-      var date_time = $('#id_date_time');
-      date_time.datetimepicker(
-      {
-        format: 'YYYY-MM-DD HH:mm'
-      });
+    $(document).ready(function() {
+        show_map();
+        update_rts_rws();
     });
   </script>
   <title>Add flood status report</title>
-{%  endblock %}
+{% endblock %}
 
 {% load bootstrap_tags %}
 
@@ -71,13 +16,16 @@
 {%  endblock %}
 
 {% block content %}
-<div>
-  <form action="/add-flood-status-report/" method="post">
-    {% csrf_token %}
-    {{ form|as_bootstrap }}
-    <button type="submit" class="btn btn-block btn-primary">Add</button>
-  </form>
-</div>
+    {% include "flood_mapper/map.html" %}
 
+    <div class="col-xs-offset-8 col-xs-4" id="side_panel">
+        <div>
+            <form action="/add-flood-status-report/" method="post">
+                {% csrf_token %}
+                {{ form|as_bootstrap }}
+                <button type="submit" class="btn btn-block btn-primary">Add</button>
+            </form>
+        </div>
+    </div>
 </div> <!-- /container -->
 {%  endblock %}
