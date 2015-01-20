@@ -37,6 +37,10 @@ def reports(request):
                 f for f in directory_content if f.endswith(extention)
             ]
             available_reports[report_type][report_period].sort(reverse=True)
+            # Only show the first 10 reports as options in the drop down
+            available_reports[report_type][report_period] = (
+                available_reports[report_type][report_period][:10]
+            )
 
     return render(
         request,
