@@ -1,3 +1,4 @@
+#!/bin/sh
 NUMBER_OF_HOURS=6;
 
 if [ $(date +'%H') -gt 18 ]; then

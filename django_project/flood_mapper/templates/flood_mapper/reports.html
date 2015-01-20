@@ -2,8 +2,8 @@
 
 {% block header %}
     <script>
-        $(document).ready(function() {
-            $('.equalHeight').each(function() {
+        $(document).ready(function () {
+            $('.equalHeight').each(function () {
                 var eHeight = $(this).innerHeight();
                 $(this).find('.jumbotron').outerHeight(eHeight);
             });
@@ -16,260 +16,345 @@
 
 {% block navigation-bar %}
     {% include "flood_mapper/navigation_bar.html" %}
-{%  endblock %}
+{% endblock %}
 
 {% block content %}
-<div class="row">
-  <div class="row">
-    <div class="col-xs-4">
-        <h4 class="col-xs-offset-1 col-xs-10"> What do you want to do?</h4>
+    <div class="container" style="padding-top: 10px;">
+        {# ------------------------------------- #}
+        {# ------------   PDF ------------------ #}
+        {# ------------------------------------- #}
+        <div class="row equalHeight"> {#  row 1 #}
+            <div class="col-lg-3 col-lg-offset-2">{# PDF Div #}
+                <div class="panel panel-success">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">
+                            <i class="mdi-action-description"></i>
+                            PDF Report</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="btn-group">
+                            <a href="javascript:$.download('/api/download/pdf/6h/{{ reports.pdf.6h.0 }}');"
+                               class="btn btn-primary"
+                               {% if not reports.pdf.6h %}disabled {% endif %}>
+                                6 Hour Report
+                            </a>
+                            {% if reports.pdf.6h %}
+                            <a href="javascript:void(0)"
+                               class="btn btn-primary dropdown-toggle"
+                               data-toggle="dropdown">
+                                <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                            {% for report in reports.pdf.6h %}
+                                <li>
+                                    <a href="javascript:$.download('/api/download/pdf/6h/{{ report }}');">{{ report }}</a>
+                                </li>
+                            {% endfor %}
+                            <li><a href="/archive}" download="/archive/pdf/24h">Archive</a></li>
+                            </ul>
+                            {% endif %}
+                        </div> {# end of 6h button group #}
+
+                        <div class="btn-group">
+                            <a href="javascript:$.download('/api/download/pdf/6h/{{ reports.pdf.6h.0 }}');"
+                               class="btn btn-primary"
+                               {% if not reports.pdf.24h %}disabled{% endif %}>
+                                24 Hour Report
+                            </a>
+                            {% if reports.pdf.24h %}
+                            <a href="javascript:void(0)"
+                               class="btn btn-primary dropdown-toggle"
+                               data-toggle="dropdown">
+                                <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                            {% for report in reports.pdf.24h %}
+                                <li>
+                                    <a href="javascript:$.download('/api/download/pdf/24h/{{ report }}');">{{ report }}</a>
+                                </li>
+                            {% endfor %}
+                            <li><a href="/archive}" download="/archive/pdf/24h">Archive</a></li>
+                            </ul>
+                            {% endif %}
+
+                        </div> {# end of 24h button group #}
+                        <p>Download a print-ready report in PDF format. You need
+                            to have a PDF reader installed on your system to be
+                            able to view this.</p>
+
+                    </div> {#  end of panel body #}
+                </div> {# end of pdf panel #}
+            </div> {# end of PDF div #}
+
+        {# ------------------------------------- #}
+        {# ------------   CSV ------------------ #}
+        {# ------------------------------------- #}
+
+        <div class="row equalHeight">
+            {# CSV Panel #}
+            <div class="col-lg-3">
+                <div class="panel panel-material-bluegrey">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">
+                            <i class="mdi-action-view-module"></i>
+                            Comma Delimited Report</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="btn-group">
+                            <a href="javascript:$.download('/api/download/csv/6h/{{ reports.csv.6h.0 }}');"
+                               class="btn btn-primary"
+                               {% if not reports.csv.6h %}disabled {% endif %}>
+                                6 Hour Report
+                            </a>
+                            {% if reports.csv.6h %}
+                            <a href="javascript:void(0)"
+                               class="btn btn-primary dropdown-toggle"
+                               data-toggle="dropdown">
+                                <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                            {% for report in reports.csv.6h %}
+                                <li>
+                                    <a href="javascript:$.download('/api/download/csv/6h/{{ report }}');">{{ report }}</a>
+                                </li>
+                            {% endfor %}
+                            <li><a href="/archive}" download="/archive/csv/24h">Archive</a></li>
+                            </ul>
+                            {% endif %}
+                        </div> {# end of 6h button group #}
+
+                        <div class="btn-group">
+                            <a href="javascript:$.download('/api/download/csv/6h/{{ reports.csv.6h.0 }}');"
+                               class="btn btn-primary"
+                               {% if not reports.csv.24h %}disabled{% endif %}>
+                                24 Hour Report
+                            </a>
+                            {% if reports.csv.24h %}
+                            <a href="javascript:void(0)"
+                               class="btn btn-primary dropdown-toggle"
+                               data-toggle="dropdown">
+                                <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                            {% for report in reports.csv.24h %}
+                                <li>
+                                    <a href="javascript:$.download('/api/download/csv/24h/{{ report }}');">{{ report }}</a>
+                                </li>
+                            {% endfor %}
+                            <li><a href="/archive}" download="/archive/csv/24h">Archive</a></li>
+                            </ul>
+                            {% endif %}
+
+                        </div> {# end of 24h button group #}
+                        <p>Download a comma separated text file. This file is suitable
+                        for using in a spreadsheet application.</p>
+                    </div> {#  end of panel body #}
+                </div> {# end of csv panel #}
+            </div> {# end of CSV div #}
+
+        {# ------------------------------------- #}
+        {# ------------   SHP ------------------ #}
+        {# ------------------------------------- #}
+
+        <div class="row equalHeight">
+            {# SHP Panel #}
+            <div class="col-lg-3">
+                <div class="panel panel-material-deeporange">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">
+                            <i class="mdi-action-room"></i>
+                            Shapefile Report</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="btn-group">
+                            <a href="javascript:$.download('/api/download/shp/6h/{{ reports.shp.6h.0 }}');"
+                               class="btn btn-primary"
+                               {% if not reports.shp.6h %}disabled {% endif %}>
+                                6 Hour Report
+                            </a>
+                            {% if reports.shp.6h %}
+                            <a href="javascript:void(0)"
+                               class="btn btn-primary dropdown-toggle"
+                               data-toggle="dropdown">
+                                <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                            {% for report in reports.shp.6h %}
+                                <li>
+                                    <a href="javascript:$.download('/api/download/shp/6h/{{ report }}');">{{ report }}</a>
+                                </li>
+                            {% endfor %}
+                            <li><a href="/archive}" download="/archive/shp/24h">Archive</a></li>
+                            </ul>
+                            {% endif %}
+                        </div> {# end of 6h button group #}
+
+                        <div class="btn-group">
+                            <a href="javascript:$.download('/api/download/shp/6h/{{ reports.shp.6h.0 }}');"
+                               class="btn btn-primary"
+                               {% if not reports.shp.24h %}disabled{% endif %}>
+                                24 Hour Report
+                            </a>
+                            {% if reports.shp.24h %}
+                            <a href="javascript:void(0)"
+                               class="btn btn-primary dropdown-toggle"
+                               data-toggle="dropdown">
+                                <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                            {% for report in reports.shp.24h %}
+                                <li>
+                                    <a href="javascript:$.download('/api/download/shp/24h/{{ report }}');">{{ report }}</a>
+                                </li>
+                            {% endfor %}
+                            <li><a href="/archive}" download="/archive/shp/24h">Archive</a></li>
+                            </ul>
+                            {% endif %}
+
+                        </div> {# end of 24h button group #}
+                        <p>Download a shapefile. This file is suitable
+                        for using in a GIS application such as <a href="http://qgis.org">QGIS</a></p>
+                    </div> {#  end of panel body #}
+                </div> {# end of shp panel #}
+            </div> {# end of SHP div #}
+
+        </div> {#  end of row 1 #}
+        <div class="row equalHeight"> {#  row 2 #}
+
+        {# ------------------------------------- #}
+        {# ------------   KML ------------------ #}
+        {# ------------------------------------- #}
+
+        <div class="row equalHeight">
+            {# KML Panel #}
+            <div class="col-lg-3 col-lg-offset-3">
+                <div class="panel panel-material-teal">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">
+                            <i class="mdi-action-language"></i>
+                            Google Earth Report</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="btn-group">
+                            <a href="javascript:$.download('/api/download/kml/6h/{{ reports.kml.6h.0 }}');"
+                               class="btn btn-primary"
+                               {% if not reports.kml.6h %}disabled {% endif %}>
+                                6 Hour Report
+                            </a>
+                            {% if reports.kml.6h %}
+                            <a href="javascript:void(0)"
+                               class="btn btn-primary dropdown-toggle"
+                               data-toggle="dropdown">
+                                <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                            {% for report in reports.kml.6h %}
+                                <li>
+                                    <a href="javascript:$.download('/api/download/kml/6h/{{ report }}');">{{ report }}</a>
+                                </li>
+                            {% endfor %}
+                            <li><a href="/archive}" download="/archive/kml/24h">Archive</a></li>
+                            </ul>
+                            {% endif %}
+                        </div> {# end of 6h button group #}
+
+                        <div class="btn-group">
+                            <a href="javascript:$.download('/api/download/kml/6h/{{ reports.kml.6h.0 }}');"
+                               class="btn btn-primary"
+                               {% if not reports.kml.24h %}disabled{% endif %}>
+                                24 Hour Report
+                            </a>
+                            {% if reports.kml.24h %}
+                            <a href="javascript:void(0)"
+                               class="btn btn-primary dropdown-toggle"
+                               data-toggle="dropdown">
+                                <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                            {% for report in reports.kml.24h %}
+                                <li>
+                                    <a href="javascript:$.download('/api/download/kml/24h/{{ report }}');">{{ report }}</a>
+                                </li>
+                            {% endfor %}
+                            <li><a href="/archive}" download="/archive/kml/24h">Archive</a></li>
+                            </ul>
+                            {% endif %}
+
+                        </div> {# end of 24h button group #}
+                        <p>Download a KML file. This file is suitable
+                        for using in <a href="https://www.google.com/earth/">Google Earth</a>
+                        or a GIS application such as <a href="http://qgis.org">QGIS</a></p>
+                    </div> {#  end of panel body #}
+                </div> {# end of kml panel #}
+            </div> {# end of KML div #}
+
+        {# ------------------------------------- #}
+        {# ------------   SQLITE ------------------ #}
+        {# ------------------------------------- #}
+
+        <div class="row equalHeight">
+            {# SQLITE Panel #}
+            <div class="col-lg-3">
+                <div class="panel panel-material-brown">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">
+                            <i class="mdi-action-wallet-travel"></i>
+                            SQLITE Report</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="btn-group">
+                            <a href="javascript:$.download('/api/download/sqlite/6h/{{ reports.sqlite.6h.0 }}');"
+                               class="btn btn-primary"
+                               {% if not reports.sqlite.6h %}disabled {% endif %}>
+                                6 Hour Report
+                            </a>
+                            {% if reports.sqlite.6h %}
+                            <a href="javascript:void(0)"
+                               class="btn btn-primary dropdown-toggle"
+                               data-toggle="dropdown">
+                                <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                            {% for report in reports.sqlite.6h %}
+                                <li>
+                                    <a href="javascript:$.download('/api/download/sqlite/6h/{{ report }}');">{{ report }}</a>
+                                </li>
+                            {% endfor %}
+                            <li><a href="/archive}" download="/archive/sqlite/24h">Archive</a></li>
+                            </ul>
+                            {% endif %}
+                        </div> {# end of 6h button group #}
+
+                        <div class="btn-group">
+                            <a href="javascript:$.download('/api/download/sqlite/6h/{{ reports.sqlite.6h.0 }}');"
+                               class="btn btn-primary"
+                               {% if not reports.sqlite.24h %}disabled{% endif %}>
+                                24 Hour Report
+                            </a>
+                            {% if reports.sqlite.24h %}
+                            <a href="javascript:void(0)"
+                               class="btn btn-primary dropdown-toggle"
+                               data-toggle="dropdown">
+                                <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                            {% for report in reports.sqlite.24h %}
+                                <li>
+                                    <a href="javascript:$.download('/api/download/sqlite/24h/{{ report }}');">{{ report }}</a>
+                                </li>
+                            {% endfor %}
+                            <li><a href="/archive}" download="/archive/sqlite/24h">Archive</a></li>
+                            </ul>
+                            {% endif %}
+
+                        </div> {# end of 24h button group #}
+                        <p>Download a SQLITE portable database. This file is suitable
+                        for using in a GIS application such as <a href="http://qgis.org">QGIS</a></p>
+                    </div> {#  end of panel body #}
+                </div> {# end of sqlite panel #}
+            </div> {# end of SQLITE div #}
+
+
+        </div> {#  end of row 2 #}
     </div>
-    <div class="col-xs-4">
-    </div>
-    <div class="col-xs-4">
-      {% comment %}
-      {% if user.is_staff %}
-      <div class="col-xs-offset-1 col-xs-10">
-      <button type="button" class="btn btn-block" aria-label="Left Align">
-        Custom Reports
-      </button>
-      </div>
-      {% endif %}
-      {% endcomment %}
-    </div>
-  </div>
-  <div class="row equalHeight">
-    <div class="col-xs-4">
-      <div class="col-xs-offset-1 col-xs-10 jumbotron alert-success">
-        <div class="btn-group btn-block">
-          <form method="get" action="/api/download/pdf/6h/{{reports.pdf.6h.0}}">
-          <button class="col-xs-10 btn" type="submit"
-              {% if not reports.pdf.6h %}disabled='disabled'{% endif %}>
-            Download to open with<br>
-            a document viewer<br>
-            (PDF)*
-          </button>
-          </form>
-          <button class="col-sm-2 btn dropdown-toggle"
-              data-toggle="dropdown"
-              {% if not reports.pdf.6h %}disabled='disabled'{% endif %}>
-            <br><br><span class="caret"></span>
-          </button>
-           <ul class="dropdown-menu">
-             {% for report in reports.pdf.6h %}
-               <li><a href="/api/download/pdf/6h/{{report}}"
-                   download="{{report}}">{{ report }}</a></li>
-             {% endfor %}
-            </ul>
-        </div>
-        <br>
-        <br>
-        <div class="btn-group btn-block">
-          <form method="get" action="/api/download/pdf/24h/{{reports.pdf.24h.0}}">
-          <button class="col-xs-10 btn" type="submit"
-              {% if not reports.pdf.24h %}disabled='disabled'{% endif %}>
-            24h report <br>
-            Download to open with<br>
-            a document viewer<br>
-            (PDF)
-          </button>
-          </form>
-          <button class="col-sm-2 btn dropdown-toggle"
-              data-toggle="dropdown"
-              {% if not reports.pdf.24h %}disabled='disabled'{% endif %}>
-            <br><br><br><span class="caret"></span>
-          </button>
-           <ul class="dropdown-menu">
-             {% for report in reports.pdf.24h %}
-             <a href="/api/download/pdf/24h/{{report}}"
-                   download="{{report}}">{{ report }}</a></li>
-             {% endfor %}
-            </ul>
-        </div>
-        <div class="page-header"></div>
-        <h4>*Recommended</h4>
-      </div>
-    </div>
-    <div class="col-xs-4">
-      <div class="col-xs-offset-1 col-xs-10 jumbotron alert-warning">
-        <div class="btn-group btn-block">
-          <form method="get" action="/api/download/csv/6h/{{reports.csv.6h.0}}">
-          <button class="col-xs-10 btn" type="submit"
-              {% if not reports.csv.6h %}disabled='disabled'{% endif %}>
-            Download to view in<br>
-            spreadsheet<br>
-            (CSV)
-          </button>
-          </form>
-          <button class="col-sm-2 btn dropdown-toggle" data-toggle="dropdown"
-              {% if not reports.csv.6h %}disabled='disabled'{% endif %}>
-            <br><br></b><span class="caret"></span>
-          </button>
-           <ul class="dropdown-menu">
-             {% for report in reports.csv.6h %}
-               <li><a href="/api/download/csv/6h/{{report}}"
-                   download="{{report}}">{{ report }}</a></li>
-             {% endfor %}
-            </ul>
-        </div>
-        <br>
-        <br>
-        <div class="btn-group btn-block">
-          <form method="get" action="/api/download/csv/24h/{{reports.csv.24h.0}}">
-          <button class="col-xs-10 btn" type="submit"
-              {% if not reports.csv.24h %}disabled='disabled'{% endif %}>
-            24h report <br>
-            Download to view in<br>
-            spreadsheet<br>
-            (CSV)
-          </button>
-          </form>
-          <button class="col-sm-2 btn dropdown-toggle"
-              data-toggle="dropdown"
-              {% if not reports.csv.24h %}disabled='disabled'{% endif %}>
-            <br><br><br><span class="caret"></span>
-          </button>
-           <ul class="dropdown-menu">
-             {% for report in reports.csv.24h %}
-               <li><a href="/api/download/csv/24h/{{report}}"
-                   download="{{report}}">{{ report }}</a></li>
-             {% endfor %}
-            </ul>
-        </div>
-      </div>
-    </div>
-    <div class="col-xs-4">
-      <div class="col-xs-offset-1 col-xs-10 jumbotron alert-warning">
-        <div class="btn-group btn-block">
-          <form method="get" action="/api/download/kml/6h/{{reports.kml.6h.0}}">
-          <button class="col-xs-10 btn" type="submit"
-              {% if not reports.kml.6h %}disabled='disabled'{% endif %}>
-            Download to view in<br>
-            Google Earth<br>
-            (KML)
-          </button>
-          </form>
-          <button class="col-sm-2 btn dropdown-toggle" data-toggle="dropdown"
-              {% if not reports.kml.6h %}disabled='disabled'{% endif %}>
-            <br><br><span class="caret"></span>
-          </button>
-           <ul class="dropdown-menu">
-             {% for report in reports.kml.6h %}
-               <li><a href="/api/download/kml/6h/{{report}}"
-                   download="{{report}}">{{ report }}</a></li>
-             {% endfor %}
-            </ul>
-        </div>
-        <br><br>
-        <div class="btn-group btn-block">
-          <form method="get" action="/api/download/kml/24h/{{reports.kml.24h.0}}">
-          <button class="col-xs-10 btn"
-              {% if not reports.kml.24h %}disabled='disabled'{% endif %}>
-            24h report<br>
-            Download to view in<br>
-            Google Earth<br>
-            (KML)
-          </button>
-          </form>
-          <button class="col-sm-2 btn dropdown-toggle" data-toggle="dropdown"
-              {% if not reports.kml.24h %}disabled='disabled'{% endif %}>
-            <br><br><br><span class="caret"></span>
-          </button>
-           <ul class="dropdown-menu">
-             {% for report in reports.kml.24h %}
-               <li><a href="/api/download/kml/24h/{{report}}"
-                   download="{{report}}">{{ report }}</a></li>
-             {% endfor %}
-            </ul>
-        </div>
-        <br><br>
-        <div class="btn-group btn-block">
-          <form method="get" action="/api/download/shp/6h/{{reports.shp.6h.0}}">
-          <button class="col-xs-10 btn" type="submit"
-              {% if not reports.shp.6h %}disabled='disabled'{% endif %}>
-            Download to view in<br>
-            GIS<br>
-            (SHP)
-          </button>
-          </form>
-          <button class="col-sm-2 btn dropdown-toggle" data-toggle="dropdown"
-              {% if not reports.shp.6h %}disabled='disabled'{% endif %}>
-            <br><br><span class="caret"></span>
-          </button>
-           <ul class="dropdown-menu">
-             {% for report in reports.shp.6h %}
-               <li><a href="/api/download/shp/6h/{{report}}"
-                   download="{{report}}">{{ report }}</a></li>
-             {% endfor %}
-            </ul>
-        </div>
-        <br><br>
-        <div class="btn-group btn-block">
-          <form method="get" action="/api/download/shp/24h/{{reports.shp.24h.0}}">
-          <button class="col-xs-10 btn" type="submit"
-              {% if not reports.shp.24h %}disabled='disabled'{% endif %}>
-            24h report<br>
-            Download to view in<br>
-            GIS<br>
-            (SHP)
-          </button>
-          </form>
-          <button class="col-sm-2 btn dropdown-toggle" data-toggle="dropdown"
-              {% if not reports.shp.24h %}disabled='disabled'{% endif %}>
-            <br><br><br><span class="caret"></span>
-          </button>
-           <ul class="dropdown-menu">
-             {% for report in reports.shp.24h %}
-               <li><a href="/api/download/shp/24h/{{report}}"
-                   download="{{report}}">{{ report }}</a></li>
-             {% endfor %}
-            </ul>
-        </div>
-        <br><br>
-        <div class="btn-group btn-block">
-          <form method="get" action="/api/download/sqlite/6h/{{reports.sqlite.6h.0}}">
-          <button class="col-xs-10 btn" type="submit"
-              {% if not reports.sqlite.6h %}disabled='disabled'{% endif %}>
-            Download to view in<br>
-            GIS<br>
-            (spatialite)
-          </button>
-          </form>
-          <button class="col-sm-2 btn dropdown-toggle" data-toggle="dropdown"
-              {% if not reports.sqlite.6h %}disabled='disabled'{% endif %}>
-            <br><br><span class="caret"></span>
-          </button>
-           <ul class="dropdown-menu">
-             {% for report in reports.sqlite.6h %}
-               <li><a href="/api/download/sqlite/6h/{{report}}"
-                   download="{{report}}">{{ report }}</a></li>
-             {% endfor %}
-           </ul>
-        </div>
-        <br><br>
-        <div class="btn-group btn-block">
-          <form method="get" action="/api/download/sqlite/24h/{{reports.sqlite.24h.0}}">
-          <button class="col-xs-10 btn" type="submit"
-              {% if not reports.sqlite.24h %}disabled='disabled'{% endif %}>
-            24h report<br>
-            Download to view in<br>
-            GIS<br>
-            (spatialite)
-          </button>
-          </form>
-          <button class="col-sm-2 btn dropdown-toggle" data-toggle="dropdown"
-              {% if not reports.sqlite.24h %}disabled='disabled'{% endif %}>
-            <br><br><br><span class="caret"></span>
-          </button>
-           <ul class="dropdown-menu">
-             {% for report in reports.sqlite.24h %}
-               <li><a href="/api/download/sqlite/24h/{{report}}"
-                   download="{{report}}">{{ report }}</a></li>
-             {% endfor %}
-            </ul>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-{%  endblock %}
+{% endblock %}

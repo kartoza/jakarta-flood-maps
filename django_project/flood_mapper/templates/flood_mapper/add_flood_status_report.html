@@ -1,31 +1,42 @@
 {% extends "flood_mapper/base.html" %}
 {% block header %}
-  <script>
-    $(document).ready(function(){
-      show_map();
-      update_rts_rws();
-    });
-  </script>
-  <title>Add flood status report</title>
+    <script>
+        $(document).ready(function(){
+            show_map();
+            update_rts_rws();
+        });
+    </script>
+    <title>Add flood status report</title>
 {%  endblock %}
 
 {% load bootstrap_tags %}
 
 {% block navigation-bar %}
-  {% include "flood_mapper/navigation_bar.html" %}
+    {% include "flood_mapper/navigation_bar.html" %}
 {%  endblock %}
 
 {% block content %}
-    {% include "flood_mapper/map.html" %}
-
-    <div class="col-xs-offset-8 col-xs-4" id="side_panel">
-        <div>
-            <form action="/add-flood-status-report/" method="post">
-                {% csrf_token %}
-                {{ form|as_bootstrap }}
-                <button type="submit" class="btn btn-block btn-primary">Add</button>
-            </form>
+    <div class="container-fluid">
+        <div class="row">
+        <div class="col-lg-8" style="margin:0; padding:0;">
+            {% include "flood_mapper/map.html" %}
         </div>
-    </div>
-</div> <!-- /container -->
+        <div class="col-lg-4" id="side_panel" style="padding-top: 10px;">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title">
+                        <i class="mdi-image-timer"></i>
+                        Add a flood report
+                    </h3>
+                </div>
+                <div class="panel-body">
+                    <form action="/add-flood-status-report/" method="post">
+                        {% csrf_token %}
+                        {{ form|as_bootstrap }}
+                        <button type="submit" class="btn btn-block btn-success">Add</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div> <!-- /container -->
 {%  endblock %}

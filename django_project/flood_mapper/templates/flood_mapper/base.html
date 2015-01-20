@@ -3,7 +3,6 @@
 <html>
 <head lang="en">
     {% compressed_css 'contrib' %}
-
     {% compressed_js 'contrib' %}
     {% compressed_js 'appjs' %}
 
@@ -26,7 +25,7 @@
   {% block navigation-bar %}
   {% endblock %}
 </div>
-<div class="row" id="content">
+<div id="content">
     {% block content %}
     {%  endblock %}
 </div>
