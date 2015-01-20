@@ -30,63 +30,67 @@
 
 {% block content %}
     <div class="container-fluid">
-        {% include "flood_mapper/map.html" %}
-        <div class="col-lg-offset-8 col-lg-4" id="side_panel">
-
-            <div class="bs-component">
-                <div class="panel panel-primary">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">
-                            <i class="mdi-image-timer"></i>
-                            Reporting Period
-                        </h3>
-                    </div>
-                    <div class="panel-body">
-                        {{ time_slice_verbose }}
-                    </div>
-                </div>
-
-                <div class="panel panel-success">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">
-                            <i class="mdi-editor-border-color"></i>
-                            Flood Area Detail</h3>
-                    </div>
-                    <div class="panel-body">
-                        The RWs shown on the map have RTs flood levels reported on
-                        in this time period. Click on an RW to select it.
-                        Once selected the RT of interest can
-                        be selected and the flood levels will be shown.
-                    </div>
-                    <div id="details" >
-                    </div>
-
-                    <div class="panel panel-warning" id="select_rw" style="display: None">
+        <div class="row">
+            {#  map #}
+            <div class="col-lg-8" style="margin:0; padding:0;">
+                {% include "flood_mapper/map.html" %}
+            </div>
+            {# side panel #}
+            <div class="col-lg-4" id="side_panel" style="padding-top: 10px;">
+                <div class="bs-component">
+                    <div class="panel panel-primary">
                         <div class="panel-heading">
-                            <h3 class="panel-title">Select an RW</h3>
+                            <h3 class="panel-title">
+                                <i class="mdi-image-timer"></i>
+                                Reporting Period
+                            </h3>
                         </div>
                         <div class="panel-body">
+                            {{ time_slice_verbose }}
+                        </div>
+                    </div>
 
-                            <div class="row">
-                                <div class="col-lg-4">Village:</div>
-                                <div class="col-lg-7" id="village"></div>
+                    <div class="panel panel-success">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">
+                                <i class="mdi-editor-border-color"></i>
+                                Flood Area Detail</h3>
+                        </div>
+                        <div class="panel-body">
+                            The RWs shown on the map have RTs flood levels reported on
+                            in this time period. Click on an RW to select it.
+                            Once selected the RT of interest can
+                            be selected and the flood levels will be shown.
+                        </div>
+                        <div id="details" >
+                        </div>
+
+                        <div class="panel panel-warning" id="select_rw" style="display: None">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Select an RW</h3>
                             </div>
-                            <div class="row">
-                                <div class="col-lg-4">RW:</div>
-                                <div class="col-lg-7" id="rw"></div>
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-4">RT:</div>
-                                <select class="col-lg-7" id="rt">
-                                    <option value="">---------</option>
-                                </select>
-                            </div>
-                            <div class="row" id="current_flood_depth_div">
-                                <div class="col-lg-4">Current depth:</div>
-                                <div class="col-lg-7"
-                                     id="current_flood_depth"></div>
-                            </div>
-                            {% comment %}
+                            <div class="panel-body">
+
+                                <div class="row">
+                                    <div class="col-lg-4">Village:</div>
+                                    <div class="col-lg-7" id="village"></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-4">RW:</div>
+                                    <div class="col-lg-7" id="rw"></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-4">RT:</div>
+                                    <select class="col-lg-7" id="rt">
+                                        <option value="">---------</option>
+                                    </select>
+                                </div>
+                                <div class="row" id="current_flood_depth_div">
+                                    <div class="col-lg-4">Current depth:</div>
+                                    <div class="col-lg-7"
+                                         id="current_flood_depth"></div>
+                                </div>
+                                {% comment %}
                             <div id="staff_details">
                                 <div class="row">
                                     <h2> Details visible to staff only</h2>
@@ -101,11 +105,18 @@
                                 </div>
                             </div>
                             {% endcomment %}
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> {# end side panel #}
         </div>
+        {# show hide toggle #}
+        <a id="show_hide"
+           style="position:absolute; right: 0px; bottom: 50px;"
+           href="javascript:void(0)"
+           class="btn btn-danger btn-fab btn-raised glyphicon glyphicon-chevron-right"
+           onclick="toggle_side_panel()"></a>
     </div>
     <!-- /container -->
 {% endblock %}
