@@ -21,7 +21,6 @@ jQuery.download = function (url, data, method) {
         jQuery('<form action="' + url + '" method="' + (method || 'post') + '">' + inputs + '</form>')
             .appendTo('body').submit().remove();
     }
-    ;
 };
 
 function toggle_side_panel() {
