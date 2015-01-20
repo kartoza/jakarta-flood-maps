@@ -219,7 +219,7 @@ function zoomToFeature(e) {
     $('#current_flood_depth_div').hide();
     $('#details').show();
     if (window.location.pathname === '/') {
-        show_side_panel();
+        toggle_side_panel();
     }
 
     console.log(layer);
