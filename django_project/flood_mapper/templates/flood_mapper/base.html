@@ -1,17 +1,17 @@
-{% load compressed %}
+{% load pipeline %}
 <!DOCTYPE html>
 <html>
 <head lang="en">
-    {% compressed_css 'contrib' %}
-    {% compressed_js 'contrib' %}
-    {% compressed_js 'appjs' %}
+    {% stylesheet 'contrib' %}
+    {% javascript 'contrib' %}
+    {% javascript 'appjs' %}
 
     <meta charset="UTF-8">
 
   <script>
     $(document).ready(function() {
         $.material.init();
-        setOffset();
+        set_offset();
     });
   </script>
 

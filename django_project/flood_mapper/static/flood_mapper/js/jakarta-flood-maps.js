@@ -100,7 +100,6 @@ function update_rts() {
         .attr("value", '')
         .text('---------'));
     if ((village_id === '') || (rw_id === '')) {
-        console.log('returning');
         return;
     }
     rw_select.attr("disabled", "disabled");
@@ -134,16 +133,28 @@ function update_rts_rws() {
 function updateFloodAreaReport() {
     'use strict';
     var rt = $('#rt'),
-        rt_id;
+        rt_id,
+        depths = [];
     rt.prop('disabled', 'disabled');
     rt_id = rt.val();
     $.get('/api/reports/rt/' + rt_id + '/?format=json', function (data) {
-        console.log(data);
         if (data.length === 0) {
             console.log('No reported flood info');
+            $('#current_flood_depth_div').hide();
+            $('#flood_depth_over_time_div').hide();
         } else {
+            console.log(data);
             $('#current_flood_depth').text(data[0].depth);
             $('#current_flood_depth_div').show();
+
+            $.each(data, function (dummy, rt) {
+                depths.push(rt.depth);
+            });
+            depths.reverse();
+            $('#flood_depth_span').text(depths.join(','));
+            $(".line").peity("line");
+            $('#flood_depth_over_time_div').show();
+
         }
         rt.prop('disabled', false);
     });
@@ -213,16 +224,16 @@ function zoomToFeature(e) {
     var rw_id, rw_name, layer;
     layer = e.target;
     map.fitBounds(layer.getBounds());
-    $('#select_rw').hide();
+    $('#select_rw').show();
     $('#staff_details').hide();
     $('#current_flood_depth_div').hide();
-    $('#details').show();
+    $('#flood_depth_over_time_div').hide();
+    $('#rw_fill').hide();
     if (window.location.pathname === '/') {
         toggle_side_panel();
     }
 
-    console.log(layer);
-    rw_id = layer.options.properties.rw_id;
+    rw_id = layer._options.properties.rw_id;
     rw_name = layer._options.properties.name;
     updateFloodAreaOptions(rw_id, rw_name);
 }
@@ -238,7 +249,7 @@ function onEachFeature(feature, layer) {
 }
 /*jslint unparam: false*/
 
-function setOffset() {
+function set_offset() {
     'use strict';
     var navbar, navbar_height, map, content, map_offset, content_offset;
     navbar = $('.navbar');
@@ -257,18 +268,8 @@ function setOffset() {
 
 }
 
-function add_rw_to_map(time_slice) {
+function add_rw_to_map(time_slice, selected_rw) {
     'use strict';
-    var selected_rw, query, rw;
-    if (time_slice !== 'current') {
-        query = window.location.search.substring(1);
-        if (query.length > 0) {
-            rw = query.split('&')[0].split('=');
-            if (rw[0] === 'rw') {
-                selected_rw = rw[1];
-            }
-        }
-    }
     $.get('/api/locations/flooded/rw/' + time_slice + '/?format=json', function (data) {
         /*jslint unparam: true*/
         var layer, rw_layer;
