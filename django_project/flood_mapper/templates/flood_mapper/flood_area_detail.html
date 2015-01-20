@@ -12,7 +12,7 @@
                     {% else %}
                         $('#nav_flood_area_details_next').addClass("active");
                     {% endif %}
-                    add_rw_to_map('{{ time_slice }}');
+                    add_rw_to_map('{{ time_slice }}', {{ rw }});
                     $('#rt').on('change', updateFloodAreaReport);
                 }
         )

@@ -5,9 +5,11 @@ from django.template import RequestContext
 
 from flood_mapper.utilities.utilities import get_time_slice
 
-# @login_required
-# @staff_member_required
+
 def flood_area_detail(request):
+    rw = request.GET.get('rw')
+    if not rw:
+        rw = 0
     if request.path_info == '/':
         home_page = True
     else:
@@ -23,7 +25,8 @@ def flood_area_detail(request):
     context = {
         'home_page': home_page,
         'time_slice': time_slice,
-        'time_slice_verbose': time_slice_verbose
+        'time_slice_verbose': time_slice_verbose,
+        'rw': rw,
     }
     return render(
         request,
