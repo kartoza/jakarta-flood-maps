@@ -5,7 +5,7 @@
             // add rw's to map
             show_map();
             {% if home_page %}
-                hide_side_panel();
+                toggle_side_panel();
             {% endif %}
             {% if time_slice == 'current' %}
                 $('#nav_flood_area_details').addClass("active");
