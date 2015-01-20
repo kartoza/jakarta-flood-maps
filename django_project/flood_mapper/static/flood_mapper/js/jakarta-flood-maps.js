@@ -238,7 +238,7 @@ function onEachFeature(feature, layer) {
 }
 /*jslint unparam: false*/
 
-function setOffset() {
+function set_offset() {
     'use strict';
     var navbar, navbar_height, map, content, map_offset, content_offset;
     navbar = $('.navbar');
