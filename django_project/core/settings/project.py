@@ -36,6 +36,7 @@ PIPELINE_JS = {
             'flood_mapper/js/ripples.min.js',
             'flood_mapper/js/validate.js',
             'js/bootstrap-datetimepicker.min.js',
+            'flood_mapper/js/jquery.peity.min.js',
         ),
         'output_filename': 'js/contrib.js',
     },

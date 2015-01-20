@@ -2,21 +2,19 @@
 {% block header %}
     <script>
         $(document).ready(function () {
-                    // add rw's to map
-                    show_map();
-                    {% if home_page %}
-                        hide_side_panel();
-                    {% endif %}
-                    {% if time_slice == 'current' %}
-                        $('#nav_flood_area_details').addClass("active");
-                    {% else %}
-                        $('#nav_flood_area_details_next').addClass("active");
-                    {% endif %}
-                    add_rw_to_map('{{ time_slice }}');
-                    $('#rt').on('change', updateFloodAreaReport);
-                }
-        )
-        ;
+            // add rw's to map
+            show_map();
+            {% if home_page %}
+                toggle_side_panel();
+            {% endif %}
+            {% if time_slice == 'current' %}
+                $('#nav_flood_area_details').addClass("active");
+            {% else %}
+                $('#nav_flood_area_details_next').addClass("active");
+            {% endif %}
+            add_rw_to_map('{{ time_slice }}', {{ rw }});
+            $('#rt').on('change', updateFloodAreaReport);
+        });
 
     </script>
     <title>Flood area details</title>
@@ -56,15 +54,12 @@
                                 <i class="mdi-editor-border-color"></i>
                                 Flood Area Detail</h3>
                         </div>
-                        <div class="panel-body">
+                        <div class="panel-body" id="rw_fill">
                             The RWs shown on the map have RTs flood levels reported on
                             in this time period. Click on an RW to select it.
                             Once selected the RT of interest can
                             be selected and the flood levels will be shown.
                         </div>
-                        <div id="details" >
-                        </div>
-
                         <div class="panel panel-warning" id="select_rw" style="display: None">
                             <div class="panel-heading">
                                 <h3 class="panel-title">Select an RW</h3>
@@ -86,9 +81,14 @@
                                     </select>
                                 </div>
                                 <div class="row" id="current_flood_depth_div">
-                                    <div class="col-lg-4">Current depth</div>
-                                    <div class="col-lg-7"
-                                         id="current_flood_depth"></div>
+                                    <div class="col-lg-4">Current depth:</div>
+                                    <div class="col-lg-7" id="current_flood_depth"></div>
+                                </div>
+                                <div class="row" id="flood_depth_over_time_div">
+                                    <div class="col-lg-4">Change over time:</div>
+                                    <div class="col-lg-7">
+                                      <span class="line" id="flood_depth_span"></span>
+                                    </div>
                                 </div>
                                 {% comment %}
                             <div id="staff_details">

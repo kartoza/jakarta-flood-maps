@@ -33,7 +33,7 @@
                     </div>
                     <div class="panel-body">
                         <div class="btn-group">
-                            <a href="javascript:$.download('/api/download/pdf/6h/{{ reports.pdf.6h.0 }}');"
+                            <a href="/api/download/pdf/6h/{{ reports.pdf.6h.0}}"
                                class="btn btn-primary"
                                {% if not reports.pdf.6h %}disabled {% endif %}>
                                 6 Hour Report
@@ -47,16 +47,16 @@
                             <ul class="dropdown-menu">
                             {% for report in reports.pdf.6h %}
                                 <li>
-                                    <a href="javascript:$.download('/api/download/pdf/6h/{{ report }}');">{{ report }}</a>
+                                    <a href="/api/download/pdf/6h/{{ report }}">{{ report }}</a>
                                 </li>
                             {% endfor %}
-                            <li><a href="/archive}" download="/archive/pdf/24h">Archive</a></li>
+                            <li><a href="/archive/pdf/6h" target="_blank">Archive</a></li>
                             </ul>
                             {% endif %}
                         </div> {# end of 6h button group #}
 
                         <div class="btn-group">
-                            <a href="javascript:$.download('/api/download/pdf/6h/{{ reports.pdf.6h.0 }}');"
+                            <a href="/api/download/pdf/6h/{{ reports.pdf.6h.0}}"
                                class="btn btn-primary"
                                {% if not reports.pdf.24h %}disabled{% endif %}>
                                 24 Hour Report
@@ -70,10 +70,10 @@
                             <ul class="dropdown-menu">
                             {% for report in reports.pdf.24h %}
                                 <li>
-                                    <a href="javascript:$.download('/api/download/pdf/24h/{{ report }}');">{{ report }}</a>
+                                    <a href="/api/download/pdf/24h/{{ report }}">{{ report }}</a>
                                 </li>
                             {% endfor %}
-                            <li><a href="/archive}" download="/archive/pdf/24h">Archive</a></li>
+                            <li><a href="/archive/pdf/24h" target="_blank">Archive</a></li>
                             </ul>
                             {% endif %}
 
@@ -101,7 +101,7 @@
                     </div>
                     <div class="panel-body">
                         <div class="btn-group">
-                            <a href="javascript:$.download('/api/download/csv/6h/{{ reports.csv.6h.0 }}');"
+                            <a href="/api/download/csv/6h/{{ reports.csv.6h.0}}"
                                class="btn btn-primary"
                                {% if not reports.csv.6h %}disabled {% endif %}>
                                 6 Hour Report
@@ -115,16 +115,16 @@
                             <ul class="dropdown-menu">
                             {% for report in reports.csv.6h %}
                                 <li>
-                                    <a href="javascript:$.download('/api/download/csv/6h/{{ report }}');">{{ report }}</a>
+                                    <a href="/api/download/csv/6h/{{ report }}">{{ report }}</a>
                                 </li>
                             {% endfor %}
-                            <li><a href="/archive}" download="/archive/csv/24h">Archive</a></li>
+                            <li><a href="/archive/csv/6h" target="_blank">Archive</a></li>
                             </ul>
                             {% endif %}
                         </div> {# end of 6h button group #}
 
                         <div class="btn-group">
-                            <a href="javascript:$.download('/api/download/csv/6h/{{ reports.csv.6h.0 }}');"
+                            <a href="/api/download/csv/6h/{{ reports.csv.6h.0}}"
                                class="btn btn-primary"
                                {% if not reports.csv.24h %}disabled{% endif %}>
                                 24 Hour Report
@@ -138,10 +138,10 @@
                             <ul class="dropdown-menu">
                             {% for report in reports.csv.24h %}
                                 <li>
-                                    <a href="javascript:$.download('/api/download/csv/24h/{{ report }}');">{{ report }}</a>
+                                    <a href="/api/download/csv/24h/{{ report }}">{{ report }}</a>
                                 </li>
                             {% endfor %}
-                            <li><a href="/archive}" download="/archive/csv/24h">Archive</a></li>
+                            <li><a href="/archive/csv/24h" target="_blank">Archive</a></li>
                             </ul>
                             {% endif %}
 
@@ -167,7 +167,7 @@
                     </div>
                     <div class="panel-body">
                         <div class="btn-group">
-                            <a href="javascript:$.download('/api/download/shp/6h/{{ reports.shp.6h.0 }}');"
+                            <a href="/api/download/shp/6h/{{ reports.shp.6h.0}}"
                                class="btn btn-primary"
                                {% if not reports.shp.6h %}disabled {% endif %}>
                                 6 Hour Report
@@ -181,16 +181,16 @@
                             <ul class="dropdown-menu">
                             {% for report in reports.shp.6h %}
                                 <li>
-                                    <a href="javascript:$.download('/api/download/shp/6h/{{ report }}');">{{ report }}</a>
+                                    <a href="/api/download/shp/6h/{{ report }}">{{ report }}</a>
                                 </li>
                             {% endfor %}
-                            <li><a href="/archive}" download="/archive/shp/24h">Archive</a></li>
+                            <li><a href="/archive/shp/6h" target="_blank">Archive</a></li>
                             </ul>
                             {% endif %}
                         </div> {# end of 6h button group #}
 
                         <div class="btn-group">
-                            <a href="javascript:$.download('/api/download/shp/6h/{{ reports.shp.6h.0 }}');"
+                            <a href="/api/download/shp/6h/{{ reports.shp.6h.0}}"
                                class="btn btn-primary"
                                {% if not reports.shp.24h %}disabled{% endif %}>
                                 24 Hour Report
@@ -204,10 +204,10 @@
                             <ul class="dropdown-menu">
                             {% for report in reports.shp.24h %}
                                 <li>
-                                    <a href="javascript:$.download('/api/download/shp/24h/{{ report }}');">{{ report }}</a>
+                                    <a href="/api/download/shp/24h/{{ report }}">{{ report }}</a>
                                 </li>
                             {% endfor %}
-                            <li><a href="/archive}" download="/archive/shp/24h">Archive</a></li>
+                            <li><a href="/archive/shp/24h" target="_blank">Archive</a></li>
                             </ul>
                             {% endif %}
 
@@ -236,7 +236,7 @@
                     </div>
                     <div class="panel-body">
                         <div class="btn-group">
-                            <a href="javascript:$.download('/api/download/kml/6h/{{ reports.kml.6h.0 }}');"
+                            <a href="/api/download/kml/6h/{{ reports.kml.6h.0}}"
                                class="btn btn-primary"
                                {% if not reports.kml.6h %}disabled {% endif %}>
                                 6 Hour Report
@@ -250,16 +250,16 @@
                             <ul class="dropdown-menu">
                             {% for report in reports.kml.6h %}
                                 <li>
-                                    <a href="javascript:$.download('/api/download/kml/6h/{{ report }}');">{{ report }}</a>
+                                    <a href="/api/download/kml/6h/{{ report }}">{{ report }}</a>
                                 </li>
                             {% endfor %}
-                            <li><a href="/archive}" download="/archive/kml/24h">Archive</a></li>
+                            <li><a href="/archive/kml/6h" target="_blank">Archive</a></li>
                             </ul>
                             {% endif %}
                         </div> {# end of 6h button group #}
 
                         <div class="btn-group">
-                            <a href="javascript:$.download('/api/download/kml/6h/{{ reports.kml.6h.0 }}');"
+                            <a href="/api/download/kml/6h/{{ reports.kml.6h.0}}"
                                class="btn btn-primary"
                                {% if not reports.kml.24h %}disabled{% endif %}>
                                 24 Hour Report
@@ -273,10 +273,10 @@
                             <ul class="dropdown-menu">
                             {% for report in reports.kml.24h %}
                                 <li>
-                                    <a href="javascript:$.download('/api/download/kml/24h/{{ report }}');">{{ report }}</a>
+                                    <a href="/api/download/kml/24h/{{ report }}">{{ report }}</a>
                                 </li>
                             {% endfor %}
-                            <li><a href="/archive}" download="/archive/kml/24h">Archive</a></li>
+                            <li><a href="/archive/kml/24h" target="_blank">Archive</a></li>
                             </ul>
                             {% endif %}
 
@@ -303,7 +303,7 @@
                     </div>
                     <div class="panel-body">
                         <div class="btn-group">
-                            <a href="javascript:$.download('/api/download/sqlite/6h/{{ reports.sqlite.6h.0 }}');"
+                            <a href="/api/download/sqlite/6h/{{ reports.sqlite.6h.0}}"
                                class="btn btn-primary"
                                {% if not reports.sqlite.6h %}disabled {% endif %}>
                                 6 Hour Report
@@ -317,16 +317,16 @@
                             <ul class="dropdown-menu">
                             {% for report in reports.sqlite.6h %}
                                 <li>
-                                    <a href="javascript:$.download('/api/download/sqlite/6h/{{ report }}');">{{ report }}</a>
+                                    <a href="/api/download/sqlite/6h/{{ report }}">{{ report }}</a>
                                 </li>
                             {% endfor %}
-                            <li><a href="/archive}" download="/archive/sqlite/24h">Archive</a></li>
+                            <li><a href="/archive/sqlite/6h" target="_blank">Archive</a></li>
                             </ul>
                             {% endif %}
                         </div> {# end of 6h button group #}
 
                         <div class="btn-group">
-                            <a href="javascript:$.download('/api/download/sqlite/6h/{{ reports.sqlite.6h.0 }}');"
+                            <a href="/api/download/sqlite/6h/{{ reports.sqlite.6h.0}}"
                                class="btn btn-primary"
                                {% if not reports.sqlite.24h %}disabled{% endif %}>
                                 24 Hour Report
@@ -340,10 +340,10 @@
                             <ul class="dropdown-menu">
                             {% for report in reports.sqlite.24h %}
                                 <li>
-                                    <a href="javascript:$.download('/api/download/sqlite/24h/{{ report }}');">{{ report }}</a>
+                                    <a href="/api/download/sqlite/24h/{{ report }}">{{ report }}</a>
                                 </li>
                             {% endfor %}
-                            <li><a href="/archive}" download="/archive/sqlite/24h">Archive</a></li>
+                            <li><a href="/archive/sqlite/24h" target="_blank">Archive</a></li>
                             </ul>
                             {% endif %}
 
