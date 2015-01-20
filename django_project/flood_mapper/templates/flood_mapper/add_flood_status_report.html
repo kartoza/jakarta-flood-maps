@@ -1,31 +1,31 @@
 {% extends "flood_mapper/base.html" %}
 {% block header %}
-  <script>
-    $(document).ready(function(){
-      show_map();
-      update_rts_rws();
-    });
-  </script>
-  <title>Add flood status report</title>
+    <script>
+        $(document).ready(function(){
+            show_map();
+            update_rts_rws();
+        });
+    </script>
+    <title>Add flood status report</title>
 {%  endblock %}
 
 {% load bootstrap_tags %}
 
 {% block navigation-bar %}
-  {% include "flood_mapper/navigation_bar.html" %}
+    {% include "flood_mapper/navigation_bar.html" %}
 {%  endblock %}
 
 {% block content %}
     {% include "flood_mapper/map.html" %}
-
-    <div class="col-xs-offset-8 col-xs-4" id="side_panel">
-        <div>
-            <form action="/add-flood-status-report/" method="post">
-                {% csrf_token %}
-                {{ form|as_bootstrap }}
-                <button type="submit" class="btn btn-block btn-primary">Add</button>
-            </form>
+    <div class="container-fluid">
+        <div class="col-lg-offset-8 col-lg-4" id="side_panel">
+            <div>
+                <form action="/add-flood-status-report/" method="post">
+                    {% csrf_token %}
+                    {{ form|as_bootstrap }}
+                    <button type="submit" class="btn btn-block btn-primary">Add</button>
+                </form>
+            </div>
         </div>
-    </div>
-</div> <!-- /container -->
+    </div> <!-- /container -->
 {%  endblock %}

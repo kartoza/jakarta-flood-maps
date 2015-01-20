@@ -5,7 +5,7 @@ from django.db import models, migrations
 import os
 
 
-def create_report_directories(apps, schema_editor):
+def create_report_directories(apps=None, schema_editor=None):
     reports_dir = os.path.abspath(os.path.join(
         os.path.dirname(__file__),
         os.path.pardir,

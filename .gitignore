@@ -94,3 +94,4 @@ deployment/media
 mapproxy/cache_data/
 
 # logs in docker containers
+reports

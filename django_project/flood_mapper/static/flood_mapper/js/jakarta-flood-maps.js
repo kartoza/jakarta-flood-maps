@@ -4,6 +4,26 @@
 /*global $, jQuery, L, window, console*/
 var map;
 
+jQuery.download = function (url, data, method) {
+    /* Taken from http://www.filamentgroup.com/lab/jquery-plugin-for-requesting-ajax-like-file-downloads.html*/
+    'use strict';
+    //url and data options required
+    if (url && data) {
+        //data can be string of parameters or array/object
+        data = typeof data === 'string' ? data : jQuery.param(data);
+        //split params into form inputs
+        var inputs = '';
+        jQuery.each(data.split('&'), function () {
+            var pair = this.split('=');
+            inputs += '<input type="hidden" name="' + pair[0] + '" value="' + pair[1] + '" />';
+        });
+        //send request
+        jQuery('<form action="' + url + '" method="' + (method || 'post') + '">' + inputs + '</form>')
+            .appendTo('body').submit().remove();
+    }
+    ;
+};
+
 function show_side_panel() {
     'use strict';
     var map_div = $('#map'),
