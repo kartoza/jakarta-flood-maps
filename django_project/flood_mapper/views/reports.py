@@ -6,6 +6,8 @@ from django.template import RequestContext
 from django.contrib.auth.decorators import login_required
 import os
 
+from flood_mapper.utilities.utilities import create_reports_directories
+
 
 def reports(request):
     available_reports = {}
@@ -15,6 +17,9 @@ def reports(request):
         os.path.pardir,
         os.path.pardir,
         'reports'))
+    if not os.path.exists(reports_dir):
+        create_reports_directories()
+
     for (report_type, extention) in [
             ('pdf', '.pdf'),
             ('sqlite', '.sqlite'),
