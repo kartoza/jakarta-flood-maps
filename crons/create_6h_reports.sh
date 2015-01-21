@@ -44,3 +44,5 @@ ogr2ogr -f "KML" ../reports/kml/6h/$DATE_TIME_LABEL.kml ../reports/shp/6h/$DATE_
 ogr2ogr -f "CSV" ../reports/csv/6h/$DATE_TIME_LABEL.csv ../reports/shp/6h/$DATE_TIME_LABEL.shp
 ogr2ogr -f "SQLite" ../reports/sqlite/6h/$DATE_TIME_LABEL.sqlite ../reports/shp/6h/$DATE_TIME_LABEL.shp
 
+
+# GENERATE THE PDF REPORT
