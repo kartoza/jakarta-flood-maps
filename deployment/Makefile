@@ -13,7 +13,10 @@ deploy: run
 	@echo "Waiting 20 secs to ensure db is running"
 	#@sleep 20
 	@fig run -p jakartaflood uwsgi python manage.py migrate
-	@fig run -p jakartaflood uwsgi python manage.py collectstatic --noinput
+	#@run -p jakartaflood uwsgi python manage.py collectstatic --noinput
+	#We need to run collect static in the same context as the running
+	# uwsgi container it seems so I use docker exec here
+	@docker exec -t -i jakartaflood_uwsgi_1 python manage.py collectstatic --noinput
 
 rm:
 	@echo
@@ -50,7 +53,10 @@ collectstatic:
 	@echo "--------------------------"
 	@echo "Collecting static in production mode"
 	@echo "--------------------------"
-	@fig -p jakartaflood run uwsgi python manage.py collectstatic --noinput
+	#@fig -p jakartaflood run uwsgi python manage.py collectstatic --noinput
+	#We need to run collect static in the same context as the running
+	# uwsgi container it seems so I use docker exec here
+	@docker exec -t -i jakartaflood_uwsgi_1 python manage.py collectstatic --noinput
 
 kill:
 	@echo
@@ -124,7 +130,7 @@ map:
 	@echo "Getting current 6 hour slot as pdf map"
 	@echo "Make sure you have started the services with make run first"
 	@echo "--------------------------"
-	wget -O map.pdf "http://172.17.0.8/cgi-bin/qgis_mapserv.fcgi?map=/web/jk-floods.qgs&SERVICE=wms&LAYERS=Rw&REQUEST=GetPrint&TEMPLATE=6Hour&map0:EXTENT=11862318.594,-714081.378,11922154.957,-675870.096&map0:ROTATION=0&FORMAT=pdf&DPI=300"
+	wget -O map.pdf "http://172.17.0.6/cgi-bin/qgis_mapserv.fcgi?map=/web/jk-floods.qgs&SERVICE=wms&LAYERS=Rw&REQUEST=GetPrint&TEMPLATE=6Hour&map0:EXTENT=11862318.594,-714081.378,11922154.957,-675870.096&map0:ROTATION=0&FORMAT=pdf&DPI=300"
 
 #
 # Staging

@@ -1,131 +1,99 @@
-__author__ = 'christian'
 # coding=utf-8
-"""Views for layers"""
-import glob
+
 import os
-
-
+import sys
 from qgis.core import (
-    QgsPoint,
-    QgsField,
-    QgsFeature,
-    QgsGeometry,
-    QgsVectorLayer,
-    QgsRaster,
-    QgsRasterLayer,
-    QgsDataSourceURI,
-    QgsVectorFileWriter,
-    QgsCoordinateReferenceSystem,
+    QgsApplication,
     QgsProject,
     QgsComposition,
     QgsMapLayerRegistry,
     QgsPalLabeling,
-    QgsProviderRegistry,
-    QgsFeatureRequest,
-    QgsVectorDataProvider,
-    QgsMapSettings
+    QgsMapSettings,
 )
+from qgis.gui import QgsMapCanvas, QgsLayerTreeMapCanvasBridge
 from PyQt4.QtCore import (
     QCoreApplication,
-    QObject,
-    QVariant,
     QFileInfo,
-    QUrl,
     QSize,
-    Qt,
-    QTranslator
 )
+from PyQt4.QtGui import QPrinter, QPainter, QWidget, QVBoxLayout
 from PyQt4.QtXml import QDomDocument
 
+QCoreApplication.setOrganizationName('JakartaFloodMaps')
+QCoreApplication.setOrganizationDomain('kartoza.com')
+QCoreApplication.setApplicationName('JakartaFloodMaps')
 
-def render_map():
-    """This is the 'do it all' method to render a pdf.
+gui_flag = True
+app = QgsApplication(sys.argv, gui_flag)
 
-    :param force_flag: (Optional). Whether to force the
-            regeneration of map product. Defaults to False.
-    :type force_flag: bool
+# Make sure QGIS_PREFIX_PATH is set in your env if needed!
+app.initQgis()
 
-    :raise Propagates any exceptions.
-    """
-    reports_dir = os.path.abspath(os.path.join(
-        os.path.dirname(__file__),
-        os.path.pardir,
-        'reports',
-    ))
-    shp_file = os.path.join(
-        reports_dir,
-        'shp',
-        '6h',
-        '2015-01-13-12.shp'
-    )
-    pdf_file = os.path.join(
-        reports_dir,
-        'pdf',
-        '6h',
-        '2015-01-13-12.pdf'
-    )
+reports_dir = os.path.abspath(os.path.join(
+    os.path.dirname(__file__),
+    os.path.pardir,
+    'reports',
+))
 
-    # Make sure the map layers have all been removed before we
-    # start otherwise in batch mode we will get overdraws.
-    # noinspection PyArgumentList
-    QgsMapLayerRegistry.instance().removeAllMapLayers()
+pdf_file = os.path.abspath(os.path.join(
+    reports_dir,
+    'pdf',
+    '6h',
+    '2015-01-13-12.pdf'
+))
 
-    layer = QgsVectorLayer(
-        shp_file,
-        'mmi-cities', "ogr")
-    if not layer.isValid():
-        raise ImportError
+project_path = os.path.abspath(os.path.join(
+    os.path.dirname(__file__),
+    os.path.pardir,
+    'maps',
+    'projects',
+    'jakarta_flood_maps.qgs'
+))
 
-    project_path = os.path.join(
-        os.path.dirname(__file__),
-        os.path.pardir,
-        'maps',
-        'projects',
-        'jakarta_flood_maps.qgs')
+widget = QWidget()
+canvas = QgsMapCanvas(widget)
+canvas.resize(QSize(400, 400))
 
-    # Load our project
-    QgsProject.instance().setFileName(project_path)
-    # noinspection PyArgumentList
-    QgsProject.instance().read()
+print 'Canvas extent before loading project: %s' % canvas.extent().toString()
+# Load our project
+bridge = QgsLayerTreeMapCanvasBridge(
+    QgsProject.instance().layerTreeRoot(), canvas)
+QgsProject.instance().read(QFileInfo(project_path))
+canvas.zoomToFullExtent()
+print 'Canvas extent after loading project: %s' % canvas.extent().toString()
+# Load our template
+template_path = os.path.abspath(os.path.join(
+    os.path.dirname(__file__),
+    os.path.pardir,
+    'maps',
+    'templates',
+    'jakarta_flooded_rw.qpt'
+))
 
-    # noinspection PyArgumentList
-    QgsMapLayerRegistry.instance().addMapLayers([layer])
+template_file = file(template_path)
+template_content = template_file.read()
+template_file.close()
+document = QDomDocument()
+document.setContent(template_content)
 
-    # Load our template
-    template_path = os.path.join(
-        os.path.dirname(__file__),
-        os.path.pardir,
-        'maps',
-        'templates',
-        'jakart_flooded_rw.qpt')
+#
+#label_engine = QgsPalLabeling()
+#renderer = QgsMapRenderer()
+#renderer.setLabelingEngine(label_engine)
+# Now set up the composition
+composition = QgsComposition(canvas.mapSettings())
+# You can use this to replace any string like this [key]
+# in the template with a new value. e.g. to replace
+# [date] pass a map like this {'date': '1 Jan 2012'}
+substitution_map = {
+    'DATE_TIME_START': 'foo',
+    'DATE_TIME_END': 'bar'}
+composition.loadFromTemplate(document, substitution_map)
 
-    template_file = file(template_path)
-    template_content = template_file.read()
-    template_file.close()
-    document = QDomDocument()
-    document.setContent(template_content)
-
-    # Now set up the composition
-    composition = QgsComposition(QgsMapSettings())
-
-    # You can use this to replace any string like this [key]
-    # in the template with a new value. e.g. to replace
-    # [date] pass a map like this {'date': '1 Jan 2012'}
-    substitution_map = {
-        'this': 'that',
-        'here': 'there'}
-
-    composition.loadFromTemplate(document, substitution_map)
-
-    # Get the main map canvas on the composition and set
-    # its extents to the event.
-    map_canvas = composition.getComposerItemById('main-map')
-    # map_canvas.setNewExtent(extent)
-    map_canvas.renderModeUpdateCachedImage()
-
-    # Save a pdf.
-    composition.exportAsPDF(pdf_file)
+# Get the main map canvas on the composition and set
+# its extents to the event.
+map_canvas = composition.getComposerItemById('main-map')
+# Save a pdf.
+composition.exportAsPDF(pdf_file)
 
 
-if __name__ == "__main__":
-    render_map()
