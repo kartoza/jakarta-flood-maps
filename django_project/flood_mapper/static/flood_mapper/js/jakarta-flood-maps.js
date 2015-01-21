@@ -139,20 +139,101 @@ function updateFloodAreaReport() {
     rt_id = rt.val();
     $.get('/api/reports/rt/' + rt_id + '/?format=json', function (data) {
         if (data.length === 0) {
-            console.log('No reported flood info');
             $('#current_flood_depth_div').hide();
             $('#flood_depth_over_time_div').hide();
         } else {
-            console.log(data);
-            $('#current_flood_depth').text(data[0].depth);
+            var graph = $('#flood_depths_graph'),
+                village = $('#village');
+            $('#current_flood_depth').text(data[0].depth + 'm');
             $('#current_flood_depth_div').show();
 
             $.each(data, function (dummy, rt) {
-                depths.push(rt.depth);
+                depths.push([
+                    new Date(rt.date_time),
+                    parseFloat(rt.depth),
+                ]);
             });
             depths.reverse();
-            $('#flood_depth_span').text(depths.join(','));
-            $(".line").peity("line");
+            graph.width(village.width());
+            graph.height(village.height() * 10);
+            $.plot(graph, [depths, depths],
+            {
+                series: {
+                    lines: {
+                        show: true,
+                        fill: true
+                    },
+                    splines: {
+                        show: true,
+                        tension: 0.4,
+                        lineWidth: 1,
+                        fill: 0.4
+                    },
+                    points: {
+                        radius: 2,
+                        show: true
+                    },
+                    shadowSize: 2
+                },
+                grid: {
+                    hoverable: true,
+                    clickable: true,
+                    tickColor: "#d5d5d5",
+                    borderWidth: 1,
+                    color: '#d5d5d5',
+                    labelMargin: 30
+                },
+                colors: ["#4285f4", "#4285f4"],
+                xaxis: {
+                    mode: "time",
+                    tickSize: [
+                        parseInt(
+                            (depths[depths.length-1][0] - depths[0][0]) /
+                            15000000
+                        ),
+                        "hour"
+                    ],
+                    tickLength: null,
+                    axisLabel: "Date",
+                    axisLabelUseCanvas: true,
+                    axisLabelFontSizePixels: 12,
+                    axisLabelFontFamily: 'Arial',
+                    axisLabelPadding: 10,
+                    color: "#838383"
+                },
+                yaxis: {
+                    position: 'left',
+                    min: 0,
+                    max: 10,
+                    ticks: 5,
+                    alignTicksWithAxis: 1
+                }
+            }
+            );
+            $("<div id='tooltip'></div>").css({
+                position: "absolute",
+                display: "none",
+                border: "1px solid #fdd",
+                padding: "2px",
+                "background-color": "#fee",
+                opacity: 0.80
+            }).appendTo("body");
+            graph.bind("plothover", function (event, pos, item) {
+                if (item) {
+                    var date_time = new Date(item.datapoint[0]),
+                        water_depth = item.datapoint[1].toFixed(2),
+                        tooltip_text;
+                    tooltip_text = (
+                        "A flood depth of " + water_depth +
+                        "m<br>was reached on " + date_time.toLocaleString()
+                    );
+                    $("#tooltip").html(tooltip_text)
+                        .css({top: item.pageY+5, left: item.pageX+5})
+                        .fadeIn(200);
+                } else {
+                    $("#tooltip").hide();
+                }
+            });
             $('#flood_depth_over_time_div').show();
 
         }
