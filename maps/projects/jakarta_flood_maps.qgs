@@ -6,7 +6,7 @@
         <layer-tree-layer expanded="1" checked="Qt::Checked" id="report_6_hour_temp20150119093925134" name="report_6_hour_temp">
             <customproperties/>
         </layer-tree-layer>
-        <layer-tree-layer expanded="1" checked="Qt::Checked" id="jakarta20150121113048473" name="jakarta">
+        <layer-tree-layer expanded="1" checked="Qt::Checked" id="jakarta20150121114548274" name="jakarta">
             <customproperties/>
         </layer-tree-layer>
     </layer-tree-group>
@@ -14,10 +14,10 @@
     <mapcanvas>
         <units>meters</units>
         <extent>
-            <xmin>11893205.05506102554500103</xmin>
-            <ymin>-697955.0286757085705176</ymin>
-            <xmax>11926926.77904746495187283</xmax>
-            <ymax>-678865.56142570811789483</ymax>
+            <xmin>11862117.13728714361786842</xmin>
+            <ymin>-716706.82846256042830646</ymin>
+            <xmax>11929560.58526002243161201</xmax>
+            <ymax>-678527.89396255952306092</ymax>
         </extent>
         <projections>1</projections>
         <destinationsrs>
@@ -39,6 +39,7 @@
             <layer_coordinate_transform destAuthId="EPSG:3857" srcAuthId="EPSG:4326" srcDatumTransform="-1" destDatumTransform="-1" layerid="roads20150113140048846"/>
             <layer_coordinate_transform destAuthId="EPSG:3857" srcAuthId="EPSG:4326" srcDatumTransform="-1" destDatumTransform="-1" layerid="2015_01_13_1220150113125519866"/>
             <layer_coordinate_transform destAuthId="EPSG:3857" srcAuthId="EPSG:4326" srcDatumTransform="-1" destDatumTransform="-1" layerid="rw_jakarta_update20150113135137010"/>
+            <layer_coordinate_transform destAuthId="EPSG:3857" srcAuthId="EPSG:4326" srcDatumTransform="-1" destDatumTransform="-1" layerid="jakarta20150121114548274"/>
             <layer_coordinate_transform destAuthId="EPSG:3857" srcAuthId="EPSG:4326" srcDatumTransform="-1" destDatumTransform="-1" layerid="roads20150113134832298"/>
             <layer_coordinate_transform destAuthId="EPSG:3857" srcAuthId="EPSG:4326" srcDatumTransform="-1" destDatumTransform="-1" layerid="jakarta20150121113048473"/>
         </layer_coordinate_transform_info>
@@ -46,7 +47,7 @@
     <layer-tree-canvas>
         <custom-order enabled="0">
             <item>report_6_hour_temp20150119093925134</item>
-            <item>jakarta20150121113048473</item>
+            <item>jakarta20150121114548274</item>
         </custom-order>
     </layer-tree-canvas>
     <legend updateDrawingOrder="true">
@@ -57,7 +58,7 @@
         </legendlayer>
         <legendlayer drawingOrder="-1" open="true" checked="Qt::Checked" name="jakarta" showFeatureCount="0">
             <filegroup open="true" hidden="false">
-                <legendlayerfile isInOverview="0" layerid="jakarta20150121113048473" visible="1"/>
+                <legendlayerfile isInOverview="0" layerid="jakarta20150121114548274" visible="1"/>
             </filegroup>
         </legendlayer>
     </legend>
@@ -156,7 +157,7 @@
                             </symbols>
                         </VectorClassificationItemNg>
                     </LayerItem>
-                    <LayerItem layerId="jakarta20150121113048473" userText="" style="hidden" text="jakarta" showFeatureCount="0">
+                    <LayerItem layerId="jakarta20150121114548274" userText="" style="hidden" text="jakarta" showFeatureCount="0">
                         <VectorClassificationItemNg userText="" text="jakarta">
                             <symbols>
                                 <symbol alpha="1" type="fill" name="classificationSymbol">
@@ -423,7 +424,7 @@
                     </Annotation>
                 </Grid>
                 <AtlasMap scalingMode="2" atlasDriven="0" margin="0.10000000000000001"/>
-                <ComposerItem pagey="32.8812" page="1" id="" lastValidViewScaleFactor="1.12564" positionMode="0" positionLock="false" x="25.6513" y="32.8812" zValue="2" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="340.305" outlineWidth="1" uuid="{2edc43f2-4e23-486a-b074-bc67ffae7201}" height="354.238" itemRotation="0" frame="true" pagex="25.6513">
+                <ComposerItem pagey="32.8812" page="1" id="" lastValidViewScaleFactor="1.14968" positionMode="0" positionLock="false" x="25.6513" y="32.8812" zValue="2" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="340.305" outlineWidth="1" uuid="{2edc43f2-4e23-486a-b074-bc67ffae7201}" height="354.238" itemRotation="0" frame="true" pagex="25.6513">
                     <FrameColor alpha="255" red="0" blue="0" green="0"/>
                     <BackgroundColor alpha="255" red="0" blue="255" green="207"/>
                 </ComposerItem>
@@ -1320,7 +1321,7 @@
                             </symbols>
                         </VectorClassificationItemNg>
                     </LayerItem>
-                    <LayerItem layerId="jakarta20150121113048473" userText="" style="hidden" text="jakarta" showFeatureCount="0">
+                    <LayerItem layerId="jakarta20150121114548274" userText="" style="hidden" text="jakarta" showFeatureCount="0">
                         <VectorClassificationItemNg userText="" text="jakarta">
                             <symbols>
                                 <symbol alpha="1" type="fill" name="classificationSymbol">
@@ -1748,8 +1749,8 @@
     </Composer>
     <projectlayers layercount="2">
         <maplayer minimumScale="-4.65661e-10" maximumScale="1e+08" simplifyDrawingHints="1" minLabelScale="0" maxLabelScale="1e+08" simplifyDrawingTol="1" geometry="Polygon" simplifyMaxScale="1" type="vector" hasScaleBasedVisibilityFlag="0" simplifyLocal="1" scaleBasedLabelVisibilityFlag="0">
-            <id>jakarta20150121113048473</id>
-            <datasource>../jakarta.shp</datasource>
+            <id>jakarta20150121114548274</id>
+            <datasource>../data/jakarta.shp</datasource>
             <title></title>
             <abstract></abstract>
             <keywordList>
@@ -1994,10 +1995,10 @@
                     <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
                 </edittype>
             </edittypes>
-            <editform>..</editform>
+            <editform>.</editform>
             <editforminit></editforminit>
             <featformsuppress>0</featformsuppress>
-            <annotationform>..</annotationform>
+            <annotationform>.</annotationform>
             <editorlayout>generatedlayout</editorlayout>
             <excludeAttributesWMS/>
             <excludeAttributesWFS/>
@@ -2116,7 +2117,7 @@
         <Digitizing>
             <LayerSnappingList type="QStringList">
                 <value>report_6_hour_temp20150119093925134</value>
-                <value>jakarta20150121113048473</value>
+                <value>jakarta20150121114548274</value>
             </LayerSnappingList>
             <LayerSnappingEnabledList type="QStringList">
                 <value>disabled</value>

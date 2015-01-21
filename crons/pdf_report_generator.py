@@ -50,9 +50,6 @@ def render_map():
     reports_dir = os.path.abspath(os.path.join(
         os.path.dirname(__file__),
         os.path.pardir,
-        os.path.pardir,
-        os.path.pardir,
-        os.path.pardir,
         'reports',
     ))
     shp_file = os.path.join(
@@ -82,9 +79,9 @@ def render_map():
     project_path = os.path.join(
         os.path.dirname(__file__),
         os.path.pardir,
-        os.path.pardir,
-        'data',
-        'jakarta_background.qgs')
+        'maps',
+        'projects',
+        'jakarta_flood_maps.qgs')
 
     # Load our project
     QgsProject.instance().setFileName(project_path)
@@ -98,9 +95,9 @@ def render_map():
     template_path = os.path.join(
         os.path.dirname(__file__),
         os.path.pardir,
-        os.path.pardir,
-        'data',
-        'realtime-template.qpt')
+        'maps',
+        'templates',
+        'jakart_flooded_rw.qpt')
 
     template_file = file(template_path)
     template_content = template_file.read()
