@@ -135,8 +135,29 @@
       </symbols>
      </VectorClassificationItemNg>
     </LayerItem>
+    <LayerItem layerId="rw_jakarta_update20150121132117662" userText="" style="hidden" text="rw_jakarta_update" showFeatureCount="0">
+     <VectorClassificationItemNg userText="" text="rw_jakarta_update">
+      <symbols>
+       <symbol alpha="1" type="fill" name="classificationSymbol">
+        <layer pass="0" class="SimpleFill" locked="0">
+         <prop k="border_width_map_unit_scale" v="0,0"/>
+         <prop k="border_width_unit" v="MM"/>
+         <prop k="color" v="255,255,255,255"/>
+         <prop k="color_border" v="0,0,0,255"/>
+         <prop k="joinstyle" v="bevel"/>
+         <prop k="offset" v="0,0"/>
+         <prop k="offset_map_unit_scale" v="0,0"/>
+         <prop k="offset_unit" v="MM"/>
+         <prop k="style" v="solid"/>
+         <prop k="style_border" v="solid"/>
+         <prop k="width_border" v="0.26"/>
+        </layer>
+       </symbol>
+      </symbols>
+     </VectorClassificationItemNg>
+    </LayerItem>
    </Model>
-   <ComposerItem pagey="222.26" page="1" id="" lastValidViewScaleFactor="1.14968" positionMode="0" positionLock="false" x="391.554" y="222.26" zValue="23" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="146.93" outlineWidth="0.3" uuid="{77691fa2-c94f-4a8d-b19a-cb7fdfdf6c0e}" height="30.7" itemRotation="0" frame="false" pagex="391.554">
+   <ComposerItem pagey="222.26" page="1" id="" lastValidViewScaleFactor="1.14968" positionMode="0" positionLock="false" x="391.554" y="222.26" zValue="23" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="146.93" outlineWidth="0.3" uuid="{77691fa2-c94f-4a8d-b19a-cb7fdfdf6c0e}" height="36.7" itemRotation="0" frame="false" pagex="391.554">
     <FrameColor alpha="255" red="0" blue="0" green="0"/>
     <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
    </ComposerItem>
@@ -259,7 +280,7 @@
     <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
    </ComposerItem>
   </ComposerLabel>
-  <ComposerLabel valign="32" labelText="BERBASARKAN KEJADIAN BANJIR&#xa;[[DATE_TIME_START]]-&#xa;[[DATE_TIME_END]]" htmlState="0" halign="1" margin="1">
+  <ComposerLabel valign="32" labelText="BERBASARKAN KEJADIAN BANJIR&#xa;[DATE_TIME_START] - [DATE_TIME_END]" htmlState="0" halign="1" margin="1">
    <LabelFont description="Helvetica,22,-1,5,75,0,0,0,0,0"/>
    <FontColor red="21" blue="255" green="90"/>
    <ComposerItem pagey="139.228" page="1" id="" lastValidViewScaleFactor="1.32702" positionMode="0" positionLock="false" x="391.554" y="139.228" zValue="7" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="146.178" outlineWidth="0.3" uuid="{c08f4d97-6519-44ad-97d5-f62b7b86bc70}" height="34.9593" itemRotation="0" frame="false" pagex="391.554">
