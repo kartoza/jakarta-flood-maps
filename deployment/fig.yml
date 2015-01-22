@@ -107,6 +107,21 @@ uwsgi:
     - smtp:smtp
     - db:db
 
+cron:
+  build: docker-cron
+  hostname: cron
+  environment:
+    - PGPASSWORD=docker
+    - PGUSER=docker
+    - PGPORT=5432
+    - PGHOST=db
+    - PGDATABASE=gis
+  volumes:
+    - ../maps:/home/web/maps
+    - ./reports:/home/web/reports
+  links:
+    - db:db
+
 web:
   image: nginx
   hostname: nginx
@@ -116,6 +131,7 @@ web:
     - ./static:/home/web/static:ro
     - ./media:/home/web/media:ro
     - ./logs:/var/log/nginx
+    - ./reports:/home/web/reports
   links:
     - uwsgi:uwsgi
     - qgisserver:qgisserver
