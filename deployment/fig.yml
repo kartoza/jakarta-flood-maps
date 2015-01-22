@@ -119,6 +119,7 @@ cron:
   volumes:
     - ../maps:/home/web/maps
     - ./reports:/home/web/reports
+    - ./cron-scripts:/home/web/cron-scripts
   links:
     - db:db
 
@@ -136,6 +137,7 @@ web:
     - uwsgi:uwsgi
     - qgisserver:qgisserver
     - mapproxy:mapproxy
+    - cron:cron
   ports:
     - "61000:8080"
 

@@ -10,6 +10,10 @@ ADD 71-apt-cacher-ng /etc/apt/apt.conf.d/71-apt-cacher-ng
 
 RUN apt-get update -y; apt-get -y --force-yes install cron postgis
 
-# Mount the /etc/crontab directory when running this volume
-
+# For deployment:
+# Mount the directories when running this volume
+#    - ../maps:/home/web/maps
+#    - ./reports:/home/web/reports
+#    - ./cron-scripts:/home/web/cron-scripts
+ADD crontab /etc/crontab
 CMD ["cron", "-f"]
