@@ -1,0 +1,411 @@
+<Composer title="Jakarta" visible="1">
+ <Composition snapGridTolerance="2" gridVisible="0" printResolution="100" paperWidth="594" snapGridOffsetX="0" guidesVisible="1" snapGridResolution="10" snapGridOffsetY="0" alignmentSnap="1" snapping="0" numPages="1" paperHeight="420" alignmentSnapTolerance="2" smartGuides="1" printAsRaster="0" generateWorldFile="0">
+  <symbol alpha="1" type="fill" name="">
+   <layer pass="0" class="SimpleFill" locked="0">
+    <prop k="border_width_map_unit_scale" v="0,0"/>
+    <prop k="border_width_unit" v="MM"/>
+    <prop k="color" v="255,255,255,255"/>
+    <prop k="color_border" v="0,0,0,255"/>
+    <prop k="joinstyle" v="miter"/>
+    <prop k="offset" v="0,0"/>
+    <prop k="offset_map_unit_scale" v="0,0"/>
+    <prop k="offset_unit" v="MM"/>
+    <prop k="style" v="solid"/>
+    <prop k="style_border" v="no"/>
+    <prop k="width_border" v="0.26"/>
+   </layer>
+  </symbol>
+  <ComposerPicture useExpression="false" resizeMode="3" pictureRotation="0" pictureWidth="72.5907" sourceExpression="" file="../images/inasafe-logo-url.svg" pictureHeight="21.4705" mapId="-1" anchorPoint="0">
+   <ComposerItem pagey="347.07" page="1" id="" lastValidViewScaleFactor="1.14968" positionMode="0" positionLock="false" x="486.844" y="347.07" zValue="27" background="true" transparency="0" frameJoinStyle="miter" blendMode="0" width="72.5907" outlineWidth="0.3" uuid="{ed0b960e-2a82-4cc7-9b04-d72bc018696c}" height="21.4705" itemRotation="0" frame="false" pagex="486.844">
+    <FrameColor alpha="255" red="0" blue="0" green="0"/>
+    <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
+   </ComposerItem>
+  </ComposerPicture>
+  <ComposerPicture useExpression="false" resizeMode="3" pictureRotation="0" pictureWidth="30.0383" sourceExpression="" file="../images/bnpb_logo.png" pictureHeight="37.2975" mapId="-1" anchorPoint="0">
+   <ComposerItem pagey="346.2" page="1" id="" lastValidViewScaleFactor="1.14968" positionMode="0" positionLock="false" x="452.695" y="346.2" zValue="26" background="true" transparency="0" frameJoinStyle="miter" blendMode="0" width="30.0383" outlineWidth="0.3" uuid="{14aa0398-33a7-4364-afd3-b5185de86d67}" height="37.2975" itemRotation="0" frame="false" pagex="452.695">
+    <FrameColor alpha="255" red="0" blue="0" green="0"/>
+    <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
+   </ComposerItem>
+  </ComposerPicture>
+  <ComposerPicture useExpression="false" resizeMode="0" pictureRotation="0" pictureWidth="59.7252" sourceExpression="" file="../images/Australian-AID-Identifier_blue-red.png" pictureHeight="26.8082" mapId="-1" anchorPoint="0">
+   <ComposerItem pagey="345.68" page="1" id="" lastValidViewScaleFactor="1.14968" positionMode="0" positionLock="false" x="390.797" y="345.68" zValue="25" background="true" transparency="0" frameJoinStyle="miter" blendMode="0" width="59.7252" outlineWidth="0.3" uuid="{35ca1a83-3dac-4d67-8b40-2306d29e58c5}" height="28.3988" itemRotation="0" frame="false" pagex="390.797">
+    <FrameColor alpha="255" red="0" blue="0" green="0"/>
+    <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
+   </ComposerItem>
+  </ComposerPicture>
+  <ComposerArrow startMarkerFile="" boundsBehaviourVersion="24" arrowHeadWidth="4" endMarkerFile="" outlineWidth="1" markerMode="0">
+   <ArrowColor alpha="255" red="0" blue="0" green="0"/>
+   <StartPoint x="518.969" y="197.866"/>
+   <StopPoint x="518.969" y="168.006"/>
+   <ComposerItem pagey="165.299" page="1" id="" lastValidViewScaleFactor="8.14692" positionMode="0" positionLock="false" x="516.262" y="165.299" zValue="24" background="true" transparency="0" frameJoinStyle="miter" blendMode="0" width="5.41421" outlineWidth="0" uuid="{d4356fc1-9fab-4146-b0b6-8ef671c3f880}" height="35.2742" itemRotation="0" frame="false" pagex="516.262">
+    <FrameColor alpha="0" red="255" blue="255" green="255"/>
+    <BackgroundColor alpha="0" red="255" blue="255" green="255"/>
+   </ComposerItem>
+  </ComposerArrow>
+  <ComposerLegend symbolWidth="7" title="Legenda" boxSpace="2" splitLayer="0" equalColumnWidth="0" map="0" titleAlignment="1" symbolHeight="4" wmsLegendHeight="25" wrapChar="" fontColor="#000000" columnSpace="2" wmsLegendWidth="50" columnCount="1">
+   <styles>
+    <style marginBottom="2" name="title" font="Helvetica,16,-1,5,75,0,0,0,0,0"/>
+    <style marginTop="2" name="group" font=".Lucida Grande UI,14,-1,5,50,0,0,0,0,0"/>
+    <style marginTop="2" name="subgroup" font=".Lucida Grande UI,12,-1,5,50,0,0,0,0,0"/>
+    <style marginTop="2" name="symbol" font=".Lucida Grande UI,13,-1,5,50,0,0,0,0,0"/>
+    <style marginTop="2" marginLeft="2" name="symbolLabel" font="Helvetica,14,-1,5,75,0,0,0,0,0"/>
+   </styles>
+   <Model autoUpdate="1">
+    <LayerItem layerId="13012014_060020140113023110559" userText="" style="hidden" text="13012014-0600" showFeatureCount="0">
+     <VectorClassificationItemNg userText="Daerah terdampak banjir (berdasarkan batas wilayah RW)" text="Daerah terdampak banjir (berdasarkan batas wilayah RW)">
+      <symbols>
+       <symbol alpha="1" type="fill" name="classificationSymbol">
+        <layer pass="0" class="SimpleFill" locked="0">
+         <prop k="border_width_map_unit_scale" v="0,0"/>
+         <prop k="border_width_unit" v="MM"/>
+         <prop k="color" v="114,178,215,255"/>
+         <prop k="color_border" v="0,0,0,255"/>
+         <prop k="joinstyle" v="bevel"/>
+         <prop k="offset" v="0,0"/>
+         <prop k="offset_map_unit_scale" v="0,0"/>
+         <prop k="offset_unit" v="MM"/>
+         <prop k="style" v="solid"/>
+         <prop k="style_border" v="no"/>
+         <prop k="width_border" v="0.26"/>
+        </layer>
+       </symbol>
+      </symbols>
+     </VectorClassificationItemNg>
+    </LayerItem>
+    <LayerItem layerId="report_6_hour_temp20150119093925134" userText="" style="hidden" text="report_6_hour_temp" showFeatureCount="0">
+     <VectorClassificationItemNg userText="" text="report_6_hour_temp">
+      <symbols>
+       <symbol alpha="1" type="fill" name="classificationSymbol">
+        <layer pass="0" class="SimpleFill" locked="0">
+         <prop k="border_width_map_unit_scale" v="0,0"/>
+         <prop k="border_width_unit" v="MM"/>
+         <prop k="color" v="138,196,183,255"/>
+         <prop k="color_border" v="0,0,0,255"/>
+         <prop k="joinstyle" v="bevel"/>
+         <prop k="offset" v="0,0"/>
+         <prop k="offset_map_unit_scale" v="0,0"/>
+         <prop k="offset_unit" v="MM"/>
+         <prop k="style" v="solid"/>
+         <prop k="style_border" v="solid"/>
+         <prop k="width_border" v="0.26"/>
+        </layer>
+       </symbol>
+      </symbols>
+     </VectorClassificationItemNg>
+    </LayerItem>
+    <LayerItem layerId="jakarta20150121114548274" userText="" style="hidden" text="jakarta" showFeatureCount="0">
+     <VectorClassificationItemNg userText="" text="jakarta">
+      <symbols>
+       <symbol alpha="1" type="fill" name="classificationSymbol">
+        <layer pass="0" class="ShapeburstFill" locked="0">
+         <prop k="blur_radius" v="8"/>
+         <prop k="color1" v="0,0,255,255"/>
+         <prop k="color2" v="0,255,0,255"/>
+         <prop k="color_type" v="0"/>
+         <prop k="discrete" v="0"/>
+         <prop k="distance_map_unit_scale" v="0,0"/>
+         <prop k="distance_unit" v="MM"/>
+         <prop k="ignore_rings" v="0"/>
+         <prop k="max_distance" v="10"/>
+         <prop k="offset" v="0,0"/>
+         <prop k="offset_map_unit_scale" v="0,0"/>
+         <prop k="offset_unit" v="MM"/>
+         <prop k="shapeburst_color" v="0,0,255,255"/>
+         <prop k="shapeburst_color2" v="255,255,255,255"/>
+         <prop k="use_whole_shape" v="0"/>
+        </layer>
+        <layer pass="0" class="SimpleLine" locked="1">
+         <prop k="capstyle" v="square"/>
+         <prop k="color" v="0,0,0,255"/>
+         <prop k="customdash" v="5;2"/>
+         <prop k="customdash_map_unit_scale" v="0,0"/>
+         <prop k="customdash_unit" v="MM"/>
+         <prop k="draw_inside_polygon" v="0"/>
+         <prop k="joinstyle" v="bevel"/>
+         <prop k="offset" v="0"/>
+         <prop k="offset_map_unit_scale" v="0,0"/>
+         <prop k="offset_unit" v="MM"/>
+         <prop k="penstyle" v="solid"/>
+         <prop k="use_custom_dash" v="0"/>
+         <prop k="width" v="0.26"/>
+         <prop k="width_map_unit_scale" v="0,0"/>
+         <prop k="width_unit" v="MM"/>
+        </layer>
+       </symbol>
+      </symbols>
+     </VectorClassificationItemNg>
+    </LayerItem>
+    <LayerItem layerId="rw_jakarta_update20150121132117662" userText="" style="hidden" text="rw_jakarta_update" showFeatureCount="0">
+     <VectorClassificationItemNg userText="" text="rw_jakarta_update">
+      <symbols>
+       <symbol alpha="1" type="fill" name="classificationSymbol">
+        <layer pass="0" class="SimpleFill" locked="0">
+         <prop k="border_width_map_unit_scale" v="0,0"/>
+         <prop k="border_width_unit" v="MM"/>
+         <prop k="color" v="255,255,255,255"/>
+         <prop k="color_border" v="0,0,0,255"/>
+         <prop k="joinstyle" v="bevel"/>
+         <prop k="offset" v="0,0"/>
+         <prop k="offset_map_unit_scale" v="0,0"/>
+         <prop k="offset_unit" v="MM"/>
+         <prop k="style" v="solid"/>
+         <prop k="style_border" v="solid"/>
+         <prop k="width_border" v="0.26"/>
+        </layer>
+       </symbol>
+      </symbols>
+     </VectorClassificationItemNg>
+    </LayerItem>
+   </Model>
+   <ComposerItem pagey="222.26" page="1" id="" lastValidViewScaleFactor="1.14968" positionMode="0" positionLock="false" x="391.554" y="222.26" zValue="23" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="146.93" outlineWidth="0.3" uuid="{77691fa2-c94f-4a8d-b19a-cb7fdfdf6c0e}" height="36.7" itemRotation="0" frame="false" pagex="391.554">
+    <FrameColor alpha="255" red="0" blue="0" green="0"/>
+    <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
+   </ComposerItem>
+  </ComposerLegend>
+  <ComposerLabel valign="32" labelText="PROVINSI BANTEN" htmlState="0" halign="4" margin="1">
+   <LabelFont description="Helvetica,12,-1,5,75,0,0,0,0,0"/>
+   <FontColor red="0" blue="0" green="0"/>
+   <ComposerItem pagey="272.328" page="1" id="" lastValidViewScaleFactor="1.39905" positionMode="0" positionLock="false" x="51.4635" y="272.328" zValue="22" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="39.6257" outlineWidth="0.3" uuid="{3704331b-99a4-4a7c-a042-7fbc11855127}" height="13.5415" itemRotation="0" frame="false" pagex="51.4635">
+    <FrameColor alpha="255" red="0" blue="0" green="0"/>
+    <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
+   </ComposerItem>
+  </ComposerLabel>
+  <ComposerLabel valign="32" labelText="PROVINSI &#xa;JAWA BARAT" htmlState="0" halign="4" margin="1">
+   <LabelFont description="Helvetica,12,-1,5,75,0,0,0,0,0"/>
+   <FontColor red="0" blue="0" green="0"/>
+   <ComposerItem pagey="333.529" page="1" id="" lastValidViewScaleFactor="1.39905" positionMode="0" positionLock="false" x="307.643" y="333.529" zValue="21" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="39.6257" outlineWidth="0.3" uuid="{7fcc3053-47dc-443f-b2d5-117137582505}" height="13.5415" itemRotation="0" frame="false" pagex="307.643">
+    <FrameColor alpha="255" red="0" blue="0" green="0"/>
+    <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
+   </ComposerItem>
+  </ComposerLabel>
+  <ComposerLabel valign="32" labelText="mT" htmlState="0" halign="1" margin="1">
+   <LabelFont description="Helvetica,12,-1,5,75,0,0,0,0,0"/>
+   <FontColor red="0" blue="0" green="0"/>
+   <ComposerItem pagey="388.119" page="1" id="" lastValidViewScaleFactor="1.39905" positionMode="0" positionLock="false" x="285.451" y="388.119" zValue="20" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="12.35" outlineWidth="0.3" uuid="{93998cc4-f244-4735-a97a-32b74405d413}" height="6.29375" itemRotation="0" frame="false" pagex="285.451">
+    <FrameColor alpha="255" red="0" blue="0" green="0"/>
+    <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
+   </ComposerItem>
+  </ComposerLabel>
+  <ComposerLabel valign="32" labelText="mT" htmlState="0" halign="1" margin="1">
+   <LabelFont description="Helvetica,12,-1,5,75,0,0,0,0,0"/>
+   <FontColor red="0" blue="0" green="0"/>
+   <ComposerItem pagey="388.119" page="1" id="" lastValidViewScaleFactor="1.39905" positionMode="0" positionLock="false" x="84.914" y="388.119" zValue="19" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="12.35" outlineWidth="0.3" uuid="{a0ddcb07-8569-4c01-9079-6bbb5fab8b15}" height="6.29375" itemRotation="0" frame="false" pagex="84.914">
+    <FrameColor alpha="255" red="0" blue="0" green="0"/>
+    <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
+   </ComposerItem>
+  </ComposerLabel>
+  <ComposerLabel valign="32" labelText="mS" htmlState="0" halign="4" margin="1">
+   <LabelFont description="Helvetica,12,-1,5,75,0,0,0,0,0"/>
+   <FontColor red="0" blue="0" green="0"/>
+   <ComposerItem pagey="340.025" page="1" id="" lastValidViewScaleFactor="2.7981" positionMode="0" positionLock="false" x="19.1885" y="340.025" zValue="18" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="6.46279" outlineWidth="0.3" uuid="{504b8f7a-1845-4948-8a55-106ca250f9dc}" height="12.35" itemRotation="0" frame="false" pagex="19.1885">
+    <FrameColor alpha="255" red="0" blue="0" green="0"/>
+    <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
+   </ComposerItem>
+  </ComposerLabel>
+  <ComposerLabel valign="32" labelText="mS" htmlState="0" halign="4" margin="1">
+   <LabelFont description="Helvetica,12,-1,5,75,0,0,0,0,0"/>
+   <FontColor red="0" blue="0" green="0"/>
+   <ComposerItem pagey="39.684" page="1" id="" lastValidViewScaleFactor="2.7981" positionMode="0" positionLock="false" x="19.1885" y="39.684" zValue="17" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="6.46279" outlineWidth="0.3" uuid="{99ce3d5a-7a43-440e-83da-f6a7429cded3}" height="12.35" itemRotation="0" frame="false" pagex="19.1885">
+    <FrameColor alpha="255" red="0" blue="0" green="0"/>
+    <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
+   </ComposerItem>
+  </ComposerLabel>
+  <ComposerLabel valign="32" labelText="mS" htmlState="0" halign="4" margin="1">
+   <LabelFont description="Helvetica,12,-1,5,75,0,0,0,0,0"/>
+   <FontColor red="0" blue="0" green="0"/>
+   <ComposerItem pagey="39.684" page="1" id="" lastValidViewScaleFactor="1.39905" positionMode="0" positionLock="false" x="366.956" y="39.684" zValue="16" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="6.46279" outlineWidth="0.3" uuid="{a84c0416-506e-4bf2-a9a9-2427dfe90949}" height="12.35" itemRotation="0" frame="false" pagex="366.956">
+    <FrameColor alpha="255" red="0" blue="0" green="0"/>
+    <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
+   </ComposerItem>
+  </ComposerLabel>
+  <ComposerLabel valign="32" labelText="mT" htmlState="0" halign="1" margin="1">
+   <LabelFont description="Helvetica,12,-1,5,75,0,0,0,0,0"/>
+   <FontColor red="0" blue="0" green="0"/>
+   <ComposerItem pagey="26.0118" page="1" id="" lastValidViewScaleFactor="1.39905" positionMode="0" positionLock="false" x="85.914" y="26.0118" zValue="15" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="12.35" outlineWidth="0.3" uuid="{aa6e3f94-1537-4105-83f9-ef172363bca4}" height="6.29375" itemRotation="0" frame="false" pagex="85.914">
+    <FrameColor alpha="255" red="0" blue="0" green="0"/>
+    <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
+   </ComposerItem>
+  </ComposerLabel>
+  <ComposerLabel valign="32" labelText="mS" htmlState="0" halign="4" margin="1">
+   <LabelFont description="Helvetica,12,-1,5,75,0,0,0,0,0"/>
+   <FontColor red="0" blue="0" green="0"/>
+   <ComposerItem pagey="338.025" page="1" id="" lastValidViewScaleFactor="2.7981" positionMode="0" positionLock="false" x="365.956" y="338.025" zValue="14" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="6.46279" outlineWidth="0.3" uuid="{0d35d0af-30b1-431e-97fe-6ac73f796b66}" height="12.35" itemRotation="0" frame="false" pagex="365.956">
+    <FrameColor alpha="255" red="0" blue="0" green="0"/>
+    <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
+   </ComposerItem>
+  </ComposerLabel>
+  <ComposerLabel valign="32" labelText="mT" htmlState="0" halign="1" margin="1">
+   <LabelFont description="Helvetica,12,-1,5,75,0,0,0,0,0"/>
+   <FontColor red="0" blue="0" green="0"/>
+   <ComposerItem pagey="25.5875" page="1" id="" lastValidViewScaleFactor="1.39905" positionMode="0" positionLock="false" x="284.995" y="25.5875" zValue="13" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="12.35" outlineWidth="0.3" uuid="{c93a93ea-086f-4629-b7d8-b655ad967269}" height="6.29375" itemRotation="0" frame="false" pagex="284.995">
+    <FrameColor alpha="255" red="0" blue="0" green="0"/>
+    <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
+   </ComposerItem>
+  </ComposerLabel>
+  <ComposerLabel valign="32" labelText="Teluk Jakarta" htmlState="0" halign="4" margin="1">
+   <LabelFont description="Helvetica,16,-1,5,50,1,0,0,0,0"/>
+   <FontColor red="0" blue="255" green="0"/>
+   <ComposerItem pagey="50.034" page="1" id="" lastValidViewScaleFactor="1.39905" positionMode="0" positionLock="false" x="175.119" y="50.034" zValue="12" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="60.0407" outlineWidth="0.3" uuid="{9870e686-1285-4544-a9a5-96bd9621aaed}" height="10.7216" itemRotation="0" frame="false" pagex="175.119">
+    <FrameColor alpha="255" red="0" blue="0" green="0"/>
+    <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
+   </ComposerItem>
+  </ComposerLabel>
+  <ComposerLabel valign="32" labelText="Informasi bebih lanjut hubungi:&#xa;Badan Penanggulangan Bencana Daerah (BPBD)&#xa;Provisi DBI Jakarta&#xa;Jl. Medan Merdeka Selatan, No. 8-9 Blok F Lantai 3,&#xa;Telpon 3822078 Fax 3441355" htmlState="0" halign="1" margin="1">
+   <LabelFont description="Helvetica,16,-1,5,50,0,0,0,0,0"/>
+   <FontColor red="0" blue="0" green="0"/>
+   <ComposerItem pagey="269.77" page="1" id="" lastValidViewScaleFactor="1.14968" positionMode="0" positionLock="false" x="390.797" y="269.77" zValue="11" background="true" transparency="0" frameJoinStyle="miter" blendMode="0" width="164.547" outlineWidth="0.3" uuid="{17119e83-0bd4-475c-a8a9-d0f042c90575}" height="46.0593" itemRotation="0" frame="false" pagex="390.797">
+    <FrameColor alpha="255" red="0" blue="0" green="0"/>
+    <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
+   </ComposerItem>
+  </ComposerLabel>
+  <ComposerScaleBar penColor="#000000" lineCapStyle="square" style="Line Ticks Up" numMapUnitsPerScaleBarUnit="1000" alignment="0" brushColor="#000000" numSegments="3" segmentMillimeters="30.2131" lineJoinStyle="miter" fontColor="#000000" font=".Lucida Grande UI,12,-1,5,50,0,0,0,0,0" numUnitsPerSegment="3000" units="1" labelBarSpace="3" outlineWidth="1" numSegmentsLeft="0" height="4" mapId="0" boxContentSpace="1" unitLabel="Kilometer">
+   <ComposerItem pagey="368.541" page="1" id="" lastValidViewScaleFactor="1.39905" positionMode="0" positionLock="false" x="33.154" y="368.541" zValue="10" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="118.927" outlineWidth="0.3" uuid="{ab761536-b29a-45af-9fa4-722553637731}" height="12.9" itemRotation="0" frame="false" pagex="33.154">
+    <FrameColor alpha="255" red="0" blue="0" green="0"/>
+    <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
+   </ComposerItem>
+  </ComposerScaleBar>
+  <ComposerLabel valign="32" labelText="PERMERINTAH PROVINSI DKI JAKARTA&#xa;BADAN PENANGGULANGAN BECANA DEARAH" htmlState="0" halign="4" margin="1">
+   <LabelFont description="Helvetica,20,-1,5,75,0,0,0,0,0"/>
+   <FontColor red="0" blue="0" green="0"/>
+   <ComposerItem pagey="86.9777" page="1" id="" lastValidViewScaleFactor="2.03673" positionMode="0" positionLock="false" x="386.551" y="86.9777" zValue="9" background="true" transparency="0" frameJoinStyle="miter" blendMode="0" width="179.263" outlineWidth="0.3" uuid="{ff384ad2-ef59-4bce-9471-b9e1c5b826df}" height="27.4685" itemRotation="0" frame="false" pagex="386.551">
+    <FrameColor alpha="255" red="0" blue="0" green="0"/>
+    <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
+   </ComposerItem>
+  </ComposerLabel>
+  <ComposerLabel valign="32" labelText="U" htmlState="0" halign="1" margin="1">
+   <LabelFont description="Helvetica,14,-1,5,75,0,0,0,0,0"/>
+   <FontColor red="0" blue="0" green="0"/>
+   <ComposerItem pagey="155.39" page="1" id="" lastValidViewScaleFactor="8.14692" positionMode="0" positionLock="false" x="516.262" y="155.39" zValue="8" background="true" transparency="0" frameJoinStyle="miter" blendMode="0" width="6.32053" outlineWidth="0.3" uuid="{246fc84b-d63d-4015-89c1-6f37b3142024}" height="7.57656" itemRotation="0" frame="false" pagex="516.262">
+    <FrameColor alpha="255" red="0" blue="0" green="0"/>
+    <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
+   </ComposerItem>
+  </ComposerLabel>
+  <ComposerLabel valign="32" labelText="BERBASARKAN KEJADIAN BANJIR&#xa;[DATE_TIME_START] - [DATE_TIME_END]" htmlState="0" halign="1" margin="1">
+   <LabelFont description="Helvetica,22,-1,5,75,0,0,0,0,0"/>
+   <FontColor red="21" blue="255" green="90"/>
+   <ComposerItem pagey="139.228" page="1" id="" lastValidViewScaleFactor="1.32702" positionMode="0" positionLock="false" x="391.554" y="139.228" zValue="7" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="146.178" outlineWidth="0.3" uuid="{c08f4d97-6519-44ad-97d5-f62b7b86bc70}" height="34.9593" itemRotation="0" frame="false" pagex="391.554">
+    <FrameColor alpha="255" red="0" blue="0" green="0"/>
+    <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
+   </ComposerItem>
+  </ComposerLabel>
+  <ComposerLabel valign="128" labelText="LAPORAN DAERAH BANJIR" htmlState="0" halign="1" margin="1">
+   <LabelFont description="Helvetica,34,-1,5,75,0,0,0,0,0"/>
+   <FontColor red="10" blue="182" green="84"/>
+   <ComposerItem pagey="108.935" page="1" id="" lastValidViewScaleFactor="2.03673" positionMode="0" positionLock="false" x="390.797" y="108.935" zValue="6" background="true" transparency="0" frameJoinStyle="miter" blendMode="0" width="168.638" outlineWidth="0.3" uuid="{8a047aae-5b0f-4017-ac01-adfeca8edf1d}" height="30.293" itemRotation="0" frame="false" pagex="390.797">
+    <FrameColor alpha="255" red="0" blue="0" green="0"/>
+    <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
+   </ComposerItem>
+  </ComposerLabel>
+  <ComposerLabel valign="32" labelText="Nomor Peta:  BANJIR&#xa;Skala: 1:100.000&#xa;Proyeksi: World Mercator&#xa;Datum: WGS 84&#xa;" htmlState="0" halign="1" margin="1">
+   <LabelFont description="Helvetica,18,-1,5,75,0,0,0,0,0"/>
+   <FontColor red="0" blue="0" green="0"/>
+   <ComposerItem pagey="174.188" page="1" id="" lastValidViewScaleFactor="1.32702" positionMode="0" positionLock="false" x="390.797" y="174.188" zValue="5" background="true" transparency="0" frameJoinStyle="miter" blendMode="0" width="137.884" outlineWidth="0.3" uuid="{fc9cac67-6800-4244-bfac-8d6842c98657}" height="47.1807" itemRotation="0" frame="false" pagex="390.797">
+    <FrameColor alpha="255" red="0" blue="0" green="0"/>
+    <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
+   </ComposerItem>
+  </ComposerLabel>
+  <ComposerLabel valign="32" labelText="Didukung oleh:" htmlState="0" halign="1" margin="1">
+   <LabelFont description="Helvetica,16,-1,5,75,0,0,0,0,0"/>
+   <FontColor red="0" blue="0" green="0"/>
+   <ComposerItem pagey="333.529" page="1" id="" lastValidViewScaleFactor="1.93362" positionMode="0" positionLock="false" x="420.859" y="333.529" zValue="4" background="true" transparency="0" frameJoinStyle="miter" blendMode="0" width="59.326" outlineWidth="0.3" uuid="{58425bed-0a01-476a-8b8b-c8a33dbaafbd}" height="12.1511" itemRotation="0" frame="false" pagex="420.859">
+    <FrameColor alpha="255" red="0" blue="0" green="0"/>
+    <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
+   </ComposerItem>
+  </ComposerLabel>
+  <ComposerShape shapeType="1" cornerRadius="0">
+   <symbol alpha="1" type="fill" name="">
+    <layer pass="0" class="SimpleFill" locked="0">
+     <prop k="border_width_map_unit_scale" v="0,0"/>
+     <prop k="border_width_unit" v="MM"/>
+     <prop k="color" v="255,255,255,255"/>
+     <prop k="color_border" v="0,0,0,255"/>
+     <prop k="joinstyle" v="bevel"/>
+     <prop k="offset" v="0,0"/>
+     <prop k="offset_map_unit_scale" v="0,0"/>
+     <prop k="offset_unit" v="MM"/>
+     <prop k="style" v="no"/>
+     <prop k="style_border" v="solid"/>
+     <prop k="width_border" v="1"/>
+    </layer>
+   </symbol>
+   <ComposerItem pagey="32.8812" page="1" id="" lastValidViewScaleFactor="1.14968" positionMode="0" positionLock="true" x="384.334" y="32.8812" zValue="3" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="183.696" outlineWidth="1" uuid="{39ddc0bd-1fa1-4d27-94bd-16f7208f7dc8}" height="357.813" itemRotation="0" frame="false" pagex="384.334">
+    <FrameColor alpha="255" red="0" blue="0" green="0"/>
+    <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
+   </ComposerItem>
+  </ComposerShape>
+  <ComposerMap mapRotation="0" keepLayerSet="false" overviewFrameMap="-1" id="0" previewMode="Cache" drawCanvasItems="true">
+   <overviewFrame overviewBlendMode="0" overviewFrameMap="-1" overviewCentered="false" overviewInverted="false">
+    <symbol alpha="0.3" type="fill" name="">
+     <layer pass="0" class="SimpleFill" locked="0">
+      <prop k="border_width_map_unit_scale" v="0,0"/>
+      <prop k="border_width_unit" v="MM"/>
+      <prop k="color" v="255,0,0,255"/>
+      <prop k="color_border" v="0,0,0,255"/>
+      <prop k="joinstyle" v="bevel"/>
+      <prop k="offset" v="0,0"/>
+      <prop k="offset_map_unit_scale" v="0,0"/>
+      <prop k="offset_unit" v="MM"/>
+      <prop k="style" v="solid"/>
+      <prop k="style_border" v="no"/>
+      <prop k="width_border" v="0.26"/>
+     </layer>
+    </symbol>
+   </overviewFrame>
+   <Extent ymin="-712224" xmin="11875600" ymax="-676831.94900000002235174" xmax="11909600"/>
+   <LayerSet/>
+   <Grid gridStyle="1" crossLength="2" gridFramePenThickness="0.5" intervalX="10000" offsetX="0" intervalY="10000" offsetY="0" gridFrameStyle="0" gridFrameWidth="2" gridBlendMode="0" show="1">
+    <framePenColor alpha="255" red="0" blue="0" green="0"/>
+    <frameFillColor1 alpha="255" red="255" blue="255" green="255"/>
+    <frameFillColor2 alpha="255" red="0" blue="0" green="0"/>
+    <symbol alpha="1" type="line" name="">
+     <layer pass="0" class="SimpleLine" locked="0">
+      <prop k="capstyle" v="flat"/>
+      <prop k="color" v="0,0,0,255"/>
+      <prop k="customdash" v="5;2"/>
+      <prop k="customdash_map_unit_scale" v="0,0"/>
+      <prop k="customdash_unit" v="MM"/>
+      <prop k="draw_inside_polygon" v="0"/>
+      <prop k="joinstyle" v="bevel"/>
+      <prop k="offset" v="0"/>
+      <prop k="offset_map_unit_scale" v="0,0"/>
+      <prop k="offset_unit" v="MM"/>
+      <prop k="penstyle" v="solid"/>
+      <prop k="use_custom_dash" v="0"/>
+      <prop k="width" v="0.3"/>
+      <prop k="width_map_unit_scale" v="0,0"/>
+      <prop k="width_unit" v="MM"/>
+     </layer>
+    </symbol>
+    <Annotation rightDirection="1" bottomDirection="0" format="0" topPosition="1" precision="3" leftDirection="1" rightPosition="1" bottomPosition="1" frameDistance="2" show="1" font=".Lucida Grande UI,13,-1,5,50,0,0,0,0,0" leftPosition="1" topDirection="0">
+     <fontColor alpha="255" red="0" blue="0" green="0"/>
+    </Annotation>
+   </Grid>
+   <AtlasMap scalingMode="2" atlasDriven="0" margin="0.10000000000000001"/>
+   <ComposerItem pagey="32.8812" page="1" id="main-map" lastValidViewScaleFactor="1.32702" positionMode="0" positionLock="false" x="25.6513" y="32.8812" zValue="2" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="340.305" outlineWidth="1" uuid="{2edc43f2-4e23-486a-b074-bc67ffae7201}" height="354.238" itemRotation="0" frame="true" pagex="25.6513">
+    <FrameColor alpha="255" red="0" blue="0" green="0"/>
+    <BackgroundColor alpha="255" red="0" blue="255" green="207"/>
+   </ComposerItem>
+  </ComposerMap>
+  <ComposerShape shapeType="1" cornerRadius="0">
+   <symbol alpha="1" type="fill" name="">
+    <layer pass="0" class="SimpleFill" locked="0">
+     <prop k="border_width_map_unit_scale" v="0,0"/>
+     <prop k="border_width_unit" v="MM"/>
+     <prop k="color" v="255,255,255,255"/>
+     <prop k="color_border" v="0,0,0,255"/>
+     <prop k="joinstyle" v="bevel"/>
+     <prop k="offset" v="0,0"/>
+     <prop k="offset_map_unit_scale" v="0,0"/>
+     <prop k="offset_unit" v="MM"/>
+     <prop k="style" v="no"/>
+     <prop k="style_border" v="solid"/>
+     <prop k="width_border" v="1"/>
+    </layer>
+   </symbol>
+   <ComposerItem pagey="9.43294" page="1" id="" lastValidViewScaleFactor="1.12564" positionMode="0" positionLock="false" x="8.29202" y="9.43294" zValue="1" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="576.105" outlineWidth="1" uuid="{55292a5b-75be-4904-b0a7-82e6ae6d32c1}" height="400.272" itemRotation="0" frame="false" pagex="8.29202">
+    <FrameColor alpha="255" red="0" blue="0" green="0"/>
+    <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
+   </ComposerItem>
+  </ComposerShape>
+ </Composition>
+</Composer>

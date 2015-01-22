@@ -1,89 +1,42 @@
 {% extends "flood_mapper/base.html" %}
 {% block header %}
-  <script src="/static/js/moment.min.js"></script>
-  <script src="/static/js/bootstrap-datetimepicker.min.js"></script>
-  <link rel="stylesheet" href="/static/css/bootstrap-datetimepicker.min.css" />
-  <script>
-    function update_rws(){
-      var village_select = $('#id_village');
-      var village_id = village_select.val();
-      var rw_select = $('#id_rw');
-      var rt_select = $('#id_rt');
-      rw_select.find('option').remove().end();
-      rw_select.append($("<option></option>")
-        .attr("value", '')
-        .text('---------'));
-      rt_select.find('option').remove().end();
-      rt_select.append($("<option></option>")
-        .attr("value", '')
-        .text('---------'));
-      if (village_id == ''){
-        return;
-      }
-      village_select.attr("disabled", "disabled");
-      $.get('/api/locations/' + village_id + '/?format=json', function(data){
-        $.each(data, function(dummy, rw){
-          $('#id_rw').append($("<option></option>")
-           .attr("value", rw['id'])
-           .text(rw['name']));
+    <script>
+        $(document).ready(function(){
+            show_map();
+            update_rts_rws();
         });
-        village_select.removeAttr("disabled");
-      });
-    }
-    function update_rts(){
-      var village_id = $('#id_village').val();
-      var rw_select = $('#id_rw');
-      var rw_id = rw_select.val();
-      var rt_select = $('#id_rt');
-      rt_select.find('option').remove().end();
-      rt_select.append($("<option></option>")
-        .attr("value", '')
-        .text('---------'));
-      if ((village_id == '') || (rw_id == '')){
-        console.log('returning');
-        return;
-      }
-      rw_select.attr("disabled", "disabled");
-      $.get('/api/locations/' + village_id + '/' + rw_id + '/?format=json',
-            function(data){
-        $.each(data, function(dummy, rt){
-          $('#id_rt').append($("<option></option>")
-           .attr("value", rt['id'])
-           .text(rt['name']));
-        });
-        rw_select.removeAttr("disabled");
-      });
-    }
-    $(document).ready(function(){
-      $('#nav_add_flood_status_report').addClass("active");
-      // Setup location selecton
-      $('#id_village').on('change', update_rws);
-      $('#id_rw').on('change', update_rts);
-      // Setup date time picker
-      var date_time = $('#id_date_time');
-      date_time.datetimepicker(
-      {
-        format: 'YYYY-MM-DD HH:mm'
-      });
-    });
-  </script>
-  <title>Add flood status report</title>
+    </script>
+    <title>Add flood status report</title>
 {%  endblock %}
 
 {% load bootstrap_tags %}
 
 {% block navigation-bar %}
-  {% include "flood_mapper/navigation_bar.html" %}
+    {% include "flood_mapper/navigation_bar.html" %}
 {%  endblock %}
 
 {% block content %}
-<div>
-  <form action="/add-flood-status-report/" method="post">
-    {% csrf_token %}
-    {{ form|as_bootstrap }}
-    <button type="submit" class="btn btn-block btn-primary">Add</button>
-  </form>
-</div>
-
-</div> <!-- /container -->
+    <div class="container-fluid">
+        <div class="row">
+        <div class="col-lg-8" style="margin:0; padding:0;">
+            {% include "flood_mapper/map.html" %}
+        </div>
+        <div class="col-lg-4" id="side_panel" style="padding-top: 10px;">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title">
+                        <i class="mdi-image-timer"></i>
+                        Add a flood report
+                    </h3>
+                </div>
+                <div class="panel-body">
+                    <form action="/add-flood-status-report/" method="post">
+                        {% csrf_token %}
+                        {{ form|as_bootstrap }}
+                        <button type="submit" class="btn btn-block btn-success">Add</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div> <!-- /container -->
 {%  endblock %}

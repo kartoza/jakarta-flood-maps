@@ -1,32 +1,45 @@
-<nav class="navbar navbar-default" role="navigation">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="/">Jakarta Flood Maps</a>
-    </div>
+<nav class="navbar navbar-bnpb navbar-fixed-top" role="navigation">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="/">Jakarta Flood Maps</a>
+        </div>
 
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav navbar-right">
-        <li id="nav_flood_area_details">
-          <a href="/flood_area_detail">Flood area details</a>
-        </li>
-        {% if user.is_staff %}
-          <li id="nav_flood_area_details_next">
-            <a href="/flood_area_detail_next">Pending flood status reports</a>
-          </li>
-          <li id="nav_add_flood_status_report">
-            <a href="/add-flood-status-report">Add flood status report</a>
-          </li>
-        {% endif %}
-        <li id="nav_reports">
-          <a href="/reports">Reports</a>
-        </li>
-        {% if not user.is_staff %}
-          <li><a href="/accounts/login/?next=/#">Login</a></li>
-        {% else %}
-          <li><a href="/accounts/logout/?next=/#">Logout</a></li>
-        {% endif %}
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                <li id="nav_flood_area_details">
+                    <a href="/flood_area_detail">
+                        <i class="mdi-maps-map"></i>
+                        Flood area details</a>
+                </li>
+                {% if user.is_staff %}
+                    <li id="nav_flood_area_details_next">
+                        <a href="/flood_area_detail_next">
+                            <i class="mdi-maps-pin-drop"></i>
+                            Pending flood status reports</a>
+                    </li>
+                    <li id="nav_add_flood_status_report">
+                        <a href="/add-flood-status-report">
+                            <i class="mdi-maps-place"></i>
+                            Add flood status report</a>
+                    </li>
+                {% endif %}
+                <li id="nav_reports">
+                    <a href="/reports">
+                        <i class="mdi-editor-insert-drive-file"></i>
+                        Reports</a>
+                </li>
+                {% if not user.is_staff %}
+                    <li id="login_id">
+                        <a href="/accounts/login/?next=/#">
+                            <i class="mdi-social-person"></i>
+                              Login</a></li>
+                {% else %}
+                    <li><a href="/accounts/logout/?next=/#">
+                        <i class="mdi-social-person"></i>
+                        Logout</a></li>
+                {% endif %}
 
-      </ul>
+            </ul>
+        </div>
     </div>
-  </div>
 </nav>

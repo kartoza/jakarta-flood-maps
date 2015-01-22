@@ -1,196 +1,123 @@
 {% extends "flood_mapper/base.html" %}
 {% block header %}
-  <script>
-    function add_rw_to_map(){
-      var selected_rw;
-      {% if time_slice != 'current' %}
-        var query = window.location.search.substring(1);
-        if (query.length > 0){
-          var rw = query.split('&')[0].split('=');
-          if (rw[0] == 'rw'){
-            selected_rw = rw[1];
-          }
-        }
-      {% endif %}
-      $.get('/api/locations/flooded/rw/{{ time_slice }}/?format=json', function(data){
-        $.each(data, function(dummy, rw_id){
-          $.get('/api/rw/' + rw_id + '/?format=json', function(rw){
-              var rw_layer = JSON.parse(rw['geometry']);
-              var layer = L.geoJson(rw_layer, {
-                style: style,
-                onEachFeature: onEachFeature,
-                properties: {
-                  rw_id: rw['id'],
-                  name: rw['name'],
-                  population: rw['population']
-                }
-              }).addTo(map);
-              if (rw_id == selected_rw){
-                map.fitBounds(layer.getBounds());
-              }
-          });
+    <script>
+        $(document).ready(function () {
+            // add rw's to map
+            show_map();
+            {% if home_page %}
+                toggle_side_panel();
+            {% endif %}
+            {% if time_slice == 'current' %}
+                $('#nav_flood_area_details').addClass("active");
+            {% else %}
+                $('#nav_flood_area_details_next').addClass("active");
+            {% endif %}
+            add_rw_to_map('{{ time_slice }}', {{ rw }});
+            $('#rt').on('change', updateFloodAreaReport);
         });
-      });
-    }
 
-    function updateFloodAreaReport(){
-      var rt = $('#rt');
-      rt.prop('disabled', 'disabled');
-      var rt_id = rt.val();
-      $.get('/api/reports/rt/' + rt_id + '/?format=json', function(data){
-        console.log(data);
-        if (data.length == 0){
-          console.log('No reported flood info');
-        } else {
-          $('#current_flood_depth').text(data[0]["depth"]);
-          $('#current_flood_depth_div').show();
-        }
-        rt.prop('disabled', false);
-      })
-    }
-
-    function updateFloodAreaOptions(rw_id, rw_name){
-      $('#rw').text(rw_name);
-      $('#village').text('');
-      var rt_select = $('#rt');
-      rt_select.find('option').remove().end();
-      rt_select.append($("<option></option>")
-        .attr("value", '')
-        .text('---------'));
-      $.get('/api/village/' + rw_id + '/?format=json', function(data){
-        $('#village').text(data['name']);
-        var village_id = data['id'];
-        $.get('/api/locations/' + village_id + '/' +rw_id + '/?format=json', function(data) {
-           $.each(data, function(dummy, rt) {
-             rt_select.append($("<option></option>")
-               .attr("value", rt['id'])
-               .text(rt['name']));
-           });
-        });
-      });
-    }
-
-    function style(feature) {
-      return {
-        weight: 2,
-        opacity: 1,
-        color: 'blue',
-        dashArray: '3',
-        fillOpacity: 0.5,
-        fillColor: 'blue'
-      };
-    }
-
-    function highlightFeature(e) {
-      var layer = e.target;
-      layer.setStyle({
-        weight: 5,
-        color: 'white',
-        dashArray: '',
-        fillOpacity: 0.3,
-        fillColor: 'blue'
-      });
-      if (!L.Browser.ie && !L.Browser.opera) {
-        layer.bringToFront();
-      }
-    }
-
-    function resetHighlight(e) {
-      var layer = e.target;
-      layer.setStyle(style(e));
-    }
-
-    function zoomToFeature(e) {
-      var layer = e.target;
-      map.fitBounds(layer.getBounds());
-      $('#select_rw').hide();
-      $('#staff_details').hide();
-      $('#current_flood_depth_div').hide();
-      $('#details').show();
-      {% if home_page %}
-        show_side_panel();
-      {% endif %}
-
-      console.log(layer);
-      var rw_id = layer["_options"]["properties"]["rw_id"];
-      var rw_name = layer["_options"]["properties"]["name"];
-      updateFloodAreaOptions(rw_id, rw_name);
-    }
-
-    function onEachFeature(feature, layer) {
-      layer.on({
-        mouseover: highlightFeature,
-        mouseout: resetHighlight,
-        click: zoomToFeature
-      });
-    }
-
-    $(document).ready(function() {
-      // add rw's to map
-      {% if home_page %}
-        hide_side_panel();
-      {% endif %}
-      {% if time_slice == 'current' %}
-        $('#nav_flood_area_details').addClass("active");
-      {% else %}
-        $('#nav_flood_area_details_next').addClass("active");
-      {% endif %}
-      add_rw_to_map();
-      $('#rt').on('change', updateFloodAreaReport);
-    });
-
-  </script>
-  <title>Flood area details</title>
+    </script>
+    <title>Flood area details</title>
 {%  endblock %}
 
 {% load bootstrap_tags %}
 
 {% block navigation-bar %}
-  {% include "flood_mapper/navigation_bar.html" %}
+    {% include "flood_mapper/navigation_bar.html" %}
 {%  endblock %}
 
 {% block content %}
-<div>
-  <h4>{{ time_slice_verbose }}</h4>
-  <h1>Flood Area Detail</h1>
-  <div id="select_rw">
-    <h2>Select a RW</h2>
-    <div>The RWs shown have RTs flood levels reported on in this time
-      slot. These can be selected. Once selected the RT of interest can
-      be selected and the flood levels will be shown.</div>
-  </div>
-  <div id="details" style="display: None">
-    <div class="row">
-      <div class="col-xs-4">Village:</div>
-      <div class="col-xs-8" id="village"></div>
+    <div class="container-fluid">
+        <div class="row">
+            {#  map #}
+            <div class="col-lg-8" style="margin:0; padding:0;">
+                {% include "flood_mapper/map.html" %}
+            </div>
+            {# side panel #}
+            <div class="col-lg-4" id="side_panel" style="padding-top: 10px;">
+                <div class="bs-component">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">
+                                <i class="mdi-image-timer"></i>
+                                Reporting Period
+                            </h3>
+                        </div>
+                        <div class="panel-body">
+                            {{ time_slice_verbose }}
+                        </div>
+                    </div>
+
+                    <div class="panel panel-success">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">
+                                <i class="mdi-editor-border-color"></i>
+                                Flood Area Detail</h3>
+                        </div>
+                        <div class="panel-body" id="rw_fill">
+                            The RWs shown on the map have RTs flood levels reported on
+                            in this time period. Click on an RW to select it.
+                            Once selected the RT of interest can
+                            be selected and the flood levels will be shown.
+                        </div>
+                        <div class="panel panel-warning" id="select_rw" style="display: None">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Select an RW</h3>
+                            </div>
+                            <div class="panel-body">
+
+                                <div class="row">
+                                    <div class="col-lg-4">Village</div>
+                                    <div class="col-lg-7" id="village"></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-4">RW</div>
+                                    <div class="col-lg-7" id="rw"></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-4">RT</div>
+                                    <select class="col-lg-7" id="rt">
+                                        <option value="">---------</option>
+                                    </select>
+                                </div>
+                                <div class="row" id="current_flood_depth_div">
+                                    <div class="col-lg-4">Current depth</div>
+                                    <div class="col-lg-7" id="current_flood_depth"></div>
+                                </div>
+                                <div class="row" id="flood_depth_over_time_div">
+                                    <div class="col-lg-4">Change over time</div>
+                                    <div class="col-lg-7">
+                                      <div id="flood_depths_graph"></div>
+                                    </div>
+                                </div>
+                                {% comment %}
+                            <div id="staff_details">
+                                <div class="row">
+                                    <h2> Details visible to staff only</h2>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-4">Contact person:</div>
+                                    <div class="col-lg-7" id="contact_person"></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-4">Contact number:</div>
+                                    <div class="col-lg-7" id="contact_number"></div>
+                                </div>
+                            </div>
+                            {% endcomment %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> {# end side panel #}
+        </div>
+        {# show hide toggle #}
+        <a id="show_hide"
+           style="position:absolute; right: 0px; bottom: 50px;"
+           href="javascript:void(0)"
+           class="btn btn-danger btn-fab btn-raised glyphicon glyphicon-chevron-right"
+           onclick="toggle_side_panel()"></a>
     </div>
-    <div class="row">
-      <div class="col-xs-4">RW:</div>
-      <div class="col-xs-8" id="rw"></div>
-    </div>
-    <div class="row">
-      <div class="col-xs-4">RT:</div>
-      <select class="col-xs-8" id="rt">
-        <option value="">---------</option>
-      </select>
-    </div>
-    <div class="row" id="current_flood_depth_div">
-      <div class="col-xs-4">Current flood depth:</div>
-      <div class="col-xs-8" id="current_flood_depth"></div>
-    </div>
-    <div id="staff_details">
-      <div class="row">
-        <h2> Details visible to staff only</h2>
-      </div>
-      <div class="row">
-        <div class="col-xs-4">Contact person:</div>
-        <div class="col-xs-8" id="contact_person"></div>
-      </div>
-      <div class="row">
-        <div class="col-xs-4">Contact number:</div>
-        <div class="col-xs-8" id="contact_number"></div>
-      </div>
-    </div>
-  </div>
-</div> <!-- /container -->
-{%  endblock %}
+    <!-- /container -->
+{% endblock %}
+
