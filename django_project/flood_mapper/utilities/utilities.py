@@ -46,12 +46,18 @@ def create_reports_directories():
         'reports'))
     if not os.path.exists(reports_dir):
         os.mkdir(reports_dir)
+    if not os.path.exists(reports_dir):
+        raise Exception('could not create report directories')
     for report_type in ['pdf', 'sqlite', 'shp', 'kml', 'csv']:
         report_type_dir = os.path.join(reports_dir, report_type)
         if not os.path.exists(report_type_dir):
             os.mkdir(report_type_dir)
+        if not os.path.exists(report_type_dir):
+            raise Exception('could not create report directories')
         for report_period in ['6h', '24h']:
             report_type_time_period_dir = os.path.join(
                 report_type_dir, report_period)
             if not os.path.exists(report_type_time_period_dir):
                 os.mkdir(report_type_time_period_dir)
+            if not os.path.exists(report_type_time_period_dir):
+                raise Exception('could not create report directories')

@@ -32,6 +32,8 @@ def login(request):
         error = 'invalid username or password'
     elif request.method == 'GET':
         next = request.GET.get('next')
+    else:
+        next = '/'
 
     if not next:
         next = '/'
