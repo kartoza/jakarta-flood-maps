@@ -130,7 +130,7 @@ map:
 	@echo "Getting current 6 hour slot as pdf map"
 	@echo "Make sure you have started the services with make run first"
 	@echo "--------------------------"
-	wget -O map.pdf "http://172.17.0.8/cgi-bin/qgis_mapserv.fcgi?map=/web/jk-floods.qgs&SERVICE=wms&LAYERS=Rw&REQUEST=GetPrint&TEMPLATE=6Hour&map0:EXTENT=11862318.594,-714081.378,11922154.957,-675870.096&map0:ROTATION=0&FORMAT=pdf&DPI=300"
+	wget -O map.pdf "http://172.17.0.6/cgi-bin/qgis_mapserv.fcgi?map=/web/jk-floods.qgs&SERVICE=wms&LAYERS=Rw&REQUEST=GetPrint&TEMPLATE=6Hour&map0:EXTENT=11862318.594,-714081.378,11922154.957,-675870.096&map0:ROTATION=0&FORMAT=pdf&DPI=300"
 
 #
 # Staging

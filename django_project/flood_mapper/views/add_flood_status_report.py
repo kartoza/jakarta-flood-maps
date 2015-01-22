@@ -1,16 +1,15 @@
 # coding=utf-8
-"""Views."""
+"""Add flood status reports.
+
+author: christian@kartoza.com
+date: December 2014
+"""
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.template import RequestContext
 
 from django.contrib.auth.decorators import login_required
-from django.contrib.admin.views.decorators import staff_member_required
-
 from django.contrib.auth.models import User
-
-# from flood_mapper.models.flood_status import FloodStatus
-# from flood_mapper.app_settings import *
 
 from flood_mapper.forms.add_flood_status_report import AddFlodStatusForm
 
