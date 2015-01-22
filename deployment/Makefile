@@ -31,6 +31,15 @@ web:
 	@fig  -p jakartaflood up -d web
 	@dipall
 
+sentry:
+	@echo
+	@echo "--------------------------"
+	@echo "Running sentry production mode"
+	@echo "--------------------------"
+	@fig  -p jakartaflood up -d sentry
+	@dipall
+
+
 build:
 	@echo
 	@echo "--------------------------"
