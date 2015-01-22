@@ -29,9 +29,10 @@
                         Reports</a>
                 </li>
                 {% if not user.is_staff %}
-                    <li><a href="/accounts/login/?next=/#">
-                        <i class="mdi-social-person"></i>
-                        Login</a></li>
+                    <li id="login_id">
+                        <a href="/accounts/login/?next=/#">
+                            <i class="mdi-social-person"></i>
+                              Login</a></li>
                 {% else %}
                     <li><a href="/accounts/logout/?next=/#">
                         <i class="mdi-social-person"></i>
