@@ -30,7 +30,7 @@ class RW(Boundary):
     slug = models.SlugField(max_length=100)
 
     name = models.CharField(
-        help_text='A name for the RW.',
+        help_text='Nama untuk RW.',
         null=False,
         blank=False,
         unique=False,
