@@ -36,7 +36,7 @@ class Village(Boundary):
     )
 
     name = models.CharField(
-        help_text='A name for the village.',
+        help_text='Nama untuk kelurahan.',
         null=False,
         blank=False,
         unique=True,
