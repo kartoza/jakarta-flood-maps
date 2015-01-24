@@ -9,7 +9,7 @@
             });
         });
     </script>
-    <title>Report Selection</title>
+    <title>Pemilihan Laporan</title>
 {% endblock %}
 
 {% load bootstrap_tags %}
@@ -29,14 +29,14 @@
                     <div class="panel-heading">
                         <h3 class="panel-title">
                             <i class="mdi-action-description"></i>
-                            PDF Report</h3>
+                            Laporan PDF</h3>
                     </div>
                     <div class="panel-body">
                         <div class="btn-group">
                             <a href="/api/download/pdf/6h/{{ reports.pdf.6h.0}}"
                                class="btn btn-primary"
                                {% if not reports.pdf.6h %}disabled {% endif %}>
-                                6 Hour Report
+                                Laporan 6 Jam
                             </a>
                             {% if reports.pdf.6h %}
                             <a href="javascript:void(0)"
@@ -50,7 +50,8 @@
                                     <a href="/api/download/pdf/6h/{{ report }}">{{ report }}</a>
                                 </li>
                             {% endfor %}
-                            <li><a href="/archive/pdf/6h" target="_blank">Archive</a></li>
+                            <li><a href="/archive/pdf/6h"
+                                   target="_blank">Arsip</a></li>
                             </ul>
                             {% endif %}
                         </div> {# end of 6h button group #}
@@ -59,7 +60,7 @@
                             <a href="/api/download/pdf/6h/{{ reports.pdf.6h.0}}"
                                class="btn btn-primary"
                                {% if not reports.pdf.24h %}disabled{% endif %}>
-                                24 Hour Report
+                                Laporan 24 Jam
                             </a>
                             {% if reports.pdf.24h %}
                             <a href="javascript:void(0)"
@@ -73,14 +74,15 @@
                                     <a href="/api/download/pdf/24h/{{ report }}">{{ report }}</a>
                                 </li>
                             {% endfor %}
-                            <li><a href="/archive/pdf/24h" target="_blank">Archive</a></li>
+                            <li><a href="/archive/pdf/24h"
+                                   target="_blank">Arsip</a></li>
                             </ul>
                             {% endif %}
 
                         </div> {# end of 24h button group #}
-                        <p>Download a print-ready report in PDF format. You need
-                            to have a PDF reader installed on your system to be
-                            able to view this.</p>
+                        <p>Unduh laporan yang siap cetak dalam bentuk PDF.
+                            Anda perlu memasang pembaca PDF di sistem
+                            Anda untuk memlihatnya.</p>
 
                     </div> {#  end of panel body #}
                 </div> {# end of pdf panel #}
@@ -97,14 +99,14 @@
                     <div class="panel-heading">
                         <h3 class="panel-title">
                             <i class="mdi-action-view-module"></i>
-                            Comma Delimited Report</h3>
+                            Laporan "Comma Delimited"</h3>
                     </div>
                     <div class="panel-body">
                         <div class="btn-group">
                             <a href="/api/download/csv/6h/{{ reports.csv.6h.0}}"
                                class="btn btn-primary"
                                {% if not reports.csv.6h %}disabled {% endif %}>
-                                6 Hour Report
+                                Laporan 6 Jam
                             </a>
                             {% if reports.csv.6h %}
                             <a href="javascript:void(0)"
@@ -127,7 +129,7 @@
                             <a href="/api/download/csv/6h/{{ reports.csv.6h.0}}"
                                class="btn btn-primary"
                                {% if not reports.csv.24h %}disabled{% endif %}>
-                                24 Hour Report
+                                Laporan 24 Jam
                             </a>
                             {% if reports.csv.24h %}
                             <a href="javascript:void(0)"
@@ -146,8 +148,8 @@
                             {% endif %}
 
                         </div> {# end of 24h button group #}
-                        <p>Download a comma separated text file. This file is suitable
-                        for using in a spreadsheet application.</p>
+                        <p>Unduh berkas teks koma-pemisah (CSV). Berkas ini
+                            cocok untuk aplikasi spreadsheet.</p>
                     </div> {#  end of panel body #}
                 </div> {# end of csv panel #}
             </div> {# end of CSV div #}
@@ -163,14 +165,14 @@
                     <div class="panel-heading">
                         <h3 class="panel-title">
                             <i class="mdi-action-room"></i>
-                            Shapefile Report</h3>
+                            Laporan Shapefile</h3>
                     </div>
                     <div class="panel-body">
                         <div class="btn-group">
                             <a href="/api/download/shp/6h/{{ reports.shp.6h.0}}"
                                class="btn btn-primary"
                                {% if not reports.shp.6h %}disabled {% endif %}>
-                                6 Hour Report
+                                Laporan 6 Jam
                             </a>
                             {% if reports.shp.6h %}
                             <a href="javascript:void(0)"
@@ -193,7 +195,7 @@
                             <a href="/api/download/shp/6h/{{ reports.shp.6h.0}}"
                                class="btn btn-primary"
                                {% if not reports.shp.24h %}disabled{% endif %}>
-                                24 Hour Report
+                                Laporan 24 Jam
                             </a>
                             {% if reports.shp.24h %}
                             <a href="javascript:void(0)"
@@ -212,8 +214,9 @@
                             {% endif %}
 
                         </div> {# end of 24h button group #}
-                        <p>Download a shapefile. This file is suitable
-                        for using in a GIS application such as <a href="http://qgis.org">QGIS</a></p>
+                        <p>Unduh shapefile. Berkas ini cocok untuk digunakan
+                            di aplikasi  GIS seperti <a href="http://qgis
+                            .org">QGIS</a></p>
                     </div> {#  end of panel body #}
                 </div> {# end of shp panel #}
             </div> {# end of SHP div #}
@@ -232,14 +235,14 @@
                     <div class="panel-heading">
                         <h3 class="panel-title">
                             <i class="mdi-action-language"></i>
-                            Google Earth Report</h3>
+                            Laporan Google Earth</h3>
                     </div>
                     <div class="panel-body">
                         <div class="btn-group">
                             <a href="/api/download/kml/6h/{{ reports.kml.6h.0}}"
                                class="btn btn-primary"
                                {% if not reports.kml.6h %}disabled {% endif %}>
-                                6 Hour Report
+                                Laporan 6 Jam
                             </a>
                             {% if reports.kml.6h %}
                             <a href="javascript:void(0)"
@@ -262,7 +265,7 @@
                             <a href="/api/download/kml/6h/{{ reports.kml.6h.0}}"
                                class="btn btn-primary"
                                {% if not reports.kml.24h %}disabled{% endif %}>
-                                24 Hour Report
+                                Laporan 24 Jam
                             </a>
                             {% if reports.kml.24h %}
                             <a href="javascript:void(0)"
@@ -281,9 +284,9 @@
                             {% endif %}
 
                         </div> {# end of 24h button group #}
-                        <p>Download a KML file. This file is suitable
-                        for using in <a href="https://www.google.com/earth/">Google Earth</a>
-                        or a GIS application such as <a href="http://qgis.org">QGIS</a></p>
+                        <p>Unduh berkas KML. Berkas ini cocok untuk digunakan
+                            di <a href="https://www.google.com/earth/">Google
+                                Earth</a> atau aplikasi GIS seperti <ahref="http://qgis.org">QGIS</a></p>
                     </div> {#  end of panel body #}
                 </div> {# end of kml panel #}
             </div> {# end of KML div #}
@@ -299,14 +302,14 @@
                     <div class="panel-heading">
                         <h3 class="panel-title">
                             <i class="mdi-action-wallet-travel"></i>
-                            SQLITE Report</h3>
+                            Laporan SQLITE</h3>
                     </div>
                     <div class="panel-body">
                         <div class="btn-group">
                             <a href="/api/download/sqlite/6h/{{ reports.sqlite.6h.0}}"
                                class="btn btn-primary"
                                {% if not reports.sqlite.6h %}disabled {% endif %}>
-                                6 Hour Report
+                                Laporan 6 Jam
                             </a>
                             {% if reports.sqlite.6h %}
                             <a href="javascript:void(0)"
@@ -329,7 +332,7 @@
                             <a href="/api/download/sqlite/6h/{{ reports.sqlite.6h.0}}"
                                class="btn btn-primary"
                                {% if not reports.sqlite.24h %}disabled{% endif %}>
-                                24 Hour Report
+                                Laporan 24 Jam
                             </a>
                             {% if reports.sqlite.24h %}
                             <a href="javascript:void(0)"
@@ -348,8 +351,8 @@
                             {% endif %}
 
                         </div> {# end of 24h button group #}
-                        <p>Download a SQLITE portable database. This file is suitable
-                        for using in a GIS application such as <a href="http://qgis.org">QGIS</a></p>
+                        <p>Unduh basis data portable SQLITE. Berkas ini cocok
+                            digunakan di aplikasi GIS seperti <a href="http://qgis.org">QGIS</a></p>
                     </div> {#  end of panel body #}
                 </div> {# end of sqlite panel #}
             </div> {# end of SQLITE div #}

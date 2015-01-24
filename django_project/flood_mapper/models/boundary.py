@@ -17,8 +17,8 @@ class Boundary(models.Model):
     # from http://stackoverflow.com/a/19131360/1158060
     phone_regex = RegexValidator(
         regex=r'^\+?1?\d{9,15}$',
-        message="Phone number must be entered in the format: "
-                "'+6288888888888'. Up to 15 digits allowed.")
+        message="Nomor telepon harus dimasukan dalam format: "
+                "'+6288888888888'. Diperbolehkan sampai 15 digit.")
     contact_phone = models.CharField(
         max_length=15, validators=[phone_regex], blank=True, null=True)
     area = models.CharField(max_length=100, blank=True, null=True)
@@ -26,7 +26,7 @@ class Boundary(models.Model):
     population = models.IntegerField(blank=True, null=True)
 
     geometry = models.MultiPolygonField(  # MultiPolygonField
-        srid=4326, null=True, blank=True, help_text='The geographic boundary')
+        srid=4326, null=True, blank=True, help_text='Batas geografis')
 
     id = models.AutoField(primary_key=True)
 

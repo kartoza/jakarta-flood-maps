@@ -32,8 +32,8 @@ class FloodStatus(models.Model):
         max_digits=4,
         decimal_places=2,
         help_text=(
-            'The depth in metres that the RT is flooded. <br>'
-            'Choose a depth between 0m and 10m'
+            'Kedalaman dalam meter banjir RT tersebut. <br>'
+            'Pilih kedalaman antara 0m and 10m'
         ),
         validators=[
             MaxValueValidator(10),
@@ -42,8 +42,8 @@ class FloodStatus(models.Model):
     )
     date_time = models.DateTimeField(
         help_text=(
-            'When the flood level was reached. <br>'
-            'Use the date time picker or add manually. <br>'
+            'Kapan kedalaman banjir tercapai. <br>'
+            'Pergunakan pemilih tanggal dan waktu atau tambahkan sendiri <br>'
             'YYYY-MM-DD hh:mm'
         ))
     recorded_by = models.ForeignKey(User)
