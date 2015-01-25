@@ -4,9 +4,7 @@
 # This code is public domain, use if for any purpose you see fit.
 # Tim Sutton 2015
 import os
-
 import sys
-
 from qgis.core import (
     QgsMapLayerRegistry,
     QgsProject,
@@ -15,21 +13,17 @@ from qgis.core import (
     QgsProviderRegistry,
     QgsCoordinateReferenceSystem,
     QgsVectorLayer,
-    QgsRasterLayer)
+    QgsDataSourceURI)
+from qgis.gui import QgsMapCanvas, QgsMapCanvasLayer
 
-from qgis.gui import QgsMapCanvas, QgsLayerTreeMapCanvasBridge, QgsMapCanvasLayer
-from PyQt4.QtCore import QFileInfo
 from PyQt4.QtXml import QDomDocument
 
 
 class PdfMaker(object):
     """A generator that takes a QGIS project file and a layout template and makes a pdf."""
 
-    def __init__(self, project_path, template_path, debug=False):
+    def __init__(self, template_path, debug=False):
         """Constructor.
-
-        :param project_path: Absolute path to a QGIS project file.
-        :type project_path: str
 
         :param template_path: Absolute path to a QGIS composer template file.
         :type template_path: str
@@ -46,7 +40,6 @@ class PdfMaker(object):
         self.canvas = QgsMapCanvas()
         self.canvas.enableAntiAliasing(True)
 
-        self.project_path = project_path
         self.template_path = template_path
 
     def __del__(self):
@@ -74,69 +67,44 @@ class PdfMaker(object):
         composition.loadFromTemplate(document, substitution_map)
         return composition
 
-    def _iterate_layer_elements(self):
-        """Iterator for all layers in a QGIS project file.
-        """
-        tag = 'maplayer'
-        print 'Searching for tag: %s' % tag
-        project_file = file(self.project_path)
-        project_content = project_file.read()
-        project_file.close()
-        document = QDomDocument()
-        result = document.setContent(project_content)
-        if not result:
-            raise Exception('DOM loading failed')
-
-        elements = document.elementsByTagName(tag)
-        print 'Found %i layers' % elements.size()
-
-        for i in xrange(elements.size()):
-            print 'Element: %s' % elements.item(i).toDocument().toString()
-            layer = elements.item(i)
-            print 'ID: %s' % layer.firstChildElement('id').text()
-            print 'DataSource: %s' % layer.firstChildElement('datasource').text()
-            yield layer
-
-    def _getAttr(self, obj, attr):
-        """Get an attribute from a document."""
-        if not(obj):
-            raise RuntimeError('XML Object must exist!')
-
-        attrs = obj.attributes()
-        return attrs.namedItem(attr).toAttr()
-
-
     def _load_layers(self):
-        """Manually load all the layers listed in the given project.
-
-        This is an alternative to load_project which does not reliably
-        add all layers into the project.
+        """Manually load all the layers for our project.
 
         :return: A list of QgsMapLayer instances.
         :rtype: list
         """
         layers = []
-        project_dir = os.path.abspath(
-                os.path.dirname(self.project_path))
-        for item in self._iterate_layer_elements():
-            layer_type = self._getAttr(item, 'type').value()
-            source = item.firstChildElement('datasource').text()
-            source = os.path.abspath(
-                os.path.join(
-                    project_dir,
-                    source
-                )
-            )
-            provider = item.firstChildElement('provider').text()
-            title = item.firstChildElement('title').text()
-            if layer_type == 'vector':
-                layer = QgsVectorLayer(source, title, provider)
 
-            if not layer.isValid():
-                raise Exception('Loaded layer is not valid: %s' % source)
-            QgsMapLayerRegistry.instance().addMapLayer(layer, False)
-            canvas_layer = QgsMapCanvasLayer(layer)
-            layers.append(canvas_layer)
+        # First the RW layer
+
+        host = 'db'
+        port = '5432'
+        user = 'docker'
+        password = 'docker'
+        dbname = 'gis'
+        uri = QgsDataSourceURI()
+        uri.setConnection(host, port, dbname, user, password)
+
+        schema = 'public'
+        table = 'flood_mapper_rw'
+        geometry_column = 'geometry'
+        where_clause = ''
+        title = 'RW'
+        uri.setDataSource(schema, table, geometry_column, where_clause)
+        layer = QgsVectorLayer(uri.uri(), title, 'postgres')
+
+        QgsMapLayerRegistry.instance().addMapLayer(layer, False)
+        canvas_layer = QgsMapCanvasLayer(layer)
+        layers.append(canvas_layer)
+
+        # Now the JK layer
+        path = './data/jk.shp'
+        title = 'JK'
+        layer = QgsVectorLayer(path, title, 'ogr')
+        QgsMapLayerRegistry.instance().addMapLayer(layer, False)
+        canvas_layer = QgsMapCanvasLayer(layer)
+        layers.append(canvas_layer)
+
         return layers
 
     def make_pdf(self, pdf_path):
@@ -172,7 +140,7 @@ class PdfMaker(object):
         QgsProject.instance().clear()
 
 
-maker = PdfMaker(project_path='./projects/test.qgs', template_path='./templates/test.qpt')
+maker = PdfMaker(template_path='./templates/test.qpt')
 maker.make_pdf('test.pdf')
 
 
