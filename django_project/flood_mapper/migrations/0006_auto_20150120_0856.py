@@ -15,13 +15,13 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='floodstatus',
             name='date_time',
-            field=models.DateTimeField(help_text=b'When the flood level was reached. <br>Use the date time picker or add manually. <br>YYYY-MM-DD hh:mm'),
+            field=models.DateTimeField(help_text=b'Saat ketinggian banjir tercapai. <br>Gunakana pemilih tanggal-waktu atau tambahkan secara manual <br>YYYY-MM-DD hh:mm'),
             preserve_default=True,
         ),
         migrations.AlterField(
             model_name='floodstatus',
             name='depth',
-            field=models.DecimalField(help_text=b'The depth in metres that the RT is flooded. <br>Choose a depth between 0m and 10m', max_digits=4, decimal_places=2, validators=[django.core.validators.MaxValueValidator(10), django.core.validators.MinValueValidator(0)]),
+            field=models.DecimalField(help_text=b'Kedalaman banjir dalam meter yang melanda RT. <br>Pilih kedalaman antara 0m dan 10m', max_digits=4, decimal_places=2, validators=[django.core.validators.MaxValueValidator(10), django.core.validators.MinValueValidator(0)]),
             preserve_default=True,
         ),
     ]
