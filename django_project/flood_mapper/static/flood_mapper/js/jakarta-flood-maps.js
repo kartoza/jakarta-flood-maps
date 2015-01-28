@@ -224,8 +224,8 @@ function updateFloodAreaReport() {
                         water_depth = item.datapoint[1].toFixed(2),
                         tooltip_text;
                     tooltip_text = (
-                        "A flood depth of " + water_depth +
-                        "m<br>was reached on " + date_time.toLocaleString()
+                        "Banjir sedalam " + water_depth +
+                        "m<br>terjadi pada " + date_time.toLocaleString()
                     );
                     $("#tooltip").html(tooltip_text)
                         .css({top: item.pageY+5, left: item.pageX+5})
