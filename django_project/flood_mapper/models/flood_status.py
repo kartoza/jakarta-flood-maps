@@ -26,7 +26,7 @@ class FloodStatus(models.Model):
     name = models.CharField(max_length=200)
     rt = models.ForeignKey(
         RT,
-        help_text='The RT that is affected.',
+        help_text='RT yang terdampak.',
     )
     depth = models.DecimalField(
         max_digits=4,
