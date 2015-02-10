@@ -12,7 +12,7 @@ deploy: run
 	#TODO - replace with something more precise
 	@echo "Waiting 20 secs to ensure db is running"
 	#@sleep 20
-	@fig run -p jakartaflood uwsgi python manage.py migrate
+	@fig -p jakartaflood run uwsgi python manage.py migrate
 	#@run -p jakartaflood uwsgi python manage.py collectstatic --noinput
 	#We need to run collect static in the same context as the running
 	# uwsgi container it seems so I use docker exec here
