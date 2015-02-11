@@ -7,6 +7,9 @@ from flood_mapper.utilities.utilities import get_time_slice
 
 
 def flood_area_detail(request):
+    """View the flooded currently flooded areas. (Or upcoming if next is
+    requested)
+    """
     rw = request.GET.get('rw')
     if not rw:
         rw = 0

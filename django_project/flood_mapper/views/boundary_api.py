@@ -79,7 +79,8 @@ def boundary_flooded_api(request, time_slice='current', village=None):
 @api_view(['GET'])
 def all_flooded_rw(request, time_slice='current'):
     start_date_time, end_date_time = get_time_slice(time_slice)
-    flood_statuses = FloodStatus.objects.filter(
-        date_time__gte=start_date_time, date_time__lte=end_date_time)
+    flood_statuses = FloodStatus.objects.filter(date_time__gte=start_date_time)
+    if time_slice == 'current':
+        flood_statuses = flood_statuses.filter(date_time__lte=end_date_time)
     all_rws = set([flood_status.rt.rw.id for flood_status in flood_statuses])
     return Response(all_rws)

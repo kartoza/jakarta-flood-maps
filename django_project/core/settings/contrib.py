@@ -5,6 +5,7 @@ from .base import *  # noqa
 INSTALLED_APPS += (
     'raven.contrib.django.raven_compat',  # enable Raven plugin
     'pipeline',
+    'rest_framework',
 )
 
 # define template function (example for underscore)
@@ -17,8 +18,8 @@ PIPELINE_DISABLE_WRAPPER = True
 # enable cached storage - requires uglify.js (node.js)
 STATICFILES_STORAGE = 'pipeline.storage.PipelineCachedStorage'
 MIDDLEWARE_CLASSES += (
-   'django.middleware.gzip.GZipMiddleware',
-   'pipeline.middleware.MinifyHTMLMiddleware',
+    'django.middleware.gzip.GZipMiddleware',
+    'pipeline.middleware.MinifyHTMLMiddleware',
 )
 TEMPLATE_CONTEXT_PROCESSORS = (
     'django.contrib.auth.context_processors.auth',
