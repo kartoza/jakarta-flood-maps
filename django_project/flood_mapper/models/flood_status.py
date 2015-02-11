@@ -41,6 +41,7 @@ class FloodStatus(models.Model):
         ]
     )
     date_time = models.DateTimeField(
+        verbose_name=u'Date Time (Asia/Jakarta)',
         help_text=(
             'Kapan kedalaman banjir tercapai. <br>'
             'Pergunakan pemilih tanggal dan waktu atau tambahkan sendiri <br>'
