@@ -27,12 +27,12 @@ template_path = os.path.abspath(os.path.join(
 
 
 def make_pdf():
-    global canvas, bridge, template_file, template_content, document, composition, substitution_map, map_item, legend_item
     canvas = QgsMapCanvas()
     # Load our project
+    QgsProject.instance().read(QFileInfo(project_path))
     bridge = QgsLayerTreeMapCanvasBridge(
         QgsProject.instance().layerTreeRoot(), canvas)
-    QgsProject.instance().read(QFileInfo(project_path))
+    bridge.setCanvasLayers()
     if canvas.layerCount() < 1:
         print 'No layers loaded from this project, exiting.'
         return
@@ -62,7 +62,6 @@ def make_pdf():
     QgsProject.instance().clear()
 
 
-make_pdf()
 make_pdf()
 
 

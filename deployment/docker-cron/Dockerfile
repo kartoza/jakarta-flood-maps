@@ -8,7 +8,7 @@ MAINTAINER Tim Sutton<tim@kartoza.com>
 # Or comment this line out if you do not with to use caching
 ADD 71-apt-cacher-ng /etc/apt/apt.conf.d/71-apt-cacher-ng
 
-RUN apt-get update -y; apt-get -y --force-yes install cron postgis
+RUN apt-get update -y; apt-get -y --force-yes install cron postgis xvfb
 
 # For deployment:
 # Mount the directories when running this volume
