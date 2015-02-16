@@ -122,16 +122,17 @@ qgis:
 	@echo "Running QGIS desktop in production mode"
 	@echo "Make sure you have started the services with make run first"
 	@echo "--------------------------"
-	@xhost +; docker run --rm --name="qgis-desktop-2-4" \
+	xhost +; docker run --rm --name="qgis-desktop-2-6-1" \
 	-i -t \
 	--link jakartaflood_db_1:db \
 	--link jakartaflood_qgisserver_1:qgisserver \
 	--link jakartaflood_mapproxy_1:mapproxy \
-	--volumes-from jakartaflood_qgisserver_1 \
+	--volumes-from jakartaflood_cron_1 \
+	-v ${HOME}:/home \
 	-v ${HOME}:/root \
 	-v /tmp/.X11-unix:/tmp/.X11-unix \
 	-e DISPLAY=unix$(DISPLAY) \
-	kartoza/qgis-desktop:latest; xhost -
+	kartoza/qgis-desktop:2.6.1; xhost -
 
 map:
 	@echo

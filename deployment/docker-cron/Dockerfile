@@ -23,7 +23,6 @@ RUN yum install -y wget; \
 RUN rpmbuild -bb msttcorefonts-2.5-1.spec
 RUN yum install -y /root/rpmbuild/RPMS/noarch/msttcorefonts-2.5-1.noarch.rpm
 
-
 ENV PYTHONPATH=$PYTHONPATH:/usr/share/qgis/python/
 ADD crontab /etc/crontab
 CMD ["crond", "-n"]
