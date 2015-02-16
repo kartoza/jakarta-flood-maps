@@ -27,10 +27,14 @@ print QgsProviderRegistry.instance().pluginList()
 project_path = os.path.join(
     os.path.dirname(__file__),
     os.path.pardir,
+    'maps',
     'jk-floods.qgs')
 template_path = os.path.abspath(os.path.join(
     os.path.dirname(__file__),
-    'test.qpt'
+    os.path.pardir,
+    'maps',
+    'templates',
+    'jakarta_flooded_rw.qpt'
 ))
 
 
@@ -66,7 +70,7 @@ def make_pdf():
     legend_item = composition.getComposerItemById('legend')
     legend_item.updateLegend()
     composition.refreshItems()
-    composition.exportAsPDF('/tmp/test2.pdf')
+    composition.exportAsPDF('/home/web/reports/jk-floods-latest.pdf')
     QgsProject.instance().clear()
 
 

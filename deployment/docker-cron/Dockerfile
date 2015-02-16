@@ -1,6 +1,6 @@
 #--------- Generic stuff all our Dockerfiles should start with so we get caching ------------
-# Note this base image is based on debian
-FROM kartoza/qgis-server:2.6.1
+# Note this base image is based on fedora
+FROM kartoza/qgis-desktop:2.6.1
 MAINTAINER Tim Sutton<tim@kartoza.com>
 
 # Use local cached debs from host (saves your bandwidth!)
@@ -15,5 +15,6 @@ RUN yum install -y cronie-anacron.x86_64 postgis.x86_64 xorg-x11-server-Xvfb.x86
 #    - ../maps:/home/web/maps
 #    - ./reports:/home/web/reports
 #    - ./cron-scripts:/home/web/cron-scripts
+ENV PYTHONPATH=$PYTHONPATH:/usr/share/qgis/python/
 ADD crontab /etc/crontab
-CMD ["cron", "-f"]
+CMD ["crond", "-n"]
