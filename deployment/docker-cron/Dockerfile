@@ -15,6 +15,15 @@ RUN yum install -y cronie-anacron.x86_64 postgis.x86_64 xorg-x11-server-Xvfb.x86
 #    - ../maps:/home/web/maps
 #    - ./reports:/home/web/reports
 #    - ./cron-scripts:/home/web/cron-scripts
+
+WORKDIR /tmp
+RUN yum install -y wget; \
+    wget http://corefonts.sourceforge.net/msttcorefonts-2.5-1.spec; \
+    yum install -y rpm-build cabextract ttmkfdir
+RUN rpmbuild -bb msttcorefonts-2.5-1.spec
+RUN yum install -y /root/rpmbuild/RPMS/noarch/msttcorefonts-2.5-1.noarch.rpm
+
+
 ENV PYTHONPATH=$PYTHONPATH:/usr/share/qgis/python/
 ADD crontab /etc/crontab
 CMD ["crond", "-n"]
