@@ -19,12 +19,12 @@ DATE_TIME_LABEL="$(date +'%F')-$HOUR";
 DATE_TIME_NOW="$(date +'%F') $HOUR:00:00.0";
 
 # DROP TEMP TABLE
-SQL_CLEANUP_QUERY=$(sed ':a;N;$!ba;s/\n/ /g' ../sql/report_cleanup.sql)
+SQL_CLEANUP_QUERY=$(sed ':a;N;$!ba;s/\n/ /g' report_cleanup.sql)
 SQL_CLEANUP_QUERY="${SQL_CLEANUP_QUERY//'{{NUMBER_OF_HOURS}}'/$NUMBER_OF_HOURS}"
 psql -c "$SQL_CLEANUP_QUERY"
 
 # CREATE TEMP TABLE
-SQL_QUERY=$(sed ':a;N;$!ba;s/\n/ /g' ../sql/report_table_create.sql)
+SQL_QUERY=$(sed ':a;N;$!ba;s/\n/ /g' report_table_create.sql)
 SQL_QUERY="${SQL_QUERY//'{{NUMBER_OF_HOURS}}'/$NUMBER_OF_HOURS}"
 SQL_QUERY="${SQL_QUERY//'{{DATE_TIME_NOW}}'/$DATE_TIME_NOW}"
 psql -c "$SQL_QUERY"
