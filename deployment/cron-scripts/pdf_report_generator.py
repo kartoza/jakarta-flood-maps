@@ -8,7 +8,7 @@
 import os
 import sys
 from qgis.core import (
-    QgsProject, QgsComposition, QgsApplication)
+    QgsProject, QgsComposition, QgsApplication, QgsProviderRegistry)
 from qgis.gui import QgsMapCanvas, QgsLayerTreeMapCanvasBridge
 from PyQt4.QtCore import QFileInfo
 from PyQt4.QtXml import QDomDocument
@@ -19,7 +19,15 @@ app = QgsApplication(sys.argv, gui_flag)
 
 # Make sure QGIS_PREFIX_PATH is set in your env if needed!
 app.initQgis()
-project_path = os.path.dirname(__file__) + os.path.sep + 'test.qgs'
+
+print 'Available providers:'
+print QgsProviderRegistry.instance().pluginList()
+
+
+project_path = os.path.join(
+    os.path.dirname(__file__),
+    os.path.pardir,
+    'jk-floods.qgs')
 template_path = os.path.abspath(os.path.join(
     os.path.dirname(__file__),
     'test.qpt'
