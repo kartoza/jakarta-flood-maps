@@ -128,7 +128,7 @@ qgis:
 	--link jakartaflood_qgisserver_1:qgisserver \
 	--link jakartaflood_mapproxy_1:mapproxy \
 	--volumes-from jakartaflood_qgisserver_1 \
-	-v ${HOME}:/home/$(USER) \
+	-v ${HOME}:/root \
 	-v /tmp/.X11-unix:/tmp/.X11-unix \
 	-e DISPLAY=unix$(DISPLAY) \
 	kartoza/qgis-desktop:latest; xhost -
