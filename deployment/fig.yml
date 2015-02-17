@@ -72,20 +72,6 @@ mapproxy:
   links:
     - qgisserver:qgisserver
 
-# This doesnt work as we need dynamic env var
-# expansion - see Makefile rather for by-hand implementation
-#qgisdesktop:
-#  image: kartoza/qgis-desktop
-#  hostname: qgis-desktop
-#  volumes_from:
-#    - qgisserver
-#  volumes:
-#    - /tmp/.X11-unix:/tmp/.X11-unix
-#    - ~:/home
-#  links:
-#    - db:db
-#    - qgisserver:qgisserver
-
 uwsgi:
   build: docker-prod
   hostname: uwsgi

@@ -8,7 +8,7 @@
 import os
 import sys
 from qgis.core import (
-    QgsProject, QgsComposition, QgsApplication)
+    QgsProject, QgsComposition, QgsApplication, QgsProviderRegistry)
 from qgis.gui import QgsMapCanvas, QgsLayerTreeMapCanvasBridge
 from PyQt4.QtCore import QFileInfo
 from PyQt4.QtXml import QDomDocument
@@ -19,20 +19,32 @@ app = QgsApplication(sys.argv, gui_flag)
 
 # Make sure QGIS_PREFIX_PATH is set in your env if needed!
 app.initQgis()
-project_path = os.path.dirname(__file__) + os.path.sep + 'test.qgs'
+
+print 'Available providers:'
+print QgsProviderRegistry.instance().pluginList()
+
+
+project_path = os.path.join(
+    os.path.dirname(__file__),
+    os.path.pardir,
+    'maps',
+    'jk-floods.qgs')
 template_path = os.path.abspath(os.path.join(
     os.path.dirname(__file__),
-    'test.qpt'
+    os.path.pardir,
+    'maps',
+    'templates',
+    'jakarta_flooded_rw.qpt'
 ))
 
 
 def make_pdf():
-    global canvas, bridge, template_file, template_content, document, composition, substitution_map, map_item, legend_item
     canvas = QgsMapCanvas()
     # Load our project
+    QgsProject.instance().read(QFileInfo(project_path))
     bridge = QgsLayerTreeMapCanvasBridge(
         QgsProject.instance().layerTreeRoot(), canvas)
-    QgsProject.instance().read(QFileInfo(project_path))
+    bridge.setCanvasLayers()
     if canvas.layerCount() < 1:
         print 'No layers loaded from this project, exiting.'
         return
@@ -58,11 +70,10 @@ def make_pdf():
     legend_item = composition.getComposerItemById('legend')
     legend_item.updateLegend()
     composition.refreshItems()
-    composition.exportAsPDF('/tmp/test2.pdf')
+    composition.exportAsPDF('/home/web/reports/jk-floods-latest.pdf')
     QgsProject.instance().clear()
 
 
-make_pdf()
 make_pdf()
 
 
