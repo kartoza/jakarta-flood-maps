@@ -120,7 +120,7 @@ map:
 	@echo "--------------------------"
 	# Experimental way we had of getting it using QGIS Server
 	#wget -O map.pdf "http://172.17.0.6/cgi-bin/qgis_mapserv.fcgi?map=/web/jk-floods.qgs&SERVICE=wms&LAYERS=Rw&REQUEST=GetPrint&TEMPLATE=6Hour&map0:EXTENT=11862318.594,-714081.378,11922154.957,-675870.096&map0:ROTATION=0&FORMAT=pdf&DPI=300"
-	docker exec -t -i jakartaflood_cron_1 python /home/web/cron-scripts/pdf_report_generator.py
+	docker exec -t -i jakartaflood_cron_1 xvfb-run python /home/web/cron-scripts/pdf_report_generator.py
 	@echo "--------------------------"
 	@echo "PDF Generated - written to reports"
 	@echo "--------------------------"
