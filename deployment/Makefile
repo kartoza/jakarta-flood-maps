@@ -12,7 +12,7 @@ deploy: run migrate collectstatic
 	@echo
 	@echo "------------------------------------------------------------------"
 	@echo "Bringing up fresh instance "
-	@echo "You can access it on http://localhost:61100"
+	@echo "You can access it on http://localhost:63100"
 	@echo "------------------------------------------------------------------"
 
 build:
@@ -155,7 +155,7 @@ staging-deploy: staging-run staging-migrate staging-collectstatic
 	@echo
 	@echo "------------------------------------------------------------------"
 	@echo "Bringing up fresh staging instance "
-	@echo "You can access it on http://localhost:61101"
+	@echo "You can access it on http://localhost:63101"
 	@echo "------------------------------------------------------------------"
 
 staging-build:
