@@ -72,20 +72,6 @@ mapproxy:
   links:
     - qgisserver:qgisserver
 
-# This doesnt work as we need dynamic env var
-# expansion - see Makefile rather for by-hand implementation
-#qgisdesktop:
-#  image: kartoza/qgis-desktop
-#  hostname: qgis-desktop
-#  volumes_from:
-#    - qgisserver
-#  volumes:
-#    - /tmp/.X11-unix:/tmp/.X11-unix
-#    - ~:/home
-#  links:
-#    - db:db
-#    - qgisserver:qgisserver
-
 uwsgi:
   build: docker-prod
   hostname: uwsgi
@@ -139,5 +125,23 @@ web:
     - mapproxy:mapproxy
     - cron:cron
   ports:
-    - "61000:8080"
+    - "63100:8080"
 
+# Exactly the same as web but for staging we use a different port.
+stagingweb:
+  image: nginx
+  hostname: nginx
+  volumes:
+    - ./sites-enabled:/etc/nginx/conf.d:ro
+    # I dont use volumes_from as I want to use the ro modifier
+    - ./static:/home/web/static:ro
+    - ./media:/home/web/media:ro
+    - ./logs:/var/log/nginx
+    - ./reports:/home/web/reports
+  links:
+    - uwsgi:uwsgi
+    - qgisserver:qgisserver
+    - mapproxy:mapproxy
+    - cron:cron
+  ports:
+    - "63101:8080"

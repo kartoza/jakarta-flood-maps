@@ -1,38 +1,94 @@
 SHELL := /bin/bash
 
+# ----------------------------------------------------------------------------
+#    P R O D U C T I O N     C O M M A N D S
+# ----------------------------------------------------------------------------
+
 default: web
 
 run: build web
 
-deploy: run
+deploy: run migrate collectstatic
 	@echo
-	@echo "--------------------------"
-	@echo "Brining up fresh instance "
-	@echo "--------------------------"
-	#TODO - replace with something more precise
-	@echo "Waiting 20 secs to ensure db is running"
-	#@sleep 20
-	@fig run -p jakartaflood uwsgi python manage.py migrate
-	#@run -p jakartaflood uwsgi python manage.py collectstatic --noinput
+	@echo "------------------------------------------------------------------"
+	@echo "Bringing up fresh instance "
+	@echo "You can access it on http://localhost:63100"
+	@echo "------------------------------------------------------------------"
+
+build:
+	@echo
+	@echo "------------------------------------------------------------------"
+	@echo "Building in production mode"
+	@echo "------------------------------------------------------------------"
+	@fig -p jakartaflood build
+
+web:
+	@echo
+	@echo "------------------------------------------------------------------"
+	@echo "Running in production mode"
+	@echo "------------------------------------------------------------------"
+	@fig -p jakartaflood up -d web
+	@dipall
+
+migrate:
+	@echo
+	@echo "------------------------------------------------------------------"
+	@echo "Running migrate static in production mode"
+	@echo "------------------------------------------------------------------"
+	@fig -p jakartaflood run uwsgi python manage.py migrate
+
+collectstatic:
+	@echo
+	@echo "------------------------------------------------------------------"
+	@echo "Collecting static in production mode"
+	@echo "------------------------------------------------------------------"
+	#@fig -p jakartaflood run uwsgi python manage.py collectstatic --noinput
 	#We need to run collect static in the same context as the running
 	# uwsgi container it seems so I use docker exec here
 	@docker exec -t -i jakartaflood_uwsgi_1 python manage.py collectstatic --noinput
 
-rm:
+kill:
 	@echo
-	@echo "--------------------------"
-	@echo "Killing production instance!!! "
-	@echo "--------------------------"
-	@fig  -p jakartaflood kill
-	@fig  -p jakartaflood rm
+	@echo "------------------------------------------------------------------"
+	@echo "Killing in production mode"
+	@echo "------------------------------------------------------------------"
 
-web:
+	@fig -p jakartaflood kill
+
+rm: kill
 	@echo
-	@echo "--------------------------"
-	@echo "Running in production mode"
-	@echo "--------------------------"
-	@fig  -p jakartaflood up -d web
-	@dipall
+	@echo "------------------------------------------------------------------"
+	@echo "Removing production instance!!! "
+	@echo "------------------------------------------------------------------"
+	@fig -p jakartaflood rm
+
+logs:
+	@echo
+	@echo "------------------------------------------------------------------"
+	@echo "Showing uwsgi logs in production mode"
+	@echo "------------------------------------------------------------------"
+	@fig -p jakartaflood logs uwsgi
+
+nginxlogs:
+	@echo
+	@echo "------------------------------------------------------------------"
+	@echo "Showing nginx logs in production mode"
+	@echo "------------------------------------------------------------------"
+	@fig -p jakartaflood logs web
+
+shell:
+	@echo
+	@echo "------------------------------------------------------------------"
+	@echo "Shelling in in production mode"
+	@echo "------------------------------------------------------------------"
+	@fig -p jakartaflood run uwsgi /bin/bash
+
+dbshell:
+	@echo
+	@echo "------------------------------------------------------------------"
+	@echo "Shelling in in production database"
+	@echo "------------------------------------------------------------------"
+	@docker exec -t -i jakartaflood_db_1 psql -U docker -h localhost gis
 
 sentry:
 	@echo
@@ -41,52 +97,6 @@ sentry:
 	@echo "--------------------------"
 	@fig  -p jakartaflood up -d sentry
 	@dipall
-
-
-build:
-	@echo
-	@echo "--------------------------"
-	@echo "Building in production mode"
-	@echo "--------------------------"
-	@fig  -p jakartaflood build
-
-migrate:
-	@echo
-	@echo "--------------------------"
-	@echo "Running migrate static in production mode"
-	@echo "--------------------------"
-	@fig -p jakartaflood run uwsgi python manage.py migrate
-
-collectstatic:
-	@echo
-	@echo "--------------------------"
-	@echo "Collecting static in production mode"
-	@echo "--------------------------"
-	#@fig -p jakartaflood run uwsgi python manage.py collectstatic --noinput
-	#We need to run collect static in the same context as the running
-	# uwsgi container it seems so I use docker exec here
-	@docker exec -t -i jakartaflood_uwsgi_1 python manage.py collectstatic --noinput
-
-kill:
-	@echo
-	@echo "--------------------------"
-	@echo "Killing in production mode"
-	@echo "--------------------------"
-	@fig -p jakartaflood kill
-
-logs:
-	@echo
-	@echo "--------------------------"
-	@echo "Showing uwsgi logs in production mode"
-	@echo "--------------------------"
-	@fig -p jakartaflood logs uwsgi
-
-nginxlogs:
-	@echo
-	@echo "--------------------------"
-	@echo "Showing nginx logs in production mode"
-	@echo "--------------------------"
-	@fig -p jakartaflood logs web
 
 mapproxylogs:
 	@echo
@@ -102,26 +112,26 @@ seed:
 	@echo "--------------------------"
 	@fig -p jakartaflood run mapproxy /usr/local/bin/mapproxy-seed -f /mapproxy/mapproxy.yaml /mapproxy/seed.yaml
 
-shell:
+map:
 	@echo
 	@echo "--------------------------"
-	@echo "Shelling in in production mode"
+	@echo "Getting current 6 hour slot as pdf map"
+	@echo "Make sure you have started the services with make run first"
 	@echo "--------------------------"
-	@fig -p jakartaflood run uwsgi /bin/bash
-
-dbshell:
-	@echo
+	# Experimental way we had of getting it using QGIS Server
+	#wget -O map.pdf "http://172.17.0.6/cgi-bin/qgis_mapserv.fcgi?map=/web/jk-floods.qgs&SERVICE=wms&LAYERS=Rw&REQUEST=GetPrint&TEMPLATE=6Hour&map0:EXTENT=11862318.594,-714081.378,11922154.957,-675870.096&map0:ROTATION=0&FORMAT=pdf&DPI=300"
+	docker exec -t -i jakartaflood_cron_1 xvfb-run python /home/web/cron-scripts/pdf_report_generator.py
 	@echo "--------------------------"
-	@echo "Shelling in in production database"
+	@echo "PDF Generated - written to reports"
 	@echo "--------------------------"
-	@docker exec -t -i jakartaflood_db_1 psql -U docker -h localhost gis
+	evince reports/jk-floods-latest.pdf
 
 qgis:
 	@echo
-	@echo "--------------------------"
+	@echo "------------------------------------------------------------------"
 	@echo "Running QGIS desktop in production mode"
 	@echo "Make sure you have started the services with make run first"
-	@echo "--------------------------"
+	@echo "------------------------------------------------------------------"
 	@xhost +; docker run --rm --name="qgis-desktop-2-4" \
 	-i -t \
 	--link jakartaflood_db_1:db \
@@ -133,130 +143,108 @@ qgis:
 	-e DISPLAY=unix$(DISPLAY) \
 	kartoza/qgis-desktop:latest; xhost -
 
-map:
-	@echo
-	@echo "--------------------------"
-	@echo "Getting current 6 hour slot as pdf map"
-	@echo "Make sure you have started the services with make run first"
-	@echo "--------------------------"
-	wget -O map.pdf "http://172.17.0.6/cgi-bin/qgis_mapserv.fcgi?map=/web/jk-floods.qgs&SERVICE=wms&LAYERS=Rw&REQUEST=GetPrint&TEMPLATE=6Hour&map0:EXTENT=11862318.594,-714081.378,11922154.957,-675870.096&map0:ROTATION=0&FORMAT=pdf&DPI=300"
 
-#
-# Staging
-#
-staging: stagingbuild stagingweb
 
-stagingdeploy: stagingrun
+# ----------------------------------------------------------------------------
+#    S T A G I N G     C O M M A N D S
+# ----------------------------------------------------------------------------
+
+staging-run: staging-build staging-web
+
+staging-deploy: staging-run staging-migrate staging-collectstatic
 	@echo
-	@echo "--------------------------"
+	@echo "------------------------------------------------------------------"
 	@echo "Bringing up fresh staging instance "
-	@echo "--------------------------"
-	#TODO - replace with something more precise
-	@echo "Waiting 20 secs to ensure db is running"
-	@fig  -p jakartaflood -f fig-staging.yml run stagingweb python manage.py migrate
-	@fig  -p jakartaflood -f fig-staging.yml run stagingweb python manage.py collectstatic --noinput
+	@echo "You can access it on http://localhost:63101"
+	@echo "------------------------------------------------------------------"
 
-stagingrm:
+staging-build:
 	@echo
-	@echo "--------------------------"
-	@echo "Killing staging instance!!! "
-	@echo "--------------------------"
-	@fig -p jakartaflood -f fig-staging.yml kill
-	@fig -p jakartaflood -f fig-staging.yml rm
-
-stagingweb:
-	@echo
-	@echo "--------------------------"
-	@echo "Running in staging mode"
-	@echo "--------------------------"
-	@fig -p jakartaflood -f fig-staging.yml up -d stagingweb
-
-stagingbuild:
-	@echo
-	@echo "--------------------------"
+	@echo "------------------------------------------------------------------"
 	@echo "Building in staging mode"
-	@echo "--------------------------"
-	@fig -p jakartaflood -f fig-staging.yml build
+	@echo "------------------------------------------------------------------"
+	@fig -p jakartaflood-staging build
 
-stagingmigrate:
+staging-web:
 	@echo
-	@echo "--------------------------"
+	@echo "------------------------------------------------------------------"
+	@echo "Running in staging mode"
+	@echo "------------------------------------------------------------------"
+	@fig -p jakartaflood-staging up -d stagingweb
+	@dipall
+
+staging-migrate:
+	@echo
+	@echo "------------------------------------------------------------------"
 	@echo "Running migrate static in staging mode"
-	@echo "--------------------------"
-	@fig -p jakartaflood -f fig-staging.yml run stagingweb python manage.py migrate
+	@echo "------------------------------------------------------------------"
+	@fig -p jakartaflood-staging run uwsgi python manage.py migrate
 
-stagingcollectstatic:
+staging-collectstatic:
 	@echo
-	@echo "--------------------------"
+	@echo "------------------------------------------------------------------"
 	@echo "Collecting static in staging mode"
-	@echo "--------------------------"
-	@fig -p jakartaflood -f fig-staging.yml run stagingweb python manage.py collectstatic --noinput
+	@echo "------------------------------------------------------------------"
+	#@fig -p jakartaflood-staging run uwsgi python manage.py collectstatic --noinput
+	#We need to run collect static in the same context as the running
+	# uwsgi container it seems so I use docker exec here
+	@docker exec -t -i jakartafloodstaging_uwsgi_1 python manage.py collectstatic --noinput
 
-
-
-# You need the production mode stuff in place
-# before being able to use the dev stuff
-# so we call build first
-dev: build devssh devmigrate devcollectstatic
-
-devkill:
+staging-kill:
 	@echo
-	@echo "-----------------------------------"
-	@echo "Killing developer environment"
-	@echo "-----------------------------------"
-	@fig -p jakartaflood -f fig-dev.yml kill
-	@fig -p jakartaflood -f fig-dev.yml rm
+	@echo "------------------------------------------------------------------"
+	@echo "Killing in staging mode"
+	@echo "------------------------------------------------------------------"
 
-devdb:
-	@echo
-	@echo "-----------------------------------"
-	@echo "Running db in developer mode"
-	@echo "-----------------------------------"
-	@fig -p jakartaflood -f fig-dev.yml up -d --no-recreate devdb
+	@fig -p jakartaflood-staging kill
 
-devdblogs:
+staging-rm: kill
 	@echo
-	@echo "-----------------------------------"
-	@echo "Running db logs in developer mode"
-	@echo "press ctrl-c to exit log watcher"
-	@echo "-----------------------------------"
-	@fig -p jakartaflood -f fig-dev.yml logs devdb
+	@echo "------------------------------------------------------------------"
+	@echo "Removing staging instance!!! "
+	@echo "------------------------------------------------------------------"
+	@fig -p jakartaflood-staging rm
 
-devssh:
+staging-logs:
 	@echo
-	@echo "--------------------------"
-	@echo "Running ssh server in developer mode"
-	@echo "You can attach to this as a remote interpreter"
-	@echo "in pycharm."
-	@echo "--------------------------"
-	@fig -p jakartaflood -f fig-dev.yml up -d --no-recreate dev
+	@echo "------------------------------------------------------------------"
+	@echo "Showing uwsgi logs in staging mode"
+	@echo "------------------------------------------------------------------"
+	@fig -p jakartaflood-staging logs uwsgi
 
-devmigrate:
+staging-nginxlogs:
 	@echo
-	@echo "--------------------------"
-	@echo "Migrating in developer mode"
-	@echo "--------------------------"
-	@fig -p jakartaflood -f fig-dev.yml run dev /usr/local/bin/ manage.py migrate
+	@echo "------------------------------------------------------------------"
+	@echo "Showing nginx logs in staging mode"
+	@echo "------------------------------------------------------------------"
+	@fig -p jakartaflood-staging logs web
 
-devcollectstatic:
+staging-shell:
 	@echo
-	@echo "-----------------------------------"
-	@echo "Collecting static in developer mode"
-	@echo "-----------------------------------"
-	@fig -p jakartaflood -f fig-dev.yml run dev /usr/local/bin/python manage.py collectstatic --noinput
+	@echo "------------------------------------------------------------------"
+	@echo "Shelling in in staging mode"
+	@echo "------------------------------------------------------------------"
+	@fig -p jakartaflood-staging run uwsgi /bin/bash
 
-devbuild: build
+staging-dbshell:
 	@echo
-	@echo "--------------------------"
-	@echo "Building in developer mode"
-	@echo "--------------------------"
-	@fig -p jakartaflood build
-	@fig -p jakartaflood -f fig-dev.yml build
+	@echo "------------------------------------------------------------------"
+	@echo "Shelling in in staging database"
+	@echo "------------------------------------------------------------------"
+	@docker exec -t -i jakartafloodstaging_db_1 psql -U docker -h localhost gis
 
-devshell:
+staging-qgis:
 	@echo
-	@echo "--------------------------"
-	@echo "Starting shell in developer mode"
-	@echo "--------------------------"
-	@echo "Press enter to start your shell"
-	@fig -p jakartaflood -f fig-dev.yml run dev /bin/bash
+	@echo "------------------------------------------------------------------"
+	@echo "Running QGIS desktop in staging mode"
+	@echo "Make sure you have started the services with make run first"
+	@echo "------------------------------------------------------------------"
+	@xhost +; docker run --rm --name="qgis-desktop-2-4" \
+	-i -t \
+	--link jakartafloodstaging_db_1:db \
+	--link jakartafloodstaging_qgisserver_1:qgisserver \
+	--volumes-from jakartaflood_qgisserver_1 \
+	-v ${HOME}:/home/$(USER) \
+	-v /tmp/.X11-unix:/tmp/.X11-unix \
+	-e DISPLAY=unix$(DISPLAY) \
+	kartoza/qgis-desktop:latest; xhost -
