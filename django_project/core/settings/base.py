@@ -7,7 +7,7 @@ from .utils import ABS_PATH
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
 # although not all choices may be available on all operating systems.
 # In a Windows environment this must be set to your system time zone.
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Jakarta'
 
 # Language code for this installation. All choices can be found here:
 # http://www.i18nguy.com/unicode/language-identifiers.html
@@ -84,9 +84,6 @@ INSTALLED_APPS = (
     'django.contrib.gis',
     'django.contrib.admin',
     'django_forms_bootstrap',
-    'rest_framework',
-    'user_profile',
-    # 'users'
 )
 
 # AUTH_USER_MODEL = 'users.User'
