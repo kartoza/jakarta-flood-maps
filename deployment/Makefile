@@ -28,6 +28,7 @@ web:
 	@echo "Running in production mode"
 	@echo "------------------------------------------------------------------"
 	@fig -p jakartaflood up -d web
+	@fig -p jakartaflood run uwsgi python manage.py create_reports_directories
 	@dipall
 
 migrate:
@@ -97,6 +98,20 @@ sentry:
 	@echo "--------------------------"
 	@fig  -p jakartaflood up -d sentry
 	@dipall
+
+maillogs:
+	@echo
+	@echo "------------------------------------------------------------------"
+	@echo "Showing smtp logs in production mode"
+	@echo "------------------------------------------------------------------"
+	@docker exec -t -i jakartaflood_smtp_1 tail -f /var/log/mail.log
+
+mailerrorlogs:
+	@echo
+	@echo "------------------------------------------------------------------"
+	@echo "Showing smtp error logs in production mode"
+	@echo "------------------------------------------------------------------"
+	@docker exec -t -i jakartaflood_smtp_1 tail -f /var/log/mail.err
 
 mapproxylogs:
 	@echo
