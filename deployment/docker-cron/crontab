@@ -1,14 +1,6 @@
-#command to be executed
-#-     -     -   -    -
-#|     |     |   |    |
-#|     |     |   |    +----- day of week (0 - 6) (Sunday=0)
-#|     |     |   +------- month (1 - 12)
-#|     |     +--------- day of        month (1 - 31)
-#|     +----------- hour (0 - 23)
-#+------------- min (0 - 59)
-#*     *     *   *    *        command to be executed
-
-*     *           *    *   * echo `date` > /home/web/cron-scripts/lastdate.txt
-*/10  *           *    *   * /home/web/cron-scripts/create_6h_reports.sh
-*     0,6,12,18   *    *   * /home/web/cron-scripts/create_6h_reports.sh
+* * * * * touch /tmp/test.txt
+* * * * * touch /home/web/reports/cron-verifier.txt
+*/10 * * * * /home/web/cron-scripts/create_6h_reports.sh
+* 0,6,12,18 * * * /home/web/cron-scripts/create_6h_reports.sh
+* 0 * * * /home/web/cron-scripts/create_24h_reports.sh
 *     0           *    *   * /home/web/cron-scripts/create_24h_reports.sh
