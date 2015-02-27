@@ -7,4 +7,4 @@ RUN yum install -y cronie-anacron.x86_64 postgis.x86_64 xorg-x11-server-Xvfb.x86
 
 ENV PYTHONPATH=$PYTHONPATH:/usr/share/qgis/python/
 ADD crontab /var/spool/cron/root
-CMD ["crond", "-n"]
+CMD ["crond", "-n", "-p", "-s"]
