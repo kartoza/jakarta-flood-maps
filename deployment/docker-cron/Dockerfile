@@ -6,5 +6,5 @@ MAINTAINER Tim Sutton<tim@kartoza.com>
 RUN yum install -y cronie-anacron.x86_64 postgis.x86_64 xorg-x11-server-Xvfb.x86_64
 
 ENV PYTHONPATH=$PYTHONPATH:/usr/share/qgis/python/
-ADD crontab /etc/crontab
+ADD crontab /var/spool/cron/root
 CMD ["crond", "-n"]
