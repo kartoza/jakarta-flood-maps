@@ -12,4 +12,4 @@ ADD crontab /var/spool/cron/root
 # Change the timezone, to the timezone
 RUN cp /usr/share/zoneinfo/Asia/Jakarta  /etc/localtime
 
-CMD crond -p -s && x11vnc -storepasswd 123456 /.vnc/passwd
+CMD crond -p -s && Xvfb :99 -ac -screen 0 1280x1024x24

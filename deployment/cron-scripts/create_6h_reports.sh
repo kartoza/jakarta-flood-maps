@@ -16,7 +16,7 @@ else
 fi
 
 DATE_TIME_LABEL="$(date +'%F')-$HOUR";
-if [ $(HOUR) == 0 ]; then
+if [ $HOUR == 0 ]; then
     DATE_TIME_START="$(date -d 'yesterday' +'%F')-18:00:00.0"
 else
     DATE_TIME_START="$(date +'%F')-$(HOUR-6):00:00.0"
@@ -35,7 +35,7 @@ SQL_QUERY="${SQL_QUERY//'{{DATE_TIME_NOW}}'/$DATE_TIME_NOW}"
 psql -c "$SQL_QUERY"
 
 # CREATE SHP FROM TEMP TABLE
-SQL_SELECT="SELECT * FROM FLOOD_MAPPER_FLOODSTATUS_{{NUMBER_OF_HOURS}};"
+SQL_SELECT="SELECT * FROM FLOOD_MAPPER_FLOODSTATUS_{{NUMBER_OF_HOURS}}H;"
 SQL_SELECT="${SQL_SELECT/'{{NUMBER_OF_HOURS}}'/$NUMBER_OF_HOURS}"
 pgsql2shp -f /home/web/reports/shp/6h/$DATE_TIME_LABEL.shp gis "$SQL_SELECT"
 
