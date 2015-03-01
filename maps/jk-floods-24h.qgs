@@ -86,7 +86,7 @@
             </filegroup>
         </legendlayer>
     </legend>
-    <Composer title="6Hour" visible="0">
+    <Composer title="24Hour" visible="0">
         <Composition gridVisible="0" printResolution="300" paperWidth="297" snapGridOffsetX="0" guidesVisible="1" snapGridResolution="10" snapGridOffsetY="0" alignmentSnap="1" snapping="0" snapTolerancePixels="10" numPages="1" paperHeight="210" smartGuides="1" printAsRaster="1" generateWorldFile="0">
             <symbol alpha="1" type="fill" name="">
                 <layer pass="0" class="SimpleFill" locked="0">
@@ -551,7 +551,7 @@
             <keywordList>
                 <value></value>
             </keywordList>
-            <layername>flood_mapper_floodstatus</layername>
+            <layername>flood_mapper_floodstatus_24h</layername>
             <srs>
                 <spatialrefsys>
                     <proj4>+proj=longlat +datum=WGS84 +no_defs</proj4>

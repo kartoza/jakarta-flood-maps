@@ -106,6 +106,7 @@ cron:
     - ../maps:/home/web/maps
     - ./reports:/home/web/reports
     - ./cron-scripts:/home/web/cron-scripts
+    - /tmp/.X11-unix:/tmp/.X11-unix
   links:
     - db:db
 
