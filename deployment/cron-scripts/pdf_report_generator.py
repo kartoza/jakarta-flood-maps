@@ -37,6 +37,11 @@ template_path = os.path.abspath(os.path.join(
     'jakarta_flooded_rw.qpt'
 ))
 
+TIME_SLICE = sys.argv[0]
+TIME_START = sys.argv[1]
+TIME_STOP = sys.argv[2]
+LABEL = sys.argv[3]
+
 
 def make_pdf():
     canvas = QgsMapCanvas()
@@ -59,8 +64,8 @@ def make_pdf():
     # in the template with a new value. e.g. to replace
     # [date] pass a map like this {'date': '1 Jan 2012'}
     substitution_map = {
-        'DATE_TIME_START': 'foo',
-        'DATE_TIME_END': 'bar'}
+        'DATE_TIME_START': TIME_START,
+        'DATE_TIME_END': TIME_STOP}
     composition.loadFromTemplate(document, substitution_map)
     # You must set the id in the template
     map_item = composition.getComposerItemById('map')
@@ -70,7 +75,8 @@ def make_pdf():
     legend_item = composition.getComposerItemById('legend')
     legend_item.updateLegend()
     composition.refreshItems()
-    composition.exportAsPDF('/home/web/reports/jk-floods-latest.pdf')
+    composition.exportAsPDF(
+        '/home/web/reports/pdf/%s/%s.pdf' % (TIME_SLICE, LABEL))
     QgsProject.instance().clear()
 
 

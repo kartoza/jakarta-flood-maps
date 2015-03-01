@@ -38,7 +38,7 @@ WITH currently_reported AS (
     select end_time from time_slices_{{NUMBER_OF_HOURS}}_hours(cast('{{DATE_TIME_NOW}}' as TIMESTAMP)))
 )
   SELECT temp.*
-  INTO REPORT_{{NUMBER_OF_HOURS}}_HOUR_TEMP
+  INTO FLOOD_MAPPER_FLOODSTATUS_{{NUMBER_OF_HOURS}}
   FROM currently_reported temp
   INNER JOIN
       (SELECT rw_id, MAX(date_time) AS max_date_time

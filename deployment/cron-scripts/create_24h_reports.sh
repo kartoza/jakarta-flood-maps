@@ -1,5 +1,6 @@
 NUMBER_OF_HOURS=24
 DATE_TIME_LABEL="$(date -d 'yesterday' +'%F')"
+DATE_TIME_START="$(date -d 'yesterday' +'%F')-00:00:00.0"
 DATE_TIME_NOW="$(date +'%F') 00:00:00.0"
 
 # DROP TEMP TABLE
@@ -14,7 +15,7 @@ SQL_QUERY="${SQL_QUERY//'{{DATE_TIME_NOW}}'/$DATE_TIME_NOW}"
 psql -c "$SQL_QUERY"
 
 # CREATE SHP FROM TEMP TABLE
-SQL_SELECT="SELECT * FROM report_{{NUMBER_OF_HOURS}}_hour_temp;"
+SQL_SELECT="SELECT * FROM FLOOD_MAPPER_FLOODSTATUS_{{NUMBER_OF_HOURS}};"
 SQL_SELECT="${SQL_SELECT/'{{NUMBER_OF_HOURS}}'/$NUMBER_OF_HOURS}"
 pgsql2shp -f /home/web/reports/shp/24h/$DATE_TIME_LABEL.shp gis "$SQL_SELECT"
 
@@ -25,3 +26,7 @@ find /home/web/reports/shp/24h/$DATE_TIME_LABEL.* -path -prune -o -type f -print
 ogr2ogr -f "KML" /home/web/reports/kml/24h/$DATE_TIME_LABEL.kml /home/web/reports/shp/24h/$DATE_TIME_LABEL.shp
 ogr2ogr -f "CSV" /home/web/reports/csv/24h/$DATE_TIME_LABEL.csv /home/web/reports/shp/24h/$DATE_TIME_LABEL.shp
 ogr2ogr -f "SQLite" /home/web/reports/sqlite/24h/$DATE_TIME_LABEL.sqlite /home/web/reports/shp/24h/$DATE_TIME_LABEL.shp
+
+
+# GENERATE THE PDF REPORT
+DISPLAY=:99 python /home/web/cron-scripts/pdf_report_generator.py 24h $DATE_TIME_START $DATE_TIME_END $DATE_TIME_LABEL
