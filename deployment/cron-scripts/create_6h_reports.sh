@@ -44,3 +44,4 @@ ogr2ogr -f "SQLite" /home/web/reports/sqlite/6h/$DATE_TIME_LABEL.sqlite /home/we
 
 
 # GENERATE THE PDF REPORT
+DISPLAY=:99 python /home/web/cron-scripts/pdf_report_generator.py

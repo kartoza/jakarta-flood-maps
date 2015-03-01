@@ -3,7 +3,8 @@
 FROM kartoza/qgis-desktop:2.8.0
 MAINTAINER Tim Sutton<tim@kartoza.com>
 
-RUN yum install -y cronie-anacron.x86_64 postgis.x86_64 xorg-x11-server-Xvfb.x86_64
+RUN yum install -y cronie-anacron.x86_64 postgis.x86_64
+RUN yum install -y xorg-x11-server-Xvfb.x86_64
 
 ENV PYTHONPATH=$PYTHONPATH:/usr/share/qgis/python/
 ADD crontab /var/spool/cron/root
@@ -11,4 +12,4 @@ ADD crontab /var/spool/cron/root
 # Change the timezone, to the timezone
 RUN cp /usr/share/zoneinfo/Asia/Jakarta  /etc/localtime
 
-CMD ["crond", "-n", "-p", "-s"]
+CMD crond -p -s && x11vnc -storepasswd 123456 /.vnc/passwd
