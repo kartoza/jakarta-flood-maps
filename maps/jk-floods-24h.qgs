@@ -6,7 +6,8 @@
         <layer-tree-layer expanded="1" checked="Qt::Checked" id="flood_mapper_village20150121072259430" name="flood_mapper_village">
             <customproperties/>
         </layer-tree-layer>
-        <layer-tree-layer expanded="1" checked="Qt::Checked" id="flood_mapper_floodstatus20150121072258701" name="flood_mapper_floodstatus">
+        <layer-tree-layer expanded="1" checked="Qt::Checked"
+        id="flood_mapper_floodstatus20150121072258701" name="flood_mapper_floodstatus_24h">
             <customproperties/>
         </layer-tree-layer>
         <layer-tree-layer expanded="1" checked="Qt::Checked" id="flood_mapper_rw20150121072259400" name="flood_mapper_rw">
@@ -65,7 +66,7 @@
                 <legendlayerfile isInOverview="0" layerid="flood_mapper_village20150121072259430" visible="1"/>
             </filegroup>
         </legendlayer>
-        <legendlayer drawingOrder="-1" open="true" checked="Qt::Checked" name="flood_mapper_floodstatus" showFeatureCount="0">
+        <legendlayer drawingOrder="-1" open="true" checked="Qt::Checked" name="flood_mapper_floodstatus_24h" showFeatureCount="0">
             <filegroup open="true" hidden="false">
                 <legendlayerfile isInOverview="0" layerid="flood_mapper_floodstatus20150121072258701" visible="1"/>
             </filegroup>
@@ -545,7 +546,7 @@
     <projectlayers layercount="5">
         <maplayer minimumScale="0" maximumScale="1e+08" geometry="No geometry" type="vector" hasScaleBasedVisibilityFlag="0">
             <id>flood_mapper_floodstatus20150121072258701</id>
-            <datasource>dbname='gis' host=db port=5432 user='docker' password='docker' sslmode=disable key='id' table="public"."flood_mapper_floodstatus" sql=</datasource>
+            <datasource>dbname='gis' host=db port=5432 user='docker' password='docker' sslmode=disable key='id' table="public"."flood_mapper_floodstatus_24h" sql=</datasource>
             <title></title>
             <abstract></abstract>
             <keywordList>
