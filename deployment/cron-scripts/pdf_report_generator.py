@@ -37,10 +37,10 @@ template_path = os.path.abspath(os.path.join(
     'jakarta_flooded_rw.qpt'
 ))
 
-TIME_SLICE = sys.argv[0]
-TIME_START = sys.argv[1]
-TIME_STOP = sys.argv[2]
-LABEL = sys.argv[3]
+TIME_SLICE = sys.argv[1]
+TIME_START = sys.argv[2]
+TIME_STOP = sys.argv[3]
+LABEL = sys.argv[4]
 
 
 def make_pdf():
