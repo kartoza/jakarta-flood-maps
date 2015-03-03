@@ -147,7 +147,7 @@ qgis:
 	@echo "Running QGIS desktop in production mode"
 	@echo "Make sure you have started the services with make run first"
 	@echo "------------------------------------------------------------------"
-	@xhost +; docker run --rm --name="qgis-desktop-2-4" \
+	@xhost +; docker run --rm --name="qgis-desktop-2-8" \
 	-i -t \
 	--link jakartaflood_db_1:db \
 	--link jakartaflood_qgisserver_1:qgisserver \
@@ -156,7 +156,7 @@ qgis:
 	-v ${HOME}:/home/$(USER) \
 	-v /tmp/.X11-unix:/tmp/.X11-unix \
 	-e DISPLAY=unix$(DISPLAY) \
-	kartoza/qgis-desktop:latest; xhost -
+	kartoza/qgis-desktop:2.8.0; xhost -
 
 
 
@@ -254,7 +254,7 @@ staging-qgis:
 	@echo "Running QGIS desktop in staging mode"
 	@echo "Make sure you have started the services with make run first"
 	@echo "------------------------------------------------------------------"
-	@xhost +; docker run --rm --name="qgis-desktop-2-4" \
+	@xhost +; docker run --rm --name="qgis-desktop-2-8.0" \
 	-i -t \
 	--link jakartafloodstaging_db_1:db \
 	--link jakartafloodstaging_qgisserver_1:qgisserver \
@@ -262,4 +262,4 @@ staging-qgis:
 	-v ${HOME}:/home/$(USER) \
 	-v /tmp/.X11-unix:/tmp/.X11-unix \
 	-e DISPLAY=unix$(DISPLAY) \
-	kartoza/qgis-desktop:latest; xhost -
+	kartoza/qgis-desktop:2.8; xhost -

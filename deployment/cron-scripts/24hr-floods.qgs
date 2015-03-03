@@ -1,15 +1,15 @@
 <!DOCTYPE qgis PUBLIC 'http://mrcc.com/qgis.dtd' 'SYSTEM'>
 <qgis projectname="" version="2.8.0-Wien">
   <title></title>
-  <layer-tree-group expanded="1" checked="Qt::Checked" name="">
+  <layer-tree-group expanded="1" checked="Qt::PartiallyChecked" name="">
     <customproperties/>
-    <layer-tree-layer expanded="1" checked="Qt::Checked" id="flood_mapper_floodstatus_6h20150302204017901" name="6 Jam Banjir">
+    <layer-tree-layer expanded="1" checked="Qt::Checked" id="flood_mapper_floodstatus_24h20150302203114140" name="24 Jam Banjir">
       <customproperties/>
     </layer-tree-layer>
-    <layer-tree-layer expanded="1" checked="Qt::Checked" id="rw_jakarta_update20150121132117662" name="RW">
+    <layer-tree-layer expanded="1" checked="Qt::Checked" id="rw20150123235623727" name="Rw">
       <customproperties/>
     </layer-tree-layer>
-    <layer-tree-layer expanded="1" checked="Qt::Checked" id="jakarta20150121114548274" name="Jakarta">
+    <layer-tree-layer expanded="1" checked="Qt::Unchecked" id="jk20150123235639796" name="Jk">
       <customproperties/>
     </layer-tree-layer>
   </layer-tree-group>
@@ -17,10 +17,10 @@
   <mapcanvas>
     <units>meters</units>
     <extent>
-      <xmin>11861153.6594589538872242</xmin>
-      <ymin>-716314.68347559170797467</ymin>
-      <xmax>11928597.10743184760212898</xmax>
-      <ymax>-671042.60521032242104411</ymax>
+      <xmin>11858578.5181475467979908</xmin>
+      <ymin>-722093.6886181851150468</ymin>
+      <xmax>11926021.96612044051289558</xmax>
+      <ymax>-676821.61035291582811624</ymax>
     </extent>
     <rotation>0</rotation>
     <projections>1</projections>
@@ -37,46 +37,49 @@
       </spatialrefsys>
     </destinationsrs>
     <layer_coordinate_transform_info>
+      <layer_coordinate_transform destAuthId="EPSG:3857" srcAuthId="EPSG:4326" srcDatumTransform="-1" destDatumTransform="-1" layerid="flood_mapper_floodstatus_6h20150302202816167"/>
       <layer_coordinate_transform destAuthId="EPSG:3857" srcAuthId="EPSG:4326" srcDatumTransform="-1" destDatumTransform="-1" layerid="buildings20150113134818103"/>
       <layer_coordinate_transform destAuthId="EPSG:3857" srcAuthId="EPSG:4326" srcDatumTransform="-1" destDatumTransform="-1" layerid="report_6_hour_temp20150119093925134"/>
+      <layer_coordinate_transform destAuthId="EPSG:3857" srcAuthId="EPSG:4326" srcDatumTransform="-1" destDatumTransform="-1" layerid="rw20150123235623727"/>
       <layer_coordinate_transform destAuthId="EPSG:3857" srcAuthId="EPSG:4326" srcDatumTransform="-1" destDatumTransform="-1" layerid="buildings20150113135932212"/>
       <layer_coordinate_transform destAuthId="EPSG:3857" srcAuthId="EPSG:4326" srcDatumTransform="-1" destDatumTransform="-1" layerid="roads20150113140048846"/>
+      <layer_coordinate_transform destAuthId="EPSG:3857" srcAuthId="EPSG:4326" srcDatumTransform="-1" destDatumTransform="-1" layerid="flood_mapper_floodstatus_24h20150302203114140"/>
       <layer_coordinate_transform destAuthId="EPSG:3857" srcAuthId="EPSG:4326" srcDatumTransform="-1" destDatumTransform="-1" layerid="2015_01_13_1220150113125519866"/>
       <layer_coordinate_transform destAuthId="EPSG:3857" srcAuthId="EPSG:4326" srcDatumTransform="-1" destDatumTransform="-1" layerid="rw_jakarta_update20150113135137010"/>
       <layer_coordinate_transform destAuthId="EPSG:3857" srcAuthId="EPSG:4326" srcDatumTransform="-1" destDatumTransform="-1" layerid="jakarta20150121114548274"/>
-      <layer_coordinate_transform destAuthId="EPSG:3857" srcAuthId="EPSG:4326" srcDatumTransform="-1" destDatumTransform="-1" layerid="flood_mapper_floodstatus_6h20150302204017901"/>
       <layer_coordinate_transform destAuthId="EPSG:3857" srcAuthId="EPSG:4326" srcDatumTransform="-1" destDatumTransform="-1" layerid="rw_jakarta_update20150121132117662"/>
       <layer_coordinate_transform destAuthId="EPSG:3857" srcAuthId="EPSG:4326" srcDatumTransform="-1" destDatumTransform="-1" layerid="roads20150113134832298"/>
       <layer_coordinate_transform destAuthId="EPSG:3857" srcAuthId="EPSG:4326" srcDatumTransform="-1" destDatumTransform="-1" layerid="vw_events20150121131933172"/>
       <layer_coordinate_transform destAuthId="EPSG:3857" srcAuthId="EPSG:4326" srcDatumTransform="-1" destDatumTransform="-1" layerid="jakarta20150121113048473"/>
+      <layer_coordinate_transform destAuthId="EPSG:3857" srcAuthId="EPSG:4326" srcDatumTransform="-1" destDatumTransform="-1" layerid="jk20150123235639796"/>
     </layer_coordinate_transform_info>
   </mapcanvas>
   <visibility-presets/>
   <layer-tree-canvas>
     <custom-order enabled="0">
-      <item>jakarta20150121114548274</item>
-      <item>rw_jakarta_update20150121132117662</item>
-      <item>flood_mapper_floodstatus_6h20150302204017901</item>
+      <item>rw20150123235623727</item>
+      <item>jk20150123235639796</item>
+      <item>flood_mapper_floodstatus_24h20150302203114140</item>
     </custom-order>
   </layer-tree-canvas>
   <legend updateDrawingOrder="true">
-    <legendlayer drawingOrder="-1" open="true" checked="Qt::Checked" name="6 Jam Banjir" showFeatureCount="0">
+    <legendlayer drawingOrder="-1" open="true" checked="Qt::Checked" name="24 Jam Banjir" showFeatureCount="0">
       <filegroup open="true" hidden="false">
-        <legendlayerfile isInOverview="0" layerid="flood_mapper_floodstatus_6h20150302204017901" visible="1"/>
+        <legendlayerfile isInOverview="0" layerid="flood_mapper_floodstatus_24h20150302203114140" visible="1"/>
       </filegroup>
     </legendlayer>
-    <legendlayer drawingOrder="-1" open="true" checked="Qt::Checked" name="RW" showFeatureCount="0">
+    <legendlayer drawingOrder="-1" open="true" checked="Qt::Checked" name="Rw" showFeatureCount="0">
       <filegroup open="true" hidden="false">
-        <legendlayerfile isInOverview="0" layerid="rw_jakarta_update20150121132117662" visible="1"/>
+        <legendlayerfile isInOverview="0" layerid="rw20150123235623727" visible="1"/>
       </filegroup>
     </legendlayer>
-    <legendlayer drawingOrder="-1" open="true" checked="Qt::Checked" name="Jakarta" showFeatureCount="0">
+    <legendlayer drawingOrder="-1" open="true" checked="Qt::Unchecked" name="Jk" showFeatureCount="0">
       <filegroup open="true" hidden="false">
-        <legendlayerfile isInOverview="0" layerid="jakarta20150121114548274" visible="1"/>
+        <legendlayerfile isInOverview="0" layerid="jk20150123235639796" visible="0"/>
       </filegroup>
     </legendlayer>
   </legend>
-  <Composer title="Jakarta" visible="1">
+  <Composer title="Jakarta" visible="0">
     <Composition gridVisible="0" printResolution="100" paperWidth="594" snapGridOffsetX="0" guidesVisible="1" snapGridResolution="10" snapGridOffsetY="0" alignmentSnap="1" snapping="0" snapTolerancePixels="10" numPages="1" paperHeight="420" smartGuides="1" printAsRaster="0" generateWorldFile="0">
       <symbol alpha="1" type="fill" name="">
         <layer pass="0" class="SimpleFill" locked="0">
@@ -93,21 +96,21 @@
           <prop k="style" v="solid"/>
         </layer>
       </symbol>
-      <ComposerPicture resizeMode="3" pictureRotation="0" pictureWidth="21.3396" file="/home/timlinux/dev/python/jakarta-flood-maps/maps/images/inasafe-logo-url.svg" pictureHeight="21.4705" mapId="-1" anchorPoint="0">
+      <ComposerPicture resizeMode="3" pictureRotation="0" pictureWidth="21.3396" file="/home/timlinux/dev/python/jakarta-flood-maps/deployment/maps/images/inasafe-logo-url.svg" pictureHeight="21.4705" mapId="-1" anchorPoint="0">
         <ComposerItem pagey="347.07" page="1" id="" lastValidViewScaleFactor="1.14968" positionMode="0" positionLock="false" x="486.844" y="347.07" visibility="1" zValue="27" background="true" transparency="0" frameJoinStyle="miter" blendMode="0" width="21.3396" outlineWidth="0.3" excludeFromExports="0" uuid="{ed0b960e-2a82-4cc7-9b04-d72bc018696c}" height="21.4705" itemRotation="0" frame="false" pagex="486.844">
           <FrameColor alpha="255" red="0" blue="0" green="0"/>
           <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
           <dataDefinedSource expr="" field="" active="false" useExpr="true"/>
         </ComposerItem>
       </ComposerPicture>
-      <ComposerPicture resizeMode="3" pictureRotation="0" pictureWidth="37.0701" file="/home/timlinux/dev/python/jakarta-flood-maps/maps/images/bnpb_logo.png" pictureHeight="37.2975" mapId="-1" anchorPoint="0">
+      <ComposerPicture resizeMode="3" pictureRotation="0" pictureWidth="37.0701" file="/home/timlinux/dev/python/jakarta-flood-maps/deployment/maps/images/bnpb_logo.png" pictureHeight="37.2975" mapId="-1" anchorPoint="0">
         <ComposerItem pagey="346.2" page="1" id="" lastValidViewScaleFactor="1.14968" positionMode="0" positionLock="false" x="452.695" y="346.2" visibility="1" zValue="26" background="true" transparency="0" frameJoinStyle="miter" blendMode="0" width="37.0701" outlineWidth="0.3" excludeFromExports="0" uuid="{14aa0398-33a7-4364-afd3-b5185de86d67}" height="37.2975" itemRotation="0" frame="false" pagex="452.695">
           <FrameColor alpha="255" red="0" blue="0" green="0"/>
           <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
           <dataDefinedSource expr="" field="" active="false" useExpr="true"/>
         </ComposerItem>
       </ComposerPicture>
-      <ComposerPicture resizeMode="0" pictureRotation="0" pictureWidth="28.2256" file="/home/timlinux/dev/python/jakarta-flood-maps/maps/images/Australian-AID-Identifier_blue-red.png" pictureHeight="28.3988" mapId="-1" anchorPoint="0">
+      <ComposerPicture resizeMode="0" pictureRotation="0" pictureWidth="28.2256" file="/home/timlinux/dev/python/jakarta-flood-maps/deployment/maps/images/Australian-AID-Identifier_blue-red.png" pictureHeight="28.3988" mapId="-1" anchorPoint="0">
         <ComposerItem pagey="345.68" page="1" id="" lastValidViewScaleFactor="1.14968" positionMode="0" positionLock="false" x="390.797" y="345.68" visibility="1" zValue="25" background="true" transparency="0" frameJoinStyle="miter" blendMode="0" width="59.7252" outlineWidth="0.3" excludeFromExports="0" uuid="{35ca1a83-3dac-4d67-8b40-2306d29e58c5}" height="28.3988" itemRotation="0" frame="false" pagex="390.797">
           <FrameColor alpha="255" red="0" blue="0" green="0"/>
           <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
@@ -158,13 +161,13 @@
               <property key="legend/title-style" value="hidden"/>
             </customproperties>
           </layer-tree-layer>
-          <layer-tree-layer expanded="1" checked="Qt::Checked" id="rw_jakarta_update20150121132117662" name="RW">
+          <layer-tree-layer expanded="1" checked="Qt::Checked" id="rw_jakarta_update20150121132117662" name="Rw_jakarta_update">
             <customproperties>
               <property key="legend/title-style" value="hidden"/>
             </customproperties>
           </layer-tree-layer>
         </layer-tree-group>
-        <ComposerItem pagey="222.26" page="1" id="" lastValidViewScaleFactor="1.14968" positionMode="0" positionLock="false" x="391.554" y="222.26" visibility="1" zValue="23" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="57.4" outlineWidth="0.3" excludeFromExports="0" uuid="{77691fa2-c94f-4a8d-b19a-cb7fdfdf6c0e}" height="23.7" itemRotation="0" frame="false" pagex="391.554">
+        <ComposerItem pagey="222.26" page="1" id="legend" lastValidViewScaleFactor="1.14968" positionMode="0" positionLock="false" x="391.554" y="222.26" visibility="1" zValue="23" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="27.9" outlineWidth="0.3" excludeFromExports="0" uuid="{77691fa2-c94f-4a8d-b19a-cb7fdfdf6c0e}" height="13.7" itemRotation="0" frame="false" pagex="391.554">
           <FrameColor alpha="255" red="0" blue="0" green="0"/>
           <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
         </ComposerItem>
@@ -348,7 +351,7 @@
         <Extent ymin="-712224" xmin="11875600" ymax="-676831.94875185494311154" xmax="11909600"/>
         <LayerSet/>
         <Grid/>
-        <ComposerMapGrid rightAnnotationDirection="1" gridFramePenColor="0,0,0,255" show="1" bottomAnnotationPosition="1" annotationFont=".Lucida Grande UI,13,-1,5,50,0,0,0,0,0" annotationPrecision="3" showAnnotation="1" topFrameDivisions="0" uuid="{e5554222-a867-4e4b-b38a-00ee08f8421e}" leftAnnotationDirection="1" topAnnotationPosition="1" rightAnnotationDisplay="0" offsetX="0" offsetY="0" rightFrameDivisions="0" gridStyle="1" annotationFontColor="0,0,0,255" intervalX="10000" gridFrameSideFlags="15" intervalY="10000" bottomAnnotationDirection="0" leftAnnotationDisplay="0" leftFrameDivisions="0" frameFillColor1="255,255,255,255" frameFillColor2="0,0,0,255" crossLength="2" gridFramePenThickness="0.5" bottomAnnotationDisplay="0" unit="0" topAnnotationDisplay="0" leftAnnotationPosition="1" blendMode="0" gridFrameStyle="0" rightAnnotationPosition="1" gridFrameWidth="2" name="Grid 1" annotationFormat="0" bottomFrameDivisions="0" topAnnotationDirection="0" frameAnnotationDistance="2">
+        <ComposerMapGrid rightAnnotationDirection="1" gridFramePenColor="0,0,0,255" show="1" bottomAnnotationPosition="1" annotationFont=".Lucida Grande UI,13,-1,5,50,0,0,0,0,0" annotationPrecision="3" showAnnotation="1" topFrameDivisions="0" uuid="{311e70a1-246c-432c-98cd-064be557e5f4}" leftAnnotationDirection="1" topAnnotationPosition="1" rightAnnotationDisplay="0" offsetX="0" offsetY="0" rightFrameDivisions="0" gridStyle="1" annotationFontColor="0,0,0,255" intervalX="10000" gridFrameSideFlags="15" intervalY="10000" bottomAnnotationDirection="0" leftAnnotationDisplay="0" leftFrameDivisions="0" frameFillColor1="255,255,255,255" frameFillColor2="0,0,0,255" crossLength="2" gridFramePenThickness="0.5" bottomAnnotationDisplay="0" unit="0" topAnnotationDisplay="0" leftAnnotationPosition="1" blendMode="0" gridFrameStyle="0" rightAnnotationPosition="1" gridFrameWidth="2" name="Grid 1" annotationFormat="0" bottomFrameDivisions="0" topAnnotationDirection="0" frameAnnotationDistance="2">
           <lineStyle>
             <symbol alpha="1" type="line" name="">
               <layer pass="0" class="SimpleLine" locked="0">
@@ -394,7 +397,7 @@
             </symbol>
           </markerStyle>
         </ComposerMapGrid>
-        <ComposerMapOverview frameMap="-1" centered="0" inverted="0" uuid="{e7a35594-552d-4cc6-b817-423633a6acb6}" name="Overview 1" show="1" blendMode="0">
+        <ComposerMapOverview frameMap="-1" centered="0" inverted="0" uuid="{c59196e6-b931-4c03-9cc0-e39be0ce5efa}" name="Overview 1" show="1" blendMode="0">
           <symbol alpha="0.3" type="fill" name="">
             <layer pass="0" class="SimpleFill" locked="0">
               <prop k="border_width_map_unit_scale" v="0,0"/>
@@ -412,7 +415,7 @@
           </symbol>
         </ComposerMapOverview>
         <AtlasMap scalingMode="2" atlasDriven="0" margin="0.10000000000000001"/>
-        <ComposerItem pagey="32.8812" page="1" id="main-map" lastValidViewScaleFactor="1.32702" positionMode="0" positionLock="false" x="25.6513" y="32.8812" visibility="1" zValue="2" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="340.305" outlineWidth="1" excludeFromExports="0" uuid="{2edc43f2-4e23-486a-b074-bc67ffae7201}" height="354.238" itemRotation="0" frame="true" pagex="25.6513">
+        <ComposerItem pagey="32.8812" page="1" id="map" lastValidViewScaleFactor="1.32702" positionMode="0" positionLock="false" x="25.6513" y="32.8812" visibility="1" zValue="2" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="340.305" outlineWidth="1" excludeFromExports="0" uuid="{2edc43f2-4e23-486a-b074-bc67ffae7201}" height="354.238" itemRotation="0" frame="true" pagex="25.6513">
           <FrameColor alpha="255" red="0" blue="0" green="0"/>
           <BackgroundColor alpha="255" red="0" blue="255" green="207"/>
         </ComposerItem>
@@ -441,15 +444,15 @@
     </Composition>
   </Composer>
   <projectlayers layercount="3">
-    <maplayer minimumScale="-4.65661e-10" maximumScale="1e+08" simplifyDrawingHints="1" minLabelScale="0" maxLabelScale="1e+08" simplifyDrawingTol="1" geometry="Polygon" simplifyMaxScale="1" type="vector" hasScaleBasedVisibilityFlag="0" simplifyLocal="1" scaleBasedLabelVisibilityFlag="0">
-      <id>flood_mapper_floodstatus_6h20150302204017901</id>
-      <datasource>dbname='gis' host=db port=5432 user='docker' password='docker' sslmode=disable key='tid' srid=4326 type=MULTIPOLYGON table="public"."flood_mapper_floodstatus_6h" (geo) sql=</datasource>
+    <maplayer minimumScale="0" maximumScale="1e+08" simplifyDrawingHints="1" minLabelScale="0" maxLabelScale="1e+08" simplifyDrawingTol="1" geometry="Polygon" simplifyMaxScale="1" type="vector" hasScaleBasedVisibilityFlag="0" simplifyLocal="1" scaleBasedLabelVisibilityFlag="0">
+      <id>flood_mapper_floodstatus_24h20150302203114140</id>
+      <datasource>dbname='gis' host=db port=5432 user='docker' password='docker' sslmode=disable key='tid' srid=4326 type=MULTIPOLYGON table="public"."flood_mapper_floodstatus_24h" (geo) sql=</datasource>
       <title></title>
       <abstract></abstract>
       <keywordList>
         <value></value>
       </keywordList>
-      <layername>6 Jam Banjir</layername>
+      <layername>24 Jam Banjir</layername>
       <srs>
         <spatialrefsys>
           <proj4>+proj=longlat +datum=WGS84 +no_defs</proj4>
@@ -701,10 +704,10 @@
         <multilineenabled fieldname="" on=""/>
         <selectedonly on=""/>
       </labelattributes>
-      <editform></editform>
+      <editform>.</editform>
       <editforminit/>
       <featformsuppress>0</featformsuppress>
-      <annotationform></annotationform>
+      <annotationform>.</annotationform>
       <editorlayout>generatedlayout</editorlayout>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
@@ -721,15 +724,15 @@
         </edittype>
       </edittypes>
     </maplayer>
-    <maplayer minimumScale="-4.65661e-10" maximumScale="1e+08" simplifyDrawingHints="1" minLabelScale="0" maxLabelScale="1e+08" simplifyDrawingTol="1" geometry="Polygon" simplifyMaxScale="1" type="vector" hasScaleBasedVisibilityFlag="0" simplifyLocal="1" scaleBasedLabelVisibilityFlag="0">
-      <id>jakarta20150121114548274</id>
-      <datasource>../data/jakarta.shp</datasource>
+    <maplayer minimumScale="0" maximumScale="1e+08" simplifyDrawingHints="1" minLabelScale="0" maxLabelScale="1e+08" simplifyDrawingTol="1" geometry="Polygon" simplifyMaxScale="1" type="vector" hasScaleBasedVisibilityFlag="0" simplifyLocal="1" scaleBasedLabelVisibilityFlag="0">
+      <id>jk20150123235639796</id>
+      <datasource>./jk.shp</datasource>
       <title></title>
       <abstract></abstract>
       <keywordList>
         <value></value>
       </keywordList>
-      <layername>jakarta</layername>
+      <layername>jk</layername>
       <srs>
         <spatialrefsys>
           <proj4>+proj=longlat +datum=WGS84 +no_defs</proj4>
@@ -763,194 +766,29 @@
       <renderer-v2 symbollevels="0" type="singleSymbol">
         <symbols>
           <symbol alpha="1" type="fill" name="0">
-            <layer pass="0" class="ShapeburstFill" locked="0">
-              <prop k="blur_radius" v="8"/>
-              <prop k="color" v="0,0,255,255"/>
-              <prop k="color1" v="0,0,255,255"/>
-              <prop k="color2" v="0,255,0,255"/>
-              <prop k="color_type" v="0"/>
-              <prop k="discrete" v="0"/>
-              <prop k="distance_map_unit_scale" v="0,0"/>
-              <prop k="distance_unit" v="MM"/>
-              <prop k="gradient_color2" v="255,255,255,255"/>
-              <prop k="ignore_rings" v="0"/>
-              <prop k="max_distance" v="10"/>
+            <layer pass="0" class="SimpleFill" locked="0">
+              <prop k="border_width_map_unit_scale" v="0,0"/>
+              <prop k="color" v="184,161,215,255"/>
+              <prop k="joinstyle" v="bevel"/>
               <prop k="offset" v="0,0"/>
               <prop k="offset_map_unit_scale" v="0,0"/>
               <prop k="offset_unit" v="MM"/>
-              <prop k="use_whole_shape" v="0"/>
-            </layer>
-            <layer pass="0" class="SimpleLine" locked="1">
-              <prop k="capstyle" v="square"/>
-              <prop k="customdash" v="5;2"/>
-              <prop k="customdash_map_unit_scale" v="0,0"/>
-              <prop k="customdash_unit" v="MM"/>
-              <prop k="draw_inside_polygon" v="0"/>
-              <prop k="joinstyle" v="bevel"/>
-              <prop k="line_color" v="0,0,0,255"/>
-              <prop k="line_style" v="solid"/>
-              <prop k="line_width" v="0.26"/>
-              <prop k="line_width_unit" v="MM"/>
-              <prop k="offset" v="0"/>
-              <prop k="offset_map_unit_scale" v="0,0"/>
-              <prop k="offset_unit" v="MM"/>
-              <prop k="use_custom_dash" v="0"/>
-              <prop k="width_map_unit_scale" v="0,0"/>
+              <prop k="outline_color" v="0,0,0,255"/>
+              <prop k="outline_style" v="solid"/>
+              <prop k="outline_width" v="0.26"/>
+              <prop k="outline_width_unit" v="MM"/>
+              <prop k="style" v="solid"/>
             </layer>
           </symbol>
         </symbols>
         <rotation/>
         <sizescale scalemethod="area"/>
       </renderer-v2>
-      <customproperties>
-        <property key="labeling" value="pal"/>
-        <property key="labeling/addDirectionSymbol" value="false"/>
-        <property key="labeling/angleOffset" value="0"/>
-        <property key="labeling/blendMode" value="0"/>
-        <property key="labeling/bufferBlendMode" value="0"/>
-        <property key="labeling/bufferColorA" value="255"/>
-        <property key="labeling/bufferColorB" value="255"/>
-        <property key="labeling/bufferColorG" value="255"/>
-        <property key="labeling/bufferColorR" value="255"/>
-        <property key="labeling/bufferDraw" value="false"/>
-        <property key="labeling/bufferJoinStyle" value="64"/>
-        <property key="labeling/bufferNoFill" value="false"/>
-        <property key="labeling/bufferSize" value="1"/>
-        <property key="labeling/bufferSizeInMapUnits" value="false"/>
-        <property key="labeling/bufferSizeMapUnitMaxScale" value="0"/>
-        <property key="labeling/bufferSizeMapUnitMinScale" value="0"/>
-        <property key="labeling/bufferTransp" value="0"/>
-        <property key="labeling/centroidInside" value="false"/>
-        <property key="labeling/centroidWhole" value="false"/>
-        <property key="labeling/dataDefined/PositionX" value="1~~0~~~~LABEL_X"/>
-        <property key="labeling/dataDefined/PositionY" value="1~~0~~~~LABEL_Y"/>
-        <property key="labeling/decimals" value="3"/>
-        <property key="labeling/displayAll" value="false"/>
-        <property key="labeling/dist" value="0"/>
-        <property key="labeling/distInMapUnits" value="false"/>
-        <property key="labeling/distMapUnitMaxScale" value="0"/>
-        <property key="labeling/distMapUnitMinScale" value="0"/>
-        <property key="labeling/enabled" value="true"/>
-        <property key="labeling/fieldName" value="name"/>
-        <property key="labeling/fontBold" value="false"/>
-        <property key="labeling/fontCapitals" value="0"/>
-        <property key="labeling/fontFamily" value="Cantarell"/>
-        <property key="labeling/fontItalic" value="true"/>
-        <property key="labeling/fontLetterSpacing" value="0"/>
-        <property key="labeling/fontLimitPixelSize" value="false"/>
-        <property key="labeling/fontMaxPixelSize" value="10000"/>
-        <property key="labeling/fontMinPixelSize" value="3"/>
-        <property key="labeling/fontSize" value="18"/>
-        <property key="labeling/fontSizeInMapUnits" value="false"/>
-        <property key="labeling/fontSizeMapUnitMaxScale" value="0"/>
-        <property key="labeling/fontSizeMapUnitMinScale" value="0"/>
-        <property key="labeling/fontStrikeout" value="false"/>
-        <property key="labeling/fontUnderline" value="false"/>
-        <property key="labeling/fontWeight" value="50"/>
-        <property key="labeling/fontWordSpacing" value="0"/>
-        <property key="labeling/formatNumbers" value="false"/>
-        <property key="labeling/isExpression" value="false"/>
-        <property key="labeling/labelOffsetInMapUnits" value="true"/>
-        <property key="labeling/labelOffsetMapUnitMaxScale" value="0"/>
-        <property key="labeling/labelOffsetMapUnitMinScale" value="0"/>
-        <property key="labeling/labelPerPart" value="false"/>
-        <property key="labeling/leftDirectionSymbol" value="&lt;"/>
-        <property key="labeling/limitNumLabels" value="false"/>
-        <property key="labeling/maxCurvedCharAngleIn" value="20"/>
-        <property key="labeling/maxCurvedCharAngleOut" value="-20"/>
-        <property key="labeling/maxNumLabels" value="2000"/>
-        <property key="labeling/mergeLines" value="false"/>
-        <property key="labeling/minFeatureSize" value="0"/>
-        <property key="labeling/multilineAlign" value="0"/>
-        <property key="labeling/multilineHeight" value="1"/>
-        <property key="labeling/namedStyle" value="Oblique"/>
-        <property key="labeling/obstacle" value="true"/>
-        <property key="labeling/placeDirectionSymbol" value="0"/>
-        <property key="labeling/placement" value="1"/>
-        <property key="labeling/placementFlags" value="0"/>
-        <property key="labeling/plussign" value="false"/>
-        <property key="labeling/preserveRotation" value="true"/>
-        <property key="labeling/previewBkgrdColor" value="#ffffff"/>
-        <property key="labeling/priority" value="5"/>
-        <property key="labeling/quadOffset" value="4"/>
-        <property key="labeling/repeatDistance" value="0"/>
-        <property key="labeling/repeatDistanceMapUnitMaxScale" value="0"/>
-        <property key="labeling/repeatDistanceMapUnitMinScale" value="0"/>
-        <property key="labeling/repeatDistanceUnit" value="1"/>
-        <property key="labeling/reverseDirectionSymbol" value="false"/>
-        <property key="labeling/rightDirectionSymbol" value=">"/>
-        <property key="labeling/scaleMax" value="10000000"/>
-        <property key="labeling/scaleMin" value="1"/>
-        <property key="labeling/scaleVisibility" value="false"/>
-        <property key="labeling/shadowBlendMode" value="6"/>
-        <property key="labeling/shadowColorB" value="0"/>
-        <property key="labeling/shadowColorG" value="0"/>
-        <property key="labeling/shadowColorR" value="0"/>
-        <property key="labeling/shadowDraw" value="false"/>
-        <property key="labeling/shadowOffsetAngle" value="135"/>
-        <property key="labeling/shadowOffsetDist" value="1"/>
-        <property key="labeling/shadowOffsetGlobal" value="true"/>
-        <property key="labeling/shadowOffsetMapUnitMaxScale" value="0"/>
-        <property key="labeling/shadowOffsetMapUnitMinScale" value="0"/>
-        <property key="labeling/shadowOffsetUnits" value="1"/>
-        <property key="labeling/shadowRadius" value="1.5"/>
-        <property key="labeling/shadowRadiusAlphaOnly" value="false"/>
-        <property key="labeling/shadowRadiusMapUnitMaxScale" value="0"/>
-        <property key="labeling/shadowRadiusMapUnitMinScale" value="0"/>
-        <property key="labeling/shadowRadiusUnits" value="1"/>
-        <property key="labeling/shadowScale" value="100"/>
-        <property key="labeling/shadowTransparency" value="30"/>
-        <property key="labeling/shadowUnder" value="0"/>
-        <property key="labeling/shapeBlendMode" value="0"/>
-        <property key="labeling/shapeBorderColorA" value="255"/>
-        <property key="labeling/shapeBorderColorB" value="128"/>
-        <property key="labeling/shapeBorderColorG" value="128"/>
-        <property key="labeling/shapeBorderColorR" value="128"/>
-        <property key="labeling/shapeBorderWidth" value="0"/>
-        <property key="labeling/shapeBorderWidthMapUnitMaxScale" value="0"/>
-        <property key="labeling/shapeBorderWidthMapUnitMinScale" value="0"/>
-        <property key="labeling/shapeBorderWidthUnits" value="1"/>
-        <property key="labeling/shapeDraw" value="false"/>
-        <property key="labeling/shapeFillColorA" value="255"/>
-        <property key="labeling/shapeFillColorB" value="255"/>
-        <property key="labeling/shapeFillColorG" value="255"/>
-        <property key="labeling/shapeFillColorR" value="255"/>
-        <property key="labeling/shapeJoinStyle" value="64"/>
-        <property key="labeling/shapeOffsetMapUnitMaxScale" value="0"/>
-        <property key="labeling/shapeOffsetMapUnitMinScale" value="0"/>
-        <property key="labeling/shapeOffsetUnits" value="1"/>
-        <property key="labeling/shapeOffsetX" value="0"/>
-        <property key="labeling/shapeOffsetY" value="0"/>
-        <property key="labeling/shapeRadiiMapUnitMaxScale" value="0"/>
-        <property key="labeling/shapeRadiiMapUnitMinScale" value="0"/>
-        <property key="labeling/shapeRadiiUnits" value="1"/>
-        <property key="labeling/shapeRadiiX" value="0"/>
-        <property key="labeling/shapeRadiiY" value="0"/>
-        <property key="labeling/shapeRotation" value="0"/>
-        <property key="labeling/shapeRotationType" value="0"/>
-        <property key="labeling/shapeSVGFile" value=""/>
-        <property key="labeling/shapeSizeMapUnitMaxScale" value="0"/>
-        <property key="labeling/shapeSizeMapUnitMinScale" value="0"/>
-        <property key="labeling/shapeSizeType" value="0"/>
-        <property key="labeling/shapeSizeUnits" value="1"/>
-        <property key="labeling/shapeSizeX" value="0"/>
-        <property key="labeling/shapeSizeY" value="0"/>
-        <property key="labeling/shapeTransparency" value="0"/>
-        <property key="labeling/shapeType" value="0"/>
-        <property key="labeling/textColorA" value="255"/>
-        <property key="labeling/textColorB" value="0"/>
-        <property key="labeling/textColorG" value="0"/>
-        <property key="labeling/textColorR" value="0"/>
-        <property key="labeling/textTransp" value="0"/>
-        <property key="labeling/upsidedownLabels" value="0"/>
-        <property key="labeling/wrapChar" value=""/>
-        <property key="labeling/xOffset" value="0"/>
-        <property key="labeling/yOffset" value="0"/>
-      </customproperties>
+      <customproperties/>
       <blendMode>0</blendMode>
       <featureBlendMode>0</featureBlendMode>
       <layerTransparency>0</layerTransparency>
-      <displayfield>KAB_NAME</displayfield>
+      <displayfield>name</displayfield>
       <label>0</label>
       <labelattributes>
         <label fieldname="" text="Label"/>
@@ -992,15 +830,15 @@
         </edittype>
       </edittypes>
     </maplayer>
-    <maplayer minimumScale="-4.65661e-10" maximumScale="1e+08" simplifyDrawingHints="1" minLabelScale="0" maxLabelScale="1e+08" simplifyDrawingTol="1" geometry="Polygon" simplifyMaxScale="1" type="vector" hasScaleBasedVisibilityFlag="0" simplifyLocal="0" scaleBasedLabelVisibilityFlag="0">
-      <id>rw_jakarta_update20150121132117662</id>
-      <datasource>../../django_project/flood_mapper/data/rw_jakarta_update.shp</datasource>
+    <maplayer minimumScale="-4.65661e-10" maximumScale="1e+08" simplifyDrawingHints="1" minLabelScale="0" maxLabelScale="1e+08" simplifyDrawingTol="1" geometry="Polygon" simplifyMaxScale="1" type="vector" hasScaleBasedVisibilityFlag="0" simplifyLocal="1" scaleBasedLabelVisibilityFlag="0">
+      <id>rw20150123235623727</id>
+      <datasource>./rw.shp</datasource>
       <title></title>
       <abstract></abstract>
       <keywordList>
         <value></value>
       </keywordList>
-      <layername>RW</layername>
+      <layername>rw</layername>
       <srs>
         <spatialrefsys>
           <proj4>+proj=longlat +datum=WGS84 +no_defs</proj4>
@@ -1054,7 +892,7 @@
           <symbol alpha="1" type="fill" name="0">
             <layer pass="0" class="SimpleFill" locked="0">
               <prop k="border_width_map_unit_scale" v="0,0"/>
-              <prop k="color" v="255,255,255,255"/>
+              <prop k="color" v="160,127,192,255"/>
               <prop k="joinstyle" v="bevel"/>
               <prop k="offset" v="0,0"/>
               <prop k="offset_map_unit_scale" v="0,0"/>
@@ -1063,7 +901,7 @@
               <prop k="outline_style" v="solid"/>
               <prop k="outline_width" v="0.26"/>
               <prop k="outline_width_unit" v="MM"/>
-              <prop k="style" v="solid"/>
+              <prop k="style" v="no"/>
             </layer>
           </symbol>
         </symbols>
@@ -1215,7 +1053,7 @@
       </customproperties>
       <blendMode>0</blendMode>
       <featureBlendMode>0</featureBlendMode>
-      <layerTransparency>35</layerTransparency>
+      <layerTransparency>0</layerTransparency>
       <displayfield>KAB_NAME</displayfield>
       <label>0</label>
       <labelattributes>
@@ -1296,20 +1134,34 @@
       <CanvasColorBluePart type="int">255</CanvasColorBluePart>
     </Gui>
     <Digitizing>
+      <DefaultSnapToleranceUnit type="int">1</DefaultSnapToleranceUnit>
       <LayerSnappingList type="QStringList">
-        <value>jakarta20150121114548274</value>
+        <value>flood_mapper_floodstatus_24h20150302203114140</value>
+        <value>jk20150123235639796</value>
+        <value>rw20150123235623727</value>
       </LayerSnappingList>
       <LayerSnappingEnabledList type="QStringList">
         <value>disabled</value>
+        <value>disabled</value>
+        <value>disabled</value>
       </LayerSnappingEnabledList>
+      <SnappingMode type="QString">advanced</SnappingMode>
       <AvoidIntersectionsList type="QStringList"/>
       <LayerSnappingToleranceUnitList type="QStringList">
+        <value>1</value>
+        <value>1</value>
         <value>1</value>
       </LayerSnappingToleranceUnitList>
       <LayerSnapToList type="QStringList">
         <value>to_vertex_and_segment</value>
+        <value>to_vertex_and_segment</value>
+        <value>to_vertex_and_segment</value>
       </LayerSnapToList>
+      <DefaultSnapType type="QString">off</DefaultSnapType>
+      <DefaultSnapTolerance type="double">0</DefaultSnapTolerance>
       <LayerSnappingToleranceList type="QStringList">
+        <value>0.000000</value>
+        <value>0.000000</value>
         <value>0.000000</value>
       </LayerSnappingToleranceList>
     </Digitizing>
