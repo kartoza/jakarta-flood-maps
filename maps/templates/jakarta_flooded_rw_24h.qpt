@@ -15,21 +15,35 @@
     <prop k="style" v="solid"/>
    </layer>
   </symbol>
-  <ComposerPicture resizeMode="3" pictureRotation="0" pictureWidth="21.3396" file="/home/christian/Work/FloodMaps/jakarta-flood-maps/cron-scripts/images/inasafe-logo-url.svg" pictureHeight="21.4705" mapId="-1" anchorPoint="0">
+  <ComposerPicture resizeMode="0" pictureRotation="0" pictureWidth="40.9328" file="/home/web/cron-scripts/images/BPBD.jpeg" pictureHeight="41.1839" mapId="-1" anchorPoint="0">
+   <ComposerItem pagey="39.684" page="1" id="" lastValidViewScaleFactor="1.14968" positionMode="0" positionLock="false" x="478.036" y="39.684" visibility="1" zValue="29" background="true" transparency="0" frameJoinStyle="miter" blendMode="0" width="40.9328" outlineWidth="0.3" excludeFromExports="0" uuid="{00edb632-da78-4bb6-acbf-39a43cb17885}" height="47.2937" itemRotation="0" frame="false" pagex="478.036">
+    <FrameColor alpha="255" red="0" blue="0" green="0"/>
+    <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
+    <dataDefinedSource expr="" field="" active="false" useExpr="true"/>
+   </ComposerItem>
+  </ComposerPicture>
+  <ComposerPicture resizeMode="0" pictureRotation="0" pictureWidth="40.9328" file="/home/web/cron-scripts/images/DKI Jakarta.png" pictureHeight="41.1839" mapId="-1" anchorPoint="0">
+   <ComposerItem pagey="39.684" page="1" id="" lastValidViewScaleFactor="1.14968" positionMode="0" positionLock="false" x="430.056" y="39.684" visibility="1" zValue="28" background="true" transparency="0" frameJoinStyle="miter" blendMode="0" width="40.9328" outlineWidth="0.3" excludeFromExports="0" uuid="{3fd348d8-f23c-4aec-b660-51a753dbfbde}" height="47.2937" itemRotation="0" frame="false" pagex="430.056">
+    <FrameColor alpha="255" red="0" blue="0" green="0"/>
+    <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
+    <dataDefinedSource expr="" field="" active="false" useExpr="true"/>
+   </ComposerItem>
+  </ComposerPicture>
+  <ComposerPicture resizeMode="3" pictureRotation="0" pictureWidth="21.3396" file="/home/web/cron-scripts/images/inasafe-logo-url.svg" pictureHeight="21.4705" mapId="-1" anchorPoint="0">
    <ComposerItem pagey="347.07" page="1" id="" lastValidViewScaleFactor="1.14968" positionMode="0" positionLock="false" x="486.844" y="347.07" visibility="1" zValue="27" background="true" transparency="0" frameJoinStyle="miter" blendMode="0" width="21.3396" outlineWidth="0.3" excludeFromExports="0" uuid="{18b20e4e-582b-47f1-8b63-bdacf1ed8d8a}" height="21.4705" itemRotation="0" frame="false" pagex="486.844">
     <FrameColor alpha="255" red="0" blue="0" green="0"/>
     <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
     <dataDefinedSource expr="" field="" active="false" useExpr="true"/>
    </ComposerItem>
   </ComposerPicture>
-  <ComposerPicture resizeMode="3" pictureRotation="0" pictureWidth="37.0701" file="images/bnpb_logo.png" pictureHeight="37.2975" mapId="-1" anchorPoint="0">
+  <ComposerPicture resizeMode="3" pictureRotation="0" pictureWidth="37.0701" file="/home/web/cron-scripts/images/bnpb_logo.png" pictureHeight="37.2975" mapId="-1" anchorPoint="0">
    <ComposerItem pagey="346.2" page="1" id="" lastValidViewScaleFactor="1.16063" positionMode="0" positionLock="false" x="452.695" y="346.2" visibility="1" zValue="26" background="true" transparency="0" frameJoinStyle="miter" blendMode="0" width="37.0701" outlineWidth="0.3" excludeFromExports="0" uuid="{eb4bb9ec-d52a-4f32-8a63-d8d3ceeb5500}" height="37.2975" itemRotation="0" frame="false" pagex="452.695">
     <FrameColor alpha="255" red="0" blue="0" green="0"/>
     <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
     <dataDefinedSource expr="" field="" active="false" useExpr="true"/>
    </ComposerItem>
   </ComposerPicture>
-  <ComposerPicture resizeMode="0" pictureRotation="0" pictureWidth="28.2256" file="/home/christian/Work/FloodMaps/jakarta-flood-maps/cron-scripts/images/Australian-AID-Identifier_blue-red.png" pictureHeight="28.3988" mapId="-1" anchorPoint="0">
+  <ComposerPicture resizeMode="0" pictureRotation="0" pictureWidth="28.2256" file="/home/web/cron-scripts/images/Australian-AID-Identifier_blue-red.png" pictureHeight="28.3988" mapId="-1" anchorPoint="0">
    <ComposerItem pagey="345.68" page="1" id="" lastValidViewScaleFactor="1.14968" positionMode="0" positionLock="false" x="390.797" y="345.68" visibility="1" zValue="25" background="true" transparency="0" frameJoinStyle="miter" blendMode="0" width="59.7252" outlineWidth="0.3" excludeFromExports="0" uuid="{c60e16eb-8ab8-40f7-b4fc-49a071a43acf}" height="28.3988" itemRotation="0" frame="false" pagex="390.797">
     <FrameColor alpha="255" red="0" blue="0" green="0"/>
     <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
@@ -75,10 +89,9 @@
    </styles>
    <layer-tree-group expanded="1" checked="Qt::Checked" name="">
     <customproperties/>
-    <layer-tree-layer expanded="1" checked="Qt::Checked" id="report_6_hour_temp20150303175801429" name="report_6_hour_temp">
+    <layer-tree-layer expanded="1" checked="Qt::Checked" id="flood_mapper_floodstatus_24h20150305074938418" name="flood_mapper_floodstatus_24h">
      <customproperties>
       <property key="legend/title-label" value="Kebanjiran RW"/>
-      <property key="legend/title-style" value="hidden"/>
      </customproperties>
     </layer-tree-layer>
    </layer-tree-group>
@@ -262,7 +275,7 @@
     <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
    </ComposerItem>
   </ComposerShape>
-  <ComposerMap mapRotation="0" keepLayerSet="false" id="0" previewMode="Cache" drawCanvasItems="true">
+  <ComposerMap mapRotation="0" keepLayerSet="false" id="0" previewMode="Render" drawCanvasItems="true">
    <Extent ymin="-712224" xmin="11875600" ymax="-676831.94875185494311154" xmax="11909600"/>
    <LayerSet/>
    <Grid/>
@@ -351,7 +364,7 @@
      <prop k="style" v="no"/>
     </layer>
    </symbol>
-   <ComposerItem pagey="9.43294" page="1" id="" lastValidViewScaleFactor="1.12564" positionMode="0" positionLock="false" x="8.29202" y="9.43294" visibility="1" zValue="1" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="576.105" outlineWidth="1" excludeFromExports="0" uuid="{4a0f63e1-41dc-412c-9af0-cd765c39de94}" height="400.272" itemRotation="0" frame="false" pagex="8.29202">
+   <ComposerItem pagey="9.7886" page="1" id="" lastValidViewScaleFactor="1.12564" positionMode="0" positionLock="false" x="8.9475" y="9.7886" visibility="1" zValue="1" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="576.105" outlineWidth="1" excludeFromExports="0" uuid="{4a0f63e1-41dc-412c-9af0-cd765c39de94}" height="400.272" itemRotation="0" frame="false" pagex="8.9475">
     <FrameColor alpha="255" red="0" blue="0" green="0"/>
     <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
    </ComposerItem>

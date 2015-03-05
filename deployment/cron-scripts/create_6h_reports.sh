@@ -22,6 +22,7 @@ else
     DATE_TIME_START="$(date +'%F')-$(HOUR-6):00:00.0"
 fi
 DATE_TIME_NOW="$(date +'%F') $HOUR:00:00.0";
+DATE_TIME_END="$(date +'%F')-$HOUR:00:00.0";
 
 # DROP TEMP TABLE
 SQL_CLEANUP_QUERY=$(sed ':a;N;$!ba;s/\n/ /g' ./report_cleanup.sql)
@@ -49,4 +50,4 @@ ogr2ogr -f "SQLite" /home/web/reports/sqlite/6h/$DATE_TIME_LABEL.sqlite /home/we
 
 
 # GENERATE THE PDF REPORT
-DISPLAY=:99 python /home/web/cron-scripts/pdf_report_generator.py 6h $DATE_TIME_START $DATE_TIME_NOW $DATE_TIME_LABEL
+DISPLAY=:99 python /home/web/cron-scripts/pdf_report_generator.py 6h $DATE_TIME_START $DATE_TIME_END $DATE_TIME_LABEL
