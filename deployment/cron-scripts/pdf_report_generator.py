@@ -23,24 +23,24 @@ app.initQgis()
 print 'Available providers:'
 print QgsProviderRegistry.instance().pluginList()
 
+print sys.argv
+TIME_SLICE = sys.argv[1]
+TIME_START = sys.argv[2]
+TIME_STOP = sys.argv[3]
+LABEL = sys.argv[4]
 
 project_path = os.path.join(
     os.path.dirname(__file__),
     os.path.pardir,
     'maps',
-    'jk-floods.qgs')
+    'jk-floods-%s.qgs' % TIME_SLICE)
 template_path = os.path.abspath(os.path.join(
     os.path.dirname(__file__),
     os.path.pardir,
     'maps',
     'templates',
-    'jakarta_flooded_rw.qpt'
+    'jakarta_flooded_rw_%s.qpt' % TIME_SLICE
 ))
-
-TIME_SLICE = sys.argv[1]
-TIME_START = sys.argv[2]
-TIME_STOP = sys.argv[3]
-LABEL = sys.argv[4]
 
 
 def make_pdf():

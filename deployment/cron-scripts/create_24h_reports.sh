@@ -1,6 +1,7 @@
 NUMBER_OF_HOURS=24
 DATE_TIME_LABEL="$(date -d 'yesterday' +'%F')"
 DATE_TIME_START="$(date -d 'yesterday' +'%F')-00:00:00.0"
+DATE_TIME_END="$(date +'%F')-00:00:00.0"
 DATE_TIME_NOW="$(date +'%F') 00:00:00.0"
 
 # DROP TEMP TABLE
