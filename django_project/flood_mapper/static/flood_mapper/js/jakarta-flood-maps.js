@@ -225,7 +225,8 @@ function updateFloodAreaReport() {
                         tooltip_text;
                     tooltip_text = (
                         "Banjir sedalam " + water_depth +
-                        "m<br>terjadi pada " + date_time.toLocaleString()
+                        "m<br>terjadi pada " + date_time.toLocaleString(
+                            'id', {timeZone: 'ASIA/JAKARTA'})
                     );
                     $("#tooltip").html(tooltip_text)
                         .css({top: item.pageY+5, left: item.pageX+5})
