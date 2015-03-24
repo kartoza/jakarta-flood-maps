@@ -8,7 +8,7 @@ be used in other parts of the world.
 **Please note that this project is in the early phase of its development.**
 
 You can visit a running instance of this project at
-[http://jfm.kartoza.com](http://jfm.kartoza.com).
+[http://jkf.kartoza.com](http://jkf.kartoza.com).
 
 # Status
 
